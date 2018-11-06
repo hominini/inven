@@ -17,24 +17,24 @@ class CrearTablaBienes extends Migration
             $table->increments('id');
             $table->integer('id_ubicacion')->nullable();
             $table->string('nombre');
-            $table->string('clase');
-            $table->string('codigo', 50)->nullable();
-            $table->string('usuario_final')->nullable();//determinar desde donde van a ser obtenidos los usuarios
+            $table->enum('clase',['CONTROL ADMINISTRATIVO', 'PROPIEDAD, PLANTA Y EQUIPO']);
+            $table->string('codigo')->nullable();
+            $table->string('id_usuario_final')->nullable(); // Referencia a otra tabla
             $table->date('fecha_de_adquisicion')->nullable();
-            $table->string('acta_de_recepcion')->nullable();
-            $table->string('responsable')->nullable();
-            $table->string('periodo_de_garantia')->nullable();
+            $table->binary('acta_de_recepcion')->nullable();
+            $table->string('id_responsable')->nullable();   // Referencia a otra tabla
+            $table->decimal('periodo_de_garantia', 8, 2)->nullable();
             $table->string('estado')->nullable();
-            $table->string('imagen')->nullable();
-            $table->string('observaciones')->nullable();
-            $table->string('fecha_de_caducidad')->nullable();
+            $table->binary('imagen')->nullable();
+            $table->text('observaciones')->nullable();
+            $table->date('fecha_de_caducidad')->nullable();
             $table->string('peligrosidad')->nullable();
-            $table->string('manejo_especial')->nullable();
+            $table->text('manejo_especial')->nullable();
             $table->double('valor_unitario', 8, 2)->nullable();
-            $table->string('tiempo_de_vida_util')->nullable();
-            $table->string('tipo_de_actividad')->nullable();
+            $table->integer('tiempo_de_vida_util')->nullable();
+            $table->string('id_tipo_de_actividad')->nullable(); // Referencia a otra tabla
             $table->boolean('en_uso')->nullable();
-            $table->string('descripcion')->nullable();
+            $table->text('descripcion')->nullable();
             $table->timestamps();
         });
     }
