@@ -13,21 +13,28 @@ class CrearTablaBienesDeControlAdministrativo extends Migration
      */
     public function up()
     {
-        Schema::create('bienes_de_control_administrativo', function (Blueprint $table) {
+        Schema::create('bienes', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_ubicacion')->nullable();
+            $table->string('nombre');
+            $table->string('clase');
             $table->string('codigo', 50)->nullable();
-            $table->string('numero_de_serie')->nullable()->unique();
-            $table->string('modelo')->nullable();
             $table->string('usuario_final')->nullable();//determinar desde donde van a ser obtenidos los usuarios
             $table->date('fecha_de_adquisicion')->nullable();
             $table->string('acta_de_recepcion')->nullable();
             $table->string('responsable')->nullable();
             $table->string('periodo_de_garantia')->nullable();
-            $table->string('proveedor')->nullable();
             $table->string('estado')->nullable();
-            //$table->string('clasificacion');
             $table->string('imagen')->nullable();
             $table->string('observaciones')->nullable();
+            $table->string('fecha_de_caducidad')->nullable();
+            $table->string('peligrosidad')->nullable();
+            $table->string('manejo_especial')->nullable();
+            $table->double('valor_unitario', 8, 2)->nullable();
+            $table->string('tiempo_de_vida_util')->nullable();
+            $table->string('tipo_de_actividad')->nullable();
+            $table->boolean('en_uso')->nullable();
+            $table->string('descripcion')->nullable();
             $table->timestamps();
         });
     }
@@ -39,6 +46,6 @@ class CrearTablaBienesDeControlAdministrativo extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bienes_de_control_administrativo');
+        Schema::dropIfExists('bienes');
     }
 }
