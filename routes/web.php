@@ -21,8 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 // Rutas bienes
-//Route::resource('bienes', 'ControladorBienes');
-
 Route::get('/bienes', 'ControladorBienes@indice');
 Route::get('/bienes/{bien}', 'ControladorBienes@mostrar');
 Route::post('/bienes', 'ControladorBienes@almacenar');
