@@ -19,14 +19,18 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 // Rutas bienes
+//Route::resource('bienes', 'ControladorBienes');
+
 Route::get('/bienes', 'ControladorBienes@indice');
 Route::get('/bienes/{bien}', 'ControladorBienes@mostrar');
 Route::post('/bienes', 'ControladorBienes@almacenar');
 Route::put('/bienes/{bien}', 'ControladorBienes@actualizar');
-Route::delete('/bienes/{bien}', 'ControladorBienes@borrar');
+Route::delete('/bienes/{bien}', 'ControladorBienes@destruir');
 Route::get('/bienes/crear', 'ControladorBienes@crear');
 Route::get('/bienes/{bien}/editar', 'ControladorBienes@editar');
+
 
 // Rutas inventarios
 Route::get('/inventarios', 'ControladorInventarios@indice');
