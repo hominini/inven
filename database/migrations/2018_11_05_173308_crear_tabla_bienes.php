@@ -32,7 +32,7 @@ class CrearTablaBienes extends Migration
             $table->text('manejo_especial')->nullable();
             $table->decimal('valor_unitario', 8, 2)->nullable();
             $table->integer('tiempo_de_vida_util')->nullable();
-            $table->string('id_tipo_de_actividad')->nullable(); // Referencia a otra tabla
+            $table->integer('id_actividad')->nullable(); // Referencia a otra tabla
             $table->boolean('en_uso')->nullable();
             $table->text('descripcion')->nullable();
             $table->timestamps();
