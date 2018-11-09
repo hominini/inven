@@ -20,19 +20,6 @@ class AppServiceProvider extends ServiceProvider
         // Para evitar error "max length key" en migraciones
         Schema::defaultStringLength(191);
 
-        /*
-        Mapeo para poder utilizar Route::resource(), esto evita tener que mapear
-        manualmente los nombres de las "acciones" en los controladores
-        */
-        Route::resourceVerbs([
-            'index'     => 'indice',
-            'create'    => 'crear',
-            'store'     => 'almacenar',
-            'show'      => 'mostrar',
-            'edit'      => 'editar',
-            'update'    => 'actualizar',
-            'destroy'   => 'destruir',
-        ]);
     }
 
     /**

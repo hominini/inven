@@ -46,7 +46,8 @@ class ControladorBienes extends Controller
      */
     public function mostrar($id)
     {
-        //
+        $bienes = \App\Bien::find($id);
+        return $bienes;
     }
 
     /**
