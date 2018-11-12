@@ -22,7 +22,7 @@ function my_callback (Faker $faker) {
         'manejo_especial' => $faker->sentence,
         'valor_unitario' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 100000),
         'tiempo_de_vida_util' => $faker->randomDigit,
-        'id_tipo_de_actividad' => 1,
+        'id_actividad' => 1,
         'en_uso' => $faker->boolean,
         'descripcion' => $faker->paragraph,
     ];

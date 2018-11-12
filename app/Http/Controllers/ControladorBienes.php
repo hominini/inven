@@ -24,7 +24,7 @@ class ControladorBienes extends Controller
      */
     public function crear()
     {
-        //
+        return view('bienes.crear');
     }
 
     /**
@@ -35,7 +35,11 @@ class ControladorBienes extends Controller
      */
     public function almacenar(Request $request)
     {
-        //
+        $bien = new \App\Bien();
+        $bien->nombre = $request->input('nombre');
+        dd($bien);
+        $name = $request->input('nombre');
+        dd('tfys');
     }
 
     /**
