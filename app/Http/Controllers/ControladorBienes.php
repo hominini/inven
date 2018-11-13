@@ -58,7 +58,6 @@ class ControladorBienes extends Controller
         $bien->descripcion = $request->input('descripcion');
 
         $bien->save();
-        //dd($bien);
     }
 
     /**
@@ -81,7 +80,8 @@ class ControladorBienes extends Controller
      */
     public function editar($id)
     {
-        //
+        $bien = \App\Bien::find($id);
+        return view('bienes.editar', compact('bien'));
     }
 
     /**
@@ -93,7 +93,30 @@ class ControladorBienes extends Controller
      */
     public function actualizar(Request $request, $id)
     {
-        //
+        $bien = \App\Bien::find($id);
+        
+        $bien->id_ubicacion = $request->input('id_ubicacion');
+        $bien->nombre = $request->input('nombre');
+        $bien->clase = $request->input('clase');
+        $bien->codigo = $request->input('codigo');
+        $bien->id_usuario_final = $request->input('id_usuario_final');
+        $bien->fecha_de_adquisicion = $request->input('fecha_de_adquisicion');
+        $bien->acta_de_recepcion = $request->input('acta_de_recepcion');
+        $bien->id_responsable = $request->input('id_responsable');
+        $bien->periodo_de_garantia = $request->input('periodo_de_garantia');
+        $bien->estado = $request->input('estado');
+        $bien->imagen = $request->input('imagen');
+        $bien->observaciones = $request->input('observaciones');
+        $bien->fecha_de_caducidad = $request->input('fecha_de_caducidad');
+        $bien->peligrosidad = $request->input('peligrosidad');
+        $bien->manejo_especial = $request->input('manejo_especial');
+        $bien->valor_unitario = $request->input('valor_unitario');
+        $bien->tiempo_de_vida_util = $request->input('tiempo_de_vida_util');
+        $bien->id_actividad = $request->input('id_actividad');
+        $bien->en_uso = $request->input('en_uso');
+        $bien->descripcion = $request->input('descripcion');
+
+        $bien->save();
     }
 
     /**
