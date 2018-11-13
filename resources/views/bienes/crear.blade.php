@@ -9,7 +9,7 @@
 
               <div class="form-group">
                   <label for="id_ubicacion">Id Ubicacion</label>
-                  <input type="text" class="form-control" id="id_ubicacion" >
+                  <input type="text" class="form-control" id="id_ubicacion" name="id_ubicacion" >
               </div>
 
               <div class="form-group">
@@ -19,42 +19,45 @@
 
               <div class="form-group">
                   <label for="clase">Clase</label>
-                  <input type="text" class="form-control" id="clase">
+                  <select class="form-control" id="clase" name="clase">
+                      <option>Control Administrativo</option>
+                      <option>Planta y Equipo</option>
+                  </select>
               </div>
 
               <div class="form-group">
                   <label for="codigo">Código</label>
-                  <input type="text" class="form-control" id="codigo">
+                  <input type="text" class="form-control" id="codigo" name="codigo">
               </div>
 
               <div class="form-group">
                   <label for="id_usuario_final">Id Usuario Final</label>
-                  <input type="text" class="form-control" id="id_usuario_final">
+                  <input type="text" class="form-control" id="id_usuario_final" name="id_usuario_final">
               </div>
 
               <div class="form-group">
                   <label for="fecha_de_adquisicion">Fecha de Adquisición</label>
-                  <input type="date" class="form-control" id="fecha_de_adquisicion">
+                  <input type="date" class="form-control" id="fecha_de_adquisicion" name="fecha_de_adquisicion">
               </div>
 
               <div class="form-group">
                   <label for="acta_de_recepcion">Acta de Recepción</label>
-                  <input type="file" class="form-control-file" id="acta_de_recepcion">
+                  <input type="file" class="form-control-file" id="acta_de_recepcion" name="acta_de_recepcion">
               </div>
 
               <div class="form-group">
                   <label for="id_responsable">Id Responsable</label>
-                  <input type="text" class="form-control" id="id_responsable">
+                  <input type="text" class="form-control" id="id_responsable" name="id_responsable">
               </div>
 
               <div class="form-group">
                   <label for="periodo_de_garantia">Período de Garantía</label>
-                  <input type="number" min="0" max="50"  step="1" class="form-control" id="periodo_de_garantia">
+                  <input type="number" min="0" max="50"  step="1" class="form-control" id="periodo_de_garantia" name="periodo_de_garantia">
               </div>
 
               <div class="form-group">
                   <label for="estado">Estado</label>
-                  <select class="form-control" id="estado">
+                  <select class="form-control" id="estado" name="estado">
                       <option>Bueno</option>
                       <option>Dañado</option>
                       <option>Regular</option>
@@ -63,53 +66,53 @@
 
               <div class="form-group">
                   <label for="imagen">Imagen</label>
-                  <input type="file" class="form-control-file" id="imagen">
+                  <input type="file" class="form-control-file" id="imagen" name="imagen">
               </div>
 
               <div class="form-group">
                   <label for="observaciones">Observaciones</label>
-                  <textarea class="form-control" id="observaciones" rows='3'></textarea>
+                  <textarea class="form-control" rows='3' id="observaciones" name="observaciones"></textarea>
               </div>
 
               <div class="form-group">
                   <label for="fecha_de_caducidad">Fecha de Caducidad</label>
-                  <input type="date" class="form-control" id="fecha_de_caducidad">
+                  <input type="date" class="form-control" id="fecha_de_caducidad" name="fecha_de_caducidad">
               </div>
 
               <div class="form-group">
                   <label for="peligrosidad">Peligrosidad</label>
-                  <input type="text" class="form-control" id="peligrosidad">
+                  <input type="text" class="form-control" id="peligrosidad" name="peligrosidad">
               </div>
 
               <div class="form-group">
                   <label for="manejo_especial">Manejo Especial</label>
-                  <textarea class="form-control" id="manejo_especial" rows='3'></textarea>
+                  <textarea class="form-control" rows='3' id="manejo_especial" name="manejo_especial"></textarea>
               </div>
 
               <div class="form-group">
                   <label for="valor_unitario">Valor Unitario</label>
-                  <input type="text" class="form-control" id="valor_unitario">
+                  <input type="text" class="form-control" id="valor_unitario" name="valor_unitario">
               </div>
 
               <div class="form-group">
                   <label for="tiempo_de_vida_util">Tiempo de Vida Útil</label>
-                  <input type="number" min="0" max="50"  step="1" class="form-control" id="tiempo_de_vida_util">
+                  <input type="number" min="0" max="50"  step="1" class="form-control" id="tiempo_de_vida_util" name="tiempo_de_vida_util">
               </div>
 
               <div class="form-group">
                   <label for="id_actividad">Id Actividad</label>
-                  <input type="text" class="form-control" id="id_actividad">
+                  <input type="text" class="form-control" id="id_actividad" name="id_actividad">
               </div>
 
               <div class="form-check">
                   <label class="form-check-label" for="en_uso">
-                      <input type="checkbox" class="form-check-input" id="en_uso">En Uso
+                      <input type="checkbox" class="form-check-input" id="en_uso" name="en_uso">En Uso
                   </label>
               </div>
 
               <div class="form-group">
                   <label for="descripcion">Descripción</label>
-                  <textarea class="form-control" id="descripcion" rows='3'></textarea>
+                  <textarea class="form-control"  rows='3' id="descripcion" name="descripcion"></textarea>
               </div>
 
               <button type="submit" class="btn btn-primary">Guardar</button>

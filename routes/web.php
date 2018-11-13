@@ -29,7 +29,6 @@ Route::post('/bienes', 'ControladorBienes@almacenar');
 Route::put('/bienes/{bien}', 'ControladorBienes@actualizar');
 Route::delete('/bienes/{bien}', 'ControladorBienes@destruir');
 
-
 // Rutas inventarios
 Route::get('/inventarios', 'ControladorInventarios@indice');
 Route::get('/inventarios/crear', 'ControladorInventarios@crear');
