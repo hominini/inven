@@ -45,7 +45,7 @@ class BienTest extends TestCase
             'descripcion' => $faker->paragraph,
         );
 
-        // ejecucion el componente en evaluacion
+        // ejecucion del componente en evaluacion
         $response = $this->call('POST', 'bienes', $datos_post);
 
         // evaluacion de resultados
@@ -56,7 +56,9 @@ class BienTest extends TestCase
 
     public function test__actualizar()
     {
-        // definicion de inputs y outputs esperados
+        // setup
+        $registro_a_actualizar = factory('App\Bien')->create(['id' => 1]);
+
         $faker = Faker::create();
         $datos_post = array(
             '_token' => csrf_token(),
@@ -82,11 +84,26 @@ class BienTest extends TestCase
             'descripcion' => $faker->paragraph,
         );
 
-        // ejecucion el componente en evaluacion
-        $response = $this->call('PUT', 'bienes/{bien}', $datos_post);
+        // ejecucion del componente en evaluacion
+        $response = $this->call('PUT', 'bienes/1', $datos_post);
 
         // evaluacion de resultados
         $this->assertDatabaseHas('bienes', [
+            'nombre' => $datos_post['nombre'],
+        ]);
+    }
+
+    public function test__destruir()
+    {
+        // setup
+        dd(factory('App\Bien')->create(['id' => 1]));
+        $registro_a_destruir = factory('App\Bien')->create(['id' => 1]);
+
+        // ejecucion del componente en evaluacion
+        $response = $this->call('DELETE', 'bienes/1', $datos_post);
+
+        // evaluacion de resultados
+        $this->assertDatabaseMissing('bienes', [
             'nombre' => $datos_post['nombre'],
         ]);
     }

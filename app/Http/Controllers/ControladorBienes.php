@@ -94,7 +94,7 @@ class ControladorBienes extends Controller
     public function actualizar(Request $request, $id)
     {
         $bien = \App\Bien::find($id);
-        
+
         $bien->id_ubicacion = $request->input('id_ubicacion');
         $bien->nombre = $request->input('nombre');
         $bien->clase = $request->input('clase');
@@ -127,6 +127,9 @@ class ControladorBienes extends Controller
      */
     public function destruir($id)
     {
-        //
+        $bien = \App\Bien::find($id);
+        $bien->delete();
+        return response('Hello World', 200)
+                 ->header('Content-Type', 'text/plain');
     }
 }

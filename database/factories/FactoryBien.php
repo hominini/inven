@@ -13,7 +13,7 @@ function my_callback (Faker $faker) {
         'fecha_de_adquisicion' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'acta_de_recepcion' => "dummy_binary",
         'id_responsable' => 1,
-        'periodo_de_garantia' => 3.5,
+        'periodo_de_garantia' => 3,
         'estado' => $faker->word,
         'imagen' => "dummy_binary",
         'observaciones' => $faker->sentence,
