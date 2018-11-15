@@ -6,8 +6,8 @@ Software para la administración y control de Bienes en Instituciones Públicas.
 
 ### Pre-requisitos
 
-PHP 7
-Laravel 5.7
+PHP 7  
+Laravel 5.7  
 Composer
 
 ### Instalación
