@@ -96,15 +96,15 @@ class BienTest extends TestCase
     public function test__destruir()
     {
         // setup
-        dd(factory('App\Bien')->create(['id' => 1]));
         $registro_a_destruir = factory('App\Bien')->create(['id' => 1]);
+        $nombre = $registro_a_destruir->nombre;
 
         // ejecucion del componente en evaluacion
-        $response = $this->call('DELETE', 'bienes/1', $datos_post);
+        $response = $this->call('DELETE', 'bienes/1');
 
         // evaluacion de resultados
         $this->assertDatabaseMissing('bienes', [
-            'nombre' => $datos_post['nombre'],
+            'nombre' => $nombre,
         ]);
     }
 }
