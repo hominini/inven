@@ -20,8 +20,8 @@
               <div class="form-group">
                   <label for="clase">Clase</label>
                   <select class="form-control" id="clase" name="clase">
-                      <option>Control Administrativo</option>
-                      <option>Planta y Equipo</option>
+                      <option>CONTROL ADMINISTRATIVO</option>
+                      <option>PROPIEDAD, PLANTA Y EQUIPO</option>
                   </select>
               </div>
 
