@@ -55,6 +55,6 @@ $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
 
-$response->send();
+$response->send(); // send the final response to the browser
 
 $kernel->terminate($request, $response);
