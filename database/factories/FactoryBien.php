@@ -2,8 +2,7 @@
 
 use Faker\Generator as Faker;
 
-function my_callback (Faker $faker) {
-    // dd($faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = NULL));
+$factory->define(App\Bien::class, function (Faker $faker) {
     return [
         'id_ubicacion' => 1,
         'nombre' => $faker->name,
@@ -26,6 +25,4 @@ function my_callback (Faker $faker) {
         'en_uso' => $faker->boolean,
         'descripcion' => $faker->paragraph,
     ];
-}
-
-$factory->define(App\Bien::class, 'my_callback');
+});
