@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form action="/bienes" method="post">
+            <form action="@yield('action', '/bienes')" method="post">
                 @csrf
 
               <div class="form-group">
@@ -114,6 +114,8 @@
                   <label for="descripcion">Descripción</label>
                   <textarea class="form-control"  rows='3' id="descripcion" name="descripcion"></textarea>
               </div>
+
+              @yield('campos_propios')
 
               <button type="submit" class="btn btn-primary">Guardar</button>
 

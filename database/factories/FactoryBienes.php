@@ -5,7 +5,7 @@ use Faker\Generator as Faker;
 $factory->define(App\Bien::class, function (Faker $faker) {
     return [
         'id_ubicacion' => 1,
-        'nombre' => $faker->name,
+        'nombre' => $faker->sentence,
         'clase' => 'CONTROL ADMINISTRATIVO',
         'codigo' => $faker->ean13,
         'id_usuario_final' => 1,
@@ -24,5 +24,14 @@ $factory->define(App\Bien::class, function (Faker $faker) {
         'id_actividad' => 1,
         'en_uso' => $faker->boolean,
         'descripcion' => $faker->paragraph,
+    ];
+});
+
+$factory->define(App\Mueble::class, function (Faker $faker) {
+    return [
+        'id_bien' => 1,
+        'id_tipo_de_bien' => 3,
+        'color' => $faker->word,
+        'dimensiones' => $faker->word,
     ];
 });
