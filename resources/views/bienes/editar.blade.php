@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             @if ($bien)
-            
-            <form action="/@yield('action', 'bienes')/{{ $bien->id }}" method="post">
+
+            <form action="/{{ $tipo_de_bien }}/{{ $mueble->id }}" method="post">
                 @csrf
                 @method('PUT')
               <div class="form-group">
@@ -117,7 +117,7 @@
                   <textarea class="form-control"  rows='3' id="descripcion" name="descripcion">{{ $bien->descripcion }}</textarea>
               </div>
 
-                @yield('campos_propios')
+                @include('bienes.' . $tipo_de_bien . '.editar')
 
               <button type="submit" class="btn btn-primary">Guardar</button>
 
