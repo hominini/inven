@@ -36,7 +36,7 @@ Route::get('/inventarios/{inventario}/editar', 'ControladorInventarios@editar');
 Route::get('/inventarios/{inventario}', 'ControladorInventarios@mostrar');
 Route::post('/inventarios', 'ControladorInventarios@almacenar');
 Route::put('/inventarios/{inventario}', 'ControladorInventarios@actualizar');
-Route::delete('/inventarios/{inventario}', 'ControladorInventarios@borrar');
+Route::delete('/inventarios/{inventario}', 'ControladorInventarios@destruir');
 
 // Rutas bienes_muebles
 Route::get('/muebles', 'ControladorMuebles@indice');
@@ -45,7 +45,7 @@ Route::get('/muebles/{mueble}/editar', 'ControladorMuebles@editar');
 Route::get('/muebles/{mueble}', 'ControladorMuebles@mostrar');
 Route::post('/muebles', 'ControladorMuebles@almacenar');
 Route::put('/muebles/{mueble}', 'ControladorMuebles@actualizar');
-Route::delete('/muebles/{mueble}', 'ControladorMuebles@borrar');
+Route::delete('/muebles/{mueble}', 'ControladorMuebles@destruir');
 
 // Rutas bienes_recursos_tecnologicos
 Route::get('/bienes_recursos_tecnologicos', 'ControladorBienesRecursosTecnologicos@indice');
@@ -54,7 +54,7 @@ Route::get('/bienes_recursos_tecnologicos/{recurso}/editar', 'ControladorBienesR
 Route::get('/bienes_recursos_tecnologicos/{recurso}', 'ControladorBienesRecursosTecnologicos@mostrar');
 Route::post('/bienes_recursos_tecnologicos', 'ControladorBienesRecursosTecnologicoss@almacenar');
 Route::put('/bienes_recursos_tecnologicos/{recurso}', 'ControladorBienesRecursosTecnologicos@actualizar');
-Route::delete('/bienes_recursos_tecnologicos/{recurso}', 'ControladorBienesRecursosTecnologicos@borrar');
+Route::delete('/bienes_recursos_tecnologicos/{recurso}', 'ControladorBienesRecursosTecnologicos@destruir');
 
 // Rutas bienes_items_bibliograficos
 Route::get('/bienes_items_bibliograficos', 'ControladorBienesItemsBibliograficos@indice');
@@ -63,7 +63,7 @@ Route::get('/bienes_items_bibliograficos/{item_biblio}/editar', 'ControladorBien
 Route::get('/bienes_items_bibliograficos/{item_biblio}', 'ControladorBienesItemsBibliograficos@mostrar');
 Route::post('/bienes_items_bibliograficos', 'ControladorBienesItemsBibliograficos@almacenar');
 Route::put('/bienes_items_bibliograficos/{item_biblio}', 'ControladorBienesItemsBibliograficos@actualizar');
-Route::delete('/bienes_items_bibliograficos/{item_biblio}', 'ControladorBienesItemsBibliograficos@borrar');
+Route::delete('/bienes_items_bibliograficos/{item_biblio}', 'ControladorBienesItemsBibliograficos@destruir');
 
 // Rutas ubicaciones
 Route::get('/ubicaciones', 'ControladorUbicaciones@indice');
@@ -72,4 +72,4 @@ Route::get('/ubicaciones/{ubicacion}/editar', 'ControladorUbicaciones@editar');
 Route::get('/ubicaciones/{ubicacion}', 'ControladorUbicaciones@mostrar');
 Route::post('/ubicaciones', 'ControladorUbicaciones@almacenar');
 Route::put('/ubicaciones/{ubicacion}', 'ControladorUbicaciones@actualizar');
-Route::delete('/ubicaciones/{ubicacion}', 'ControladorUbicaciones@borrar');
+Route::delete('/ubicaciones/{ubicacion}', 'ControladorUbicaciones@destruir');
