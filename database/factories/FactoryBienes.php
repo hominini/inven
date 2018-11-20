@@ -22,7 +22,7 @@ $factory->define(App\Bien::class, function (Faker $faker) {
         'valor_unitario' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 100000),
         'tiempo_de_vida_util' => $faker->randomDigit,
         'id_actividad' => 1,
-        'en_uso' => $faker->boolean,
+        'en_uso' => 0,
         'descripcion' => $faker->paragraph,
     ];
 });
