@@ -6,7 +6,7 @@
         <div class="col-md-8">
             @if ($bien)
 
-            <form action="/{{ $tipo_de_bien }}/{{ $mueble->id }}" method="post">
+            <form action="/{{ $tipo_de_bien }}/{{ $id }}" method="post">
                 @csrf
                 @method('PUT')
               <div class="form-group">
@@ -103,7 +103,7 @@
 
               <div class="form-group">
                   <label for="id_actividad">Id Actividad</label>
-                  <input type="text" class="form-control" id="id_actividad" name="id_actividad" value="{{ $bien->en_uso }}">
+                  <input type="text" class="form-control" id="id_actividad" name="id_actividad" value="{{ $bien->id_actividad }}">
               </div>
 
               <div class="form-check">
@@ -117,9 +117,9 @@
                   <textarea class="form-control"  rows='3' id="descripcion" name="descripcion">{{ $bien->descripcion }}</textarea>
               </div>
 
-                @include('bienes.' . $tipo_de_bien . '.editar')
+                @includeIf('bienes.' . $tipo_de_bien . '.editar')
 
-              <button type="submit" class="btn btn-primary">Guardar</button>
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
 
             </form>
             @endif
