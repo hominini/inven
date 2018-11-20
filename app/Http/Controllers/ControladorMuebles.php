@@ -98,7 +98,7 @@ class ControladorMuebles extends Controller
         $mueble = \App\Mueble::find($id);
         $bien = $mueble->bien;
         $tipo_de_bien = 'muebles';
-        return view('bienes.editar', compact('mueble','bien','tipo_de_bien'));
+        return view('bienes.editar', compact('mueble','bien','tipo_de_bien', 'id'));
     }
 
     /**
@@ -134,7 +134,7 @@ class ControladorMuebles extends Controller
         $bien->valor_unitario = $request->input('valor_unitario');
         $bien->tiempo_de_vida_util = $request->input('tiempo_de_vida_util');
         $bien->id_actividad = $request->input('id_actividad');
-        $bien->en_uso = $request->input('en_uso');
+        $bien->en_uso = $request->input('en_uso') ? 1 : 0;
         $bien->descripcion = $request->input('descripcion');
 
         DB::transaction(function () use ($bien, $mueble) {

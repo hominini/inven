@@ -80,8 +80,9 @@ class ControladorBienes extends Controller
      */
     public function editar($id)
     {
+        $tipo_de_bien = 'bien';
         $bien = \App\Bien::find($id);
-        return view('bienes.editar', compact('bien'));
+        return view('bienes.editar', compact('bien','tipo_de_bien','id'));
     }
 
     /**
