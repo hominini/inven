@@ -19,7 +19,7 @@ class CrearTablaInventarios extends Migration
             $table->string('nombre');
             $table->text('descripcion')->nullable();
             $table->date('fecha_de_adquisicion')->nullable();
-            $table->double('valor_unitario', 8, 2)->nullable();
+            $table->double('valor', 8, 2)->nullable();
             $table->integer('cantidad');
             $table->integer('id_usuario_final')->nullable(); // Referencia a otra tabla
             $table->integer('id_tipo')->nullable();   // Referencia a otra tabla
