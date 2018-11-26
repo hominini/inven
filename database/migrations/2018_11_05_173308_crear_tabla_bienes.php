@@ -30,7 +30,7 @@ class CrearTablaBienes extends Migration
             $table->date('fecha_de_caducidad')->nullable();
             $table->string('peligrosidad')->nullable();
             $table->text('manejo_especial')->nullable();
-            $table->decimal('valor_unitario', 8, 2)->nullable();
+            $table->decimal('valor', 8, 2)->nullable();
             $table->integer('tiempo_de_vida_util')->nullable();
             $table->integer('id_actividad')->nullable(); // Referencia a otra tabla
             $table->boolean('en_uso')->nullable();
