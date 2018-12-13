@@ -15,7 +15,7 @@ class CrearTablaMuebles extends Migration
     {
         Schema::create('muebles', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_bien');
+            $table->integer('id_bien_control_administrativo');
             $table->integer('id_tipo_de_bien');
             $table->string('color')->nullable();
             $table->string('dimensiones')->nullable();

@@ -17,24 +17,15 @@ class CrearTablaBienes extends Migration
             $table->increments('id');
             $table->integer('id_ubicacion')->nullable();
             $table->string('nombre');
+            $table->text('descripcion')->nullable();
             $table->enum('clase',['CONTROL ADMINISTRATIVO', 'PROPIEDAD, PLANTA Y EQUIPO']);
-            $table->string('codigo')->nullable();
             $table->integer('id_usuario_final')->nullable(); // Referencia a otra tabla
+            $table->integer('id_responsable')->nullable();   // Referencia a otra tabla
             $table->date('fecha_de_adquisicion')->nullable();
             $table->binary('acta_de_recepcion')->nullable();
-            $table->integer('id_responsable')->nullable();   // Referencia a otra tabla
-            $table->decimal('periodo_de_garantia', 8, 2)->nullable();
-            $table->string('estado')->nullable();
             $table->binary('imagen')->nullable();
             $table->text('observaciones')->nullable();
-            $table->date('fecha_de_caducidad')->nullable();
-            $table->string('peligrosidad')->nullable();
-            $table->text('manejo_especial')->nullable();
             $table->decimal('valor', 8, 2)->nullable();
-            $table->integer('tiempo_de_vida_util')->nullable();
-            $table->integer('id_actividad')->nullable(); // Referencia a otra tabla
-            $table->boolean('en_uso')->nullable();
-            $table->text('descripcion')->nullable();
             $table->timestamps();
         });
     }
