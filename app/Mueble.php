@@ -11,9 +11,9 @@ class Mueble extends Model
     // no utilizar timestamps para este modelo
     public $timestamps = false;
 
-    public function bien()
+    public function bien_control_administrativo()
     {
-        return $this->belongsTo('App\Bien', 'id_bien');
+        return $this->belongsTo('App\BienControlAdministrativo', 'id_bien_control_administrativo');
     }
 
 }
