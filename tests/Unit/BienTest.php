@@ -17,7 +17,7 @@ class BienTest extends TestCase
      *
      * @return void
      */
-    public function test__almacenar()
+    public function notest__almacenar()
     {
         // definicion de inputs y outputs esperados
         $faker = Faker::create();
@@ -54,7 +54,7 @@ class BienTest extends TestCase
         ]);
     }
 
-    public function test__actualizar()
+    public function notest__actualizar()
     {
         // setup
         $registro_a_actualizar = factory('App\Bien')->create(['id' => 1]);
@@ -93,7 +93,7 @@ class BienTest extends TestCase
         ]);
     }
 
-    public function test__destruir()
+    public function notest__destruir()
     {
         // setup
         $registro_a_destruir = factory('App\Bien')->create(['id' => 1]);

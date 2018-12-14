@@ -53,6 +53,10 @@ class MuebleTest extends TestCase
 
         // evaluacion de resultados
         $this->assertDatabaseHas('bienes', [
+            'peligrosidad' => $datos_post['peligrosidad'],
+        ]);
+
+        $this->assertDatabaseHas('bienes_control_administrativo', [
             'nombre' => $datos_post['nombre'],
         ]);
 
@@ -63,9 +67,17 @@ class MuebleTest extends TestCase
 
     public function test__actualizar()
     {
-        // setup (pre-requisitos)
+        // setup
         $bien = factory('App\Bien')->create();
-        $mueble = factory('App\Mueble')->create(['id_bien' => $bien->id]);
+
+        // creacion de un bien de control administrativo
+        $bien->bca = factory('App\BienControlAdministrativo')->create(
+            ['id_bien' => $bien->id]
+        );
+        // creacion de un bien de control administrativo
+        $bien->bca->mueble = factory('App\Mueble')->create(
+            ['id_bien_control_administrativo' => $bien->bca->id]
+        );
 
         $faker = Faker::create();
         $datos_post = array(
@@ -108,19 +120,34 @@ class MuebleTest extends TestCase
     {
         // setup
         $bien = factory('App\Bien')->create();
-        $mueble = factory('App\Mueble')->create(['id_bien' => $bien->id]);
-        $id_mueble_a_eliminar = $mueble->id;
-        $id_del_bien_asociado = $bien->id;
+
+        // creacion de un bien de control administrativo
+        $bien->bca = factory('App\BienControlAdministrativo')->create(
+            ['id_bien' => $bien->id]
+        );
+        // creacion de un bien de control administrativo
+        $bien->bca->mueble = factory('App\Mueble')->create(
+            ['id_bien_control_administrativo' => $bien->bca->id]
+        );
+
+        // ids de registros a eliminar
+        $id_mueble = $bien->bca->mueble->id;
+        $id_bca = $bien->bca->id;
+        $id_bien = $bien->id;
 
         // ejecucion del componente en evaluacion
-        $response = $this->call('DELETE', 'muebles/'.$id_mueble_a_eliminar);
-
-        // evaluacion de resultados
+        $response = $this->call('DELETE', 'muebles/'.$id_mueble);
+        //dd($response->status());
+        // evaluacion de resultados, luego de la eliminacion no deben existir
+        // ningun registro con los ids recien creados, en las tablas correspondientes
         $this->assertDatabaseMissing('bienes', [
-            'id' => $id_del_bien_asociado,
+            'id' => $id_bien,
+        ]);
+        $this->assertDatabaseMissing('bienes_control_administrativo', [
+            'id' => $id_bca,
         ]);
         $this->assertDatabaseMissing('muebles', [
-            'id' => $id_mueble_a_eliminar,
+            'id' => $id_mueble,
         ]);
     }
 }
