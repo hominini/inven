@@ -15,7 +15,6 @@ class ControladorMuebles extends Controller
      */
     public function indice()
     {
-
         $muebles = \App\Mueble::all();
         return $muebles;
     }
@@ -70,7 +69,6 @@ class ControladorMuebles extends Controller
             $mueble->dimensiones = $request->input('dimensiones');
             $mueble->save();
         });
-
     }
 
     /**
@@ -155,10 +153,14 @@ class ControladorMuebles extends Controller
      */
     public function destruir($id)
     {
+        // obtencion de referencias a las tablas a eliminar
         $mueble = \App\Mueble::find($id);
-        $bien = $mueble->bien;
+        $bca = $mueble->bien_control_administrativo;
+        $bien = $mueble->bien_control_administrativo->bien;
         $mueble->delete();
+        $bca->delete();
         $bien->delete();
+
         return response('Hello World', 200)
                  ->header('Content-Type', 'text/plain');
     }
