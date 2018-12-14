@@ -15,10 +15,10 @@ class CrearTablaBienes extends Migration
     {
         Schema::create('bienes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_ubicacion')->nullable();
             $table->string('nombre');
             $table->text('descripcion')->nullable();
             $table->enum('clase',['CONTROL ADMINISTRATIVO', 'PROPIEDAD, PLANTA Y EQUIPO']);
+            $table->integer('id_ubicacion')->nullable();
             $table->integer('id_usuario_final')->nullable(); // Referencia a otra tabla
             $table->integer('id_responsable')->nullable();   // Referencia a otra tabla
             $table->date('fecha_de_adquisicion')->nullable();

@@ -15,7 +15,7 @@ class CrearTablaInventarios extends Migration
     {
         Schema::create('inventarios', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_tipo')->nullable();   // Referencia a otra tabla
+            $table->integer('id_tipo')->nullable(); // Referencia a otra tabla
             $table->timestamps();
         });
     }
