@@ -11,7 +11,8 @@ $factory->define(App\Bien::class, function (Faker $faker) {
         'id_usuario_final' => 1,
         'id_responsable' => 1,
         'fecha_de_adquisicion' => $faker->date($format = 'Y-m-d', $max = 'now'),
-        'imagen' => "dummy_binary",
+        'acta_de_recepcion' => 'dummy_binary',
+        'imagen' => 'dummy_binary',
         'observaciones' => $faker->sentence,
         'valor' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 100000),
     ];
@@ -19,14 +20,24 @@ $factory->define(App\Bien::class, function (Faker $faker) {
 
 $factory->define(App\BienControlAdministrativo::class, function (Faker $faker) {
     return [
+        'id_bien' => $faker->randomDigit,
+        'codigo' => $faker->word,
         'peligrosidad' => $faker->word,
+        'periodo_de_garantia' => $faker->randomDigit,
+        'estado' => $faker->word,
+        'caducidad' => $faker->word,
+        'peligrosidad' => $faker->word,
+        'manejo_especial' => $faker->word,
+        'vida_util' => $faker->randomDigit,
+        'id_actividad' => $faker->randomDigit,
+        'en_uso' => $faker->randomDigit,
     ];
 });
 
 $factory->define(App\Mueble::class, function (Faker $faker) {
     return [
-        'id_bien_control_administrativo' => 1,
-        'id_tipo_de_bien' => 3,
+        'id_bien_control_administrativo' =>  $faker->randomDigit,
+        'id_tipo_de_bien' =>  $faker->randomDigit,
         'color' => $faker->word,
         'dimensiones' => $faker->word,
     ];

@@ -75,8 +75,8 @@
               </div>
 
               <div class="form-group">
-                  <label for="fecha_de_caducidad">Fecha de Caducidad</label>
-                  <input type="date" class="form-control" id="fecha_de_caducidad" name="fecha_de_caducidad">
+                  <label for="fecha_de_caducidad">Caducidad</label>
+                  <input type="date" class="form-control" id="caducidad" name="caducidad">
               </div>
 
               <div class="form-group">
@@ -95,8 +95,8 @@
               </div>
 
               <div class="form-group">
-                  <label for="tiempo_de_vida_util">Tiempo de Vida Útil</label>
-                  <input type="number" min="0" max="50"  step="1" class="form-control" id="tiempo_de_vida_util" name="tiempo_de_vida_util">
+                  <label for="tiempo_de_vida_util">Vida Útil</label>
+                  <input type="number" min="0" max="50"  step="1" class="form-control" id="vida_util" name="vida_util">
               </div>
 
               <div class="form-group">

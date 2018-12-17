@@ -17,15 +17,14 @@ class CrearTablaBienesControlAdministrativo extends Migration
             $table->increments('id');
             $table->integer('id_bien');
             $table->string('codigo')->nullable();
-            $table->decimal('periodo_de_garantia', 8, 2)->nullable();
+            $table->integer('periodo_de_garantia')->nullable();
             $table->string('estado')->nullable();
-            $table->date('caducidad')->nullable();
+            $table->string('caducidad')->nullable();
             $table->string('peligrosidad')->nullable();
             $table->text('manejo_especial')->nullable();
             $table->integer('vida_util')->nullable();
             $table->integer('id_actividad')->nullable(); // Referencia a otra tabla
             $table->boolean('en_uso')->nullable();
-            $table->timestamps();
         });
     }
 

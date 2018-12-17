@@ -16,7 +16,12 @@ class ControladorMuebles extends Controller
     public function indice()
     {
         $muebles = \App\Mueble::all();
-        return $muebles;
+        foreach ($muebles as $mueble) {
+            $mueble->bien_control_administrativo;
+            $mueble->bien_control_administrativo->bien;
+        }
+
+        return $muebles->toJSON(JSON_PRETTY_PRINT);
     }
 
     /**
@@ -40,34 +45,42 @@ class ControladorMuebles extends Controller
         DB::transaction(function () use ($request) {
 
             $bien = new \App\Bien();
-            $bien->id_ubicacion = $request->input('id_ubicacion');
             $bien->nombre = $request->input('nombre');
+            $bien->descripcion = $request->input('descripcion');
             $bien->clase = $request->input('clase');
-            $bien->codigo = $request->input('codigo');
+            $bien->id_ubicacion = $request->input('id_ubicacion');
             $bien->id_usuario_final = $request->input('id_usuario_final');
+            $bien->id_responsable = $request->input('id_responsable');
             $bien->fecha_de_adquisicion = $request->input('fecha_de_adquisicion');
             $bien->acta_de_recepcion = $request->input('acta_de_recepcion');
-            $bien->id_responsable = $request->input('id_responsable');
-            $bien->periodo_de_garantia = $request->input('periodo_de_garantia');
-            $bien->estado = $request->input('estado');
             $bien->imagen = $request->input('imagen');
             $bien->observaciones = $request->input('observaciones');
-            $bien->fecha_de_caducidad = $request->input('fecha_de_caducidad');
-            $bien->peligrosidad = $request->input('peligrosidad');
-            $bien->manejo_especial = $request->input('manejo_especial');
-            $bien->valor_unitario = $request->input('valor_unitario');
-            $bien->tiempo_de_vida_util = $request->input('tiempo_de_vida_util');
-            $bien->id_actividad = $request->input('id_actividad');
-            $bien->en_uso = $request->input('en_uso');
-            $bien->descripcion = $request->input('descripcion');
-            $bien->save();
+            $bien->valor = $request->input('valor');
+
+            $bca = new \App\BienControlAdministrativo();
+            $bca->codigo = $request->input('codigo');
+            $bca->periodo_de_garantia = $request->input('periodo_de_garantia');
+            $bca->estado = $request->input('estado');
+            $bca->caducidad = $request->input('caducidad');
+            $bca->peligrosidad = $request->input('peligrosidad');
+            $bca->manejo_especial = $request->input('manejo_especial');
+            $bca->vida_util = $request->input('vida_util');
+            $bca->id_actividad = $request->input('id_actividad');
+            $bca->en_uso = $request->input('en_uso');
 
             $mueble = new \App\Mueble();
-            $mueble->id_bien = $bien->id;
             $mueble->id_tipo_de_bien = $request->input('id_tipo_de_bien');
             $mueble->color = $request->input('color');
             $mueble->dimensiones = $request->input('dimensiones');
-            $mueble->save();
+
+            try {
+                $bien->save();
+                \App\Bien::find($bien->id)->bien_control_administrativo()->save($bca);
+                \App\BienControlAdministrativo::find($bca->id)->mueble()->save($mueble);
+            } catch (\Exception $e) {
+                echo $e->getMessage();
+            }
+
         });
     }
 
@@ -80,9 +93,10 @@ class ControladorMuebles extends Controller
     public function mostrar($id)
     {
         $mueble = \App\Mueble::find($id);
-        $mueble->bien;
-        $mueble->toArray();
-        return $mueble;
+        $mueble->bien_control_administrativo;
+        $mueble->bien_control_administrativo->bien;
+
+        return $mueble->toJSON(JSON_PRETTY_PRINT);
     }
 
     /**
@@ -93,9 +107,13 @@ class ControladorMuebles extends Controller
      */
     public function editar($id)
     {
-        $mueble = \App\Mueble::find($id);
-        $bien = $mueble->bien;
         $tipo_de_bien = 'muebles';
+        $mueble = \App\Mueble::find($id);
+        $bca = $mueble->bien_control_administrativo;
+        $bien = $bca->bien;
+        $bca = $bca->toArray();
+        $bien = $bien->toArray();
+        $bien = array_merge($bien, $bca);
         return view('bienes.editar', compact('mueble','bien','tipo_de_bien', 'id'));
     }
 
@@ -113,30 +131,33 @@ class ControladorMuebles extends Controller
         $mueble->color = $request->input('color');
         $mueble->dimensiones = $request->input('dimensiones');
 
-        $bien = $mueble->bien;
-        $bien->id_ubicacion = $request->input('id_ubicacion');
+        $bca = $mueble->bien_control_administrativo;
+        $bca->codigo = $request->input('codigo');
+        $bca->periodo_de_garantia = $request->input('periodo_de_garantia');
+        $bca->estado = $request->input('estado');
+        $bca->caducidad = $request->input('caducidad');
+        $bca->peligrosidad = $request->input('peligrosidad');
+        $bca->manejo_especial = $request->input('manejo_especial');
+        $bca->vida_util = $request->input('vida_util');
+        $bca->id_actividad = $request->input('id_actividad');
+        $bca->en_uso = ($request->input('en_uso') == 'checked' ? 1 : 0);
+
+        $bien = $bca->bien;
         $bien->nombre = $request->input('nombre');
+        $bien->descripcion = $request->input('descripcion');
         $bien->clase = $request->input('clase');
-        $bien->codigo = $request->input('codigo');
+        $bien->id_ubicacion = $request->input('id_ubicacion');
         $bien->id_usuario_final = $request->input('id_usuario_final');
+        $bien->id_responsable = $request->input('id_responsable');
         $bien->fecha_de_adquisicion = $request->input('fecha_de_adquisicion');
         $bien->acta_de_recepcion = $request->input('acta_de_recepcion');
-        $bien->id_responsable = $request->input('id_responsable');
-        $bien->periodo_de_garantia = $request->input('periodo_de_garantia');
-        $bien->estado = $request->input('estado');
         $bien->imagen = $request->input('imagen');
         $bien->observaciones = $request->input('observaciones');
-        $bien->fecha_de_caducidad = $request->input('fecha_de_caducidad');
-        $bien->peligrosidad = $request->input('peligrosidad');
-        $bien->manejo_especial = $request->input('manejo_especial');
-        $bien->valor_unitario = $request->input('valor_unitario');
-        $bien->tiempo_de_vida_util = $request->input('tiempo_de_vida_util');
-        $bien->id_actividad = $request->input('id_actividad');
-        $bien->en_uso = $request->input('en_uso') ? 1 : 0;
-        $bien->descripcion = $request->input('descripcion');
+        $bien->valor = $request->input('valor');
 
-        DB::transaction(function () use ($bien, $mueble) {
+        DB::transaction(function () use ($mueble, $bca, $bien) {
             $mueble->save();
+            $bca->save();
             $bien->save();
         });
 
