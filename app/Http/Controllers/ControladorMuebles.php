@@ -66,7 +66,8 @@ class ControladorMuebles extends Controller
             $bca->manejo_especial = $request->input('manejo_especial');
             $bca->vida_util = $request->input('vida_util');
             $bca->id_actividad = $request->input('id_actividad');
-            $bca->en_uso = $request->input('en_uso');
+            $bca->en_uso = ($request->input('en_uso') == 'checked' ? 1 : 0);
+
 
             $mueble = new \App\Mueble();
             $mueble->id_tipo_de_bien = $request->input('id_tipo_de_bien');
