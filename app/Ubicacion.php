@@ -11,7 +11,7 @@ class Ubicacion extends Model
 
     public function bienes()
     {
-        // laravel determina el id foraneo viendo al nombre de la clase en
+        // laravel determina el id foraneo a partir del nombre del modelo pasandole a 
         // minusculas y le agrega el sufijo _id por lo cual se agrega manualmente
         // id_ubicacion aqui.
         return $this->hasMany('App\Bien', 'id_ubicacion');
