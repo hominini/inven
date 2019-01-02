@@ -7,7 +7,7 @@ $factory->define(App\Bien::class, function (Faker $faker) {
         'nombre' => $faker->sentence,
         'descripcion' => $faker->paragraph,
         'clase' => 'CONTROL ADMINISTRATIVO',
-        'id_ubicacion' => 1,
+        'id_ubicacion' => $faker->numberBetween($min = 1, $max = 10),
         'id_usuario_final' => 1,
         'id_responsable' => 1,
         'fecha_de_adquisicion' => $faker->date($format = 'Y-m-d', $max = 'now'),
@@ -38,7 +38,7 @@ $factory->define(App\Mueble::class, function (Faker $faker) {
     return [
         'id_bien_control_administrativo' =>  $faker->randomDigit,
         'id_tipo_de_bien' =>  $faker->randomDigit,
-        'color' => $faker->word,
+        'color' => $faker->colorName,
         'dimensiones' => $faker->word,
     ];
 });
