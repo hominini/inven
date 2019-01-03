@@ -79,7 +79,7 @@ class ControladorUbicaciones extends Controller
         // Encontrar el recurso a editar por medio del id pasado en la peticion http
         $ubicacion = \App\Ubicacion::find($id);
         // Por medio de compac() se pasa variables a la vista
-        return view('ubicaciones.editar', compact('ubicacion'));
+        return view('ubicaciones.editar', compact('id', 'ubicacion'));
     }
 
     /**
@@ -91,19 +91,15 @@ class ControladorUbicaciones extends Controller
      */
     public function actualizar(Request $request, $id)
     {
-        $mueble = \App\Mueble::find($id);
-        $mueble->id_tipo_de_bien = $request->input('id_tipo_de_bien');
-        $mueble->color = $request->input('color');
-        $mueble->dimensiones = $request->input('dimensiones');
+        $ubicacion = \App\Ubicacion::find($id);
+        $ubicacion->nombre = $request->input('nombre');
+        $ubicacion->nombre_cuarto = $request->input('nombre_cuarto');
+        $ubicacion->comentarios = $request->input('comentarios');
 
-        DB::transaction(function () use ($mueble, $bca, $bien) {
-            $mueble->save();
-            $bca->save();
-            $bien->save();
-        });
+        $ubicacion->save();
 
         return redirect()->action(
-            'ControladorMuebles@mostrar', ['mueble' => $id]
+            'ControladorUbicaciones@mostrar', ['ubicacion' => $id]
         );
     }
 
@@ -116,12 +112,10 @@ class ControladorUbicaciones extends Controller
     public function destruir($id)
     {
         // obtencion de referencias a las tablas a eliminar
-        $mueble = \App\Mueble::find($id);
-        $bca = $mueble->bien_control_administrativo;
-        $bien = $mueble->bien_control_administrativo->bien;
-        $mueble->delete();
-        $bca->delete();
-        $bien->delete();
+        $ubicacion = \App\Mueble::find($id);
+
+        $ubicacion->delete();
+
 
         return response('Hello World', 200)
                  ->header('Content-Type', 'text/plain');
