@@ -84,12 +84,12 @@ class UbicacionesTest extends TestCase
         // datos de la peticion falsa
         $datos_req = array(
             '_token' => csrf_token(),
-        );
+          );
 
         // ejecucion del componente en evaluacion
-        $resp = $this->call('DELETE', 'ubicaciones/'.$id, $datos_req);
-        dd(get_class();
-
+        //$resp = $this->call('DELETE', 'ubicaciones/'.$id, $datos_req);
+        $resp = $this->delete('ubicaciones/' . $id);
+          
         // evaluacion de resultados, luego de la eliminacion no deben existir
         // ningun registro con los ids recien creados, en las tablas correspondientes
         $this->assertDatabaseMissing('ubicaciones', [
