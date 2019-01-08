@@ -112,7 +112,7 @@ class ControladorUbicaciones extends Controller
     public function destruir($id)
     {
         // obtencion de referencias a las tablas a eliminar
-        $ubicacion = \App\Mueble::find($id);
+        $ubicacion = \App\Ubicacion::find($id);
 
         $ubicacion->delete();
 

@@ -41,7 +41,7 @@ class ControladorMuebles extends Controller
      * @return \Illuminate\Http\Response
      */
     public function almacenar(Request $request)
-    {
+    {dd($request->input('id_usuario_final'));
         DB::transaction(function () use ($request) {
 
             $bien = new \App\Bien();
@@ -108,13 +108,23 @@ class ControladorMuebles extends Controller
      */
     public function editar($id)
     {
+        // el tipo de bien se debe pasar a la vista para que se agregen los campos
+        // especificos al tipo de bien
         $tipo_de_bien = 'muebles';
+        // obtencion del mueble a editar
         $mueble = \App\Mueble::find($id);
+        // obtencion una referencia al bca asociado con este mueble
         $bca = $mueble->bien_control_administrativo;
+        //obtenciono de una referencia al bien asociado con este mueble
         $bien = $bca->bien;
+
+        // se une los datos del bien y del bca en un solo elemento bien
         $bca = $bca->toArray();
         $bien = $bien->toArray();
         $bien = array_merge($bien, $bca);
+
+        // se pasan los siguientes datos a la vista: un string $tipo_de_bien,
+        // un objeto $bien, un objeto $mueble, el $id del mueble
         return view('bienes.editar', compact('mueble','bien','tipo_de_bien', 'id'));
     }
 

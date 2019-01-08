@@ -7,23 +7,27 @@
             <form action="@yield('action', '/bienes')" method="post">
                 @csrf
 
-              <div class="form-group">
-                  <label for="id_ubicacion">Id Ubicacion</label>
-                  <input type="text" class="form-control" id="id_ubicacion" name="id_ubicacion" >
-              </div>
+                <div class="form-group">
+                    <label for="id_ubicacion">Ubicacion</label>
+                    <select class="form-control" id="id_ubicacion" name="id_ubicacion">
+                        @foreach ($ubicaciones as $ubicacion)
+                         <option value="{{$ubicacion->id}}">{{$ubicacion->nombre}}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-              <div class="form-group">
-                  <label for="nombre">Nombre</label>
-                  <input type="text" class="form-control" id="nombre" name="nombre">
-              </div>
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre">
+                </div>
 
-              <div class="form-group">
-                  <label for="clase">Clase</label>
-                  <select class="form-control" id="clase" name="clase">
-                      <option>CONTROL ADMINISTRATIVO</option>
-                      <option>PROPIEDAD, PLANTA Y EQUIPO</option>
-                  </select>
-              </div>
+                <div class="form-group">
+                    <label for="clase">Clase</label>
+                    <select class="form-control" id="clase" name="clase">
+                        <option>CONTROL ADMINISTRATIVO</option>
+                        <option>PROPIEDAD, PLANTA Y EQUIPO</option>
+                    </select>
+                </div>
 
               <div class="form-group">
                   <label for="codigo">Código</label>

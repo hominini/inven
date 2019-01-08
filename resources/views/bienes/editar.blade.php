@@ -9,10 +9,23 @@
             <form action="/{{ $tipo_de_bien }}/{{ $id }}" method="POST">
                 @csrf
                 @method('PUT')
-              <div class="form-group">
-                  <label for="id_ubicacion">Id Ubicacion</label>
-                  <input type="text" class="form-control" id="id_ubicacion" name="id_ubicacion" value="{{ $bien['id_ubicacion'] }}" >
-              </div>
+
+                <div class="form-group">
+                    <label for="id_ubicacion">Ubicación</label>
+                    <select class="form-control" id="id_ubicacion" name="id_ubicacion">
+                        @foreach ($ubicaciones as $ubicacion)
+                          @if ($ubicacion->id == $bien['id_ubicacion'])
+                            <option value="{{$ubicacion->id}}" selected>{{$ubicacion->nombre}}</option>
+                          @else
+                            <option value="{{$ubicacion->id}}">{{$ubicacion->nombre}}</option>
+                          @endif
+                        @endforeach
+                    </select>
+
+                    <button type="button" class="btn btn-info">
+                      <span class="glyphicon glyphicon-search"></span> Search
+                    </button>
+                </div>
 
               <div class="form-group">
                   <label for="nombre">Nombre</label>
