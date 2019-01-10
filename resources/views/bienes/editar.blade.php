@@ -22,9 +22,10 @@
                         @endforeach
                     </select>
 
-                    <button type="button" class="btn btn-info">
-                      <span class="glyphicon glyphicon-search"></span> Search
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ModalLoginForm">
+                        Launch demo modal
                     </button>
+
                 </div>
 
               <div class="form-group">
@@ -143,5 +144,7 @@
 
         </div>
     </div>
+    <!-- Modales-->
+    @include('ubicaciones.modal-crear')
 </div>
 @endsection
