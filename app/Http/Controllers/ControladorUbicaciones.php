@@ -42,7 +42,7 @@ class ControladorUbicaciones extends Controller
         $ubicacion->nombre = $request->input('nombre');
         $ubicacion->nombre_cuarto = $request->input('nombre_cuarto');
         $ubicacion->comentarios = $request->input('comentarios');
-
+        
         try {
             $ubicacion->save();
             $id = $ubicacion->id;
@@ -50,9 +50,7 @@ class ControladorUbicaciones extends Controller
             echo $e->getMessage();
         }
 
-        return redirect()->action(
-            'ControladorUbicaciones@mostrar', ['ubicacion' => $id]
-        );
+        return $ubicacion;
     }
 
     /**
