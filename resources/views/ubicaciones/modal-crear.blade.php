@@ -7,8 +7,6 @@
             </div>
             <div class="modal-body">
               <form>
-                  <meta id="csrf_token" ame="_token" content="{{ csrf_token() }}">
-
                   <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <input type="text" class="form-control" id="nombre_ubicacion" name="nombre">
@@ -24,7 +22,7 @@
                       <textarea class="form-control" rows='3' id="comentarios" name="comentarios"></textarea>
                   </div>
 
-                  <button id="modalUbicacion" class="btn btn-primary">Guardar</button>
+                  <button type="button" id="modalUbicacion" class="btn btn-primary" data-dismiss="modal">Guardar</button>
 
               </form>
             </div>
