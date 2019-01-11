@@ -11,6 +11,6 @@ class SeederUbicaciones extends Seeder
      */
     public function run()
     {
-        $ubicaciones = factory(App\Ubicacion::class, 10)->create();
+        $ubicaciones = factory(App\Ubicacion::class, 5)->create();
     }
 }
