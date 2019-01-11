@@ -41,7 +41,7 @@ class ControladorMuebles extends Controller
      * @return \Illuminate\Http\Response
      */
     public function almacenar(Request $request)
-    {dd($request->input('id_usuario_final'));
+    {
         DB::transaction(function () use ($request) {
 
             $bien = new \App\Bien();
