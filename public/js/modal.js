@@ -1,11 +1,14 @@
 
 (function() {
+
+
     // El ambito del request debe ser local, para evitar conflictos
     var httpRequest;
 
     // Se registra el metodo que manejara el submit de datos en el formulario modal
     document.getElementById('modalUbicacion').addEventListener('click', almacenarUbicacion);
 
+    // Guarda asincronicamente los datos de ubicación
     function almacenarUbicacion() {
 
         // Se obtiene los datos que se van a almacenar en la bdd
@@ -25,7 +28,8 @@
 
         // Se agrega el nuevo registro a la pagina en caso de respuesta exitosa
         httpRequest.addEventListener('load', function(event) {
-            refrescarUbicaciones(httpRequest.response)
+            refrescarUbicaciones(httpRequest.response);
+            resetearFormulario();
         });
 
         // Se imprime en la consola la causa del error en dicho caso
@@ -47,18 +51,24 @@
 
     }
 
+    // Actualiza el select, agregandole el registro recién creado
     function refrescarUbicaciones(ubicacion) {
-
+        // Referencia al select de ubicaciones
         var select = document.getElementById('id_ubicacion');
-
+        // Define la nueva opción a ser agregada
         var opcion = document.createElement("option");
-
+        // Establece los atributos del elemento option
         opcion.text = ubicacion.nombre;
-        opcion.values = ubicacion.id;
+        opcion.value = ubicacion.id;
         opcion.setAttribute('selected', true);
-
+        // Agrega la opción al select
         select.add(opcion);
+    }
 
+    // Limpia los campos de un formulario
+    function resetearFormulario()
+    {
+        document.getElementById("FormularioModalUbicacion").reset();
     }
 
 })();
