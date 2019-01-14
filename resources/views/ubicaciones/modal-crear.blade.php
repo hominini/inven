@@ -1,12 +1,12 @@
 <!-- Modal HTML Markup -->
-<div id="ModalLoginForm" class="modal fade">
+<div id="ModalCrearUbicacion" class="modal fade">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title">Ingresar Ubicación</h1>
             </div>
             <div class="modal-body">
-              <form>
+              <form id="FormularioModalUbicacion">
                   <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <input type="text" class="form-control" id="nombre_ubicacion" name="nombre">
