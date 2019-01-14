@@ -22,8 +22,8 @@
                         @endforeach
                     </select>
 
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ModalLoginForm">
-                        Launch demo modal
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ModalCrearUbicacion">
+                        +
                     </button>
 
                 </div>

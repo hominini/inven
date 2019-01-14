@@ -10,11 +10,16 @@
                 <div class="form-group">
                     <label for="id_ubicacion">Ubicacion</label>
                     <select class="form-control" id="id_ubicacion" name="id_ubicacion">
+                        <option value="" disabled selected>Seleccione una ubicación</option>
                         @foreach ($ubicaciones as $ubicacion)
                          <option value="{{$ubicacion->id}}">{{$ubicacion->nombre}}</option>
                         @endforeach
                     </select>
                 </div>
+
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ModalCrearUbicacion">
+                    +
+                </button>
 
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
@@ -126,5 +131,7 @@
             </form>
         </div>
     </div>
+    <!-- Modales-->
+    @include('ubicaciones.modal-crear')
 </div>
 @endsection
