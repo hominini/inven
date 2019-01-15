@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             //SeederTablaBienes::class,
             SeederUbicaciones::class,
             SeederMuebles::class,
+            SeederUsuariosFinales::class,
         ]);
     }
 }
