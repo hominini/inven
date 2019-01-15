@@ -8,8 +8,6 @@ $factory->define(App\Bien::class, function (Faker $faker) {
         'descripcion' => $faker->paragraph,
         'clase' => 'CONTROL ADMINISTRATIVO',
         'id_ubicacion' => $faker->numberBetween($min = 1, $max = 10),
-        'id_usuario_final' => 1,
-        'id_responsable' => 1,
         'fecha_de_adquisicion' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'acta_de_recepcion' => 'dummy_binary',
         'imagen' => 'dummy_binary',
