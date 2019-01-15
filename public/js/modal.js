@@ -1,7 +1,6 @@
 
 (function() {
 
-
     // El ambito del request debe ser local, para evitar conflictos
     var httpRequest;
 
