@@ -19,8 +19,6 @@ class CrearTablaBienes extends Migration
             $table->text('descripcion')->nullable();
             $table->enum('clase',['CONTROL ADMINISTRATIVO', 'PROPIEDAD, PLANTA Y EQUIPO']);
             $table->integer('id_ubicacion')->nullable();
-            $table->integer('id_usuario_final')->nullable(); // Referencia a otra tabla
-            $table->integer('id_responsable')->nullable();   // Referencia a otra tabla
             $table->date('fecha_de_adquisicion')->nullable();
             $table->binary('acta_de_recepcion')->nullable();
             $table->binary('imagen')->nullable();
