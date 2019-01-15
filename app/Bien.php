@@ -22,4 +22,9 @@ class Bien extends Model
         return $this->belongsTo('App\Ubicacion', 'id_ubicacion');
     }
 
+    public function usuarios_finales()
+    {
+        return $this->belongsToMany('App\UsuarioFinal', 'asignaciones', 'id_bien', 'id_usuario_final');
+    }
+
 }
