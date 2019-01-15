@@ -73,3 +73,12 @@ Route::get('/ubicaciones/{ubicacion}', 'ControladorUbicaciones@mostrar');
 Route::post('/ubicaciones', 'ControladorUbicaciones@almacenar');
 Route::put('/ubicaciones/{ubicacion}', 'ControladorUbicaciones@actualizar');
 Route::delete('/ubicaciones/{ubicacion}', 'ControladorUbicaciones@destruir');
+
+// Rutas usuarios_finales
+Route::get('/usuarios_finales', 'ControladorUsuariosFinales@indice');
+Route::get('/usuarios_finales/crear', 'ControladorUsuariosFinales@crear');
+Route::get('/usuarios_finales/{usuario_final}/editar', 'ControladorUsuariosFinales@editar');
+Route::get('/usuarios_finales/{usuario_final}', 'ControladorUsuariosFinales@mostrar');
+Route::post('/usuarios_finales', 'ControladorUsuariosFinales@almacenar');
+Route::put('/usuarios_finales/{usuario_final}', 'ControladorUsuariosFinales@actualizar');
+Route::delete('/usuarios_finales/{usuario_final}', 'ControladorUsuariosFinales@destruir');
