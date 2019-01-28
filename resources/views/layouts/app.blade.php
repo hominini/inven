@@ -77,6 +77,6 @@
         </main>
     </div>
     <!-- Scripts -->
-    <script src="{{ asset('js/modal.js') }}" defer></script>
+    <script src="{{ asset('js/modal.js') }}" ></script>
 </body>
 </html>
