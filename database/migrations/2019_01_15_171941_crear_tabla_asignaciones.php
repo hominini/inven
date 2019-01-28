@@ -17,6 +17,8 @@ class CrearTablaAsignaciones extends Migration
              $table->increments('id');
              $table->integer('id_usuario_final');
              $table->integer('id_bien');
+             $table->boolean('activa')->default(0);
+             $table->timestamps();
          });
      }
 
