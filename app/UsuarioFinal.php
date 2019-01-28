@@ -13,7 +13,9 @@ class UsuarioFinal extends Model
 
     public function bienes()
     {
-        return $this->belongsToMany('App\Bien', 'asignaciones', 'id_usuario_final', 'id_bien');
+        return $this->belongsToMany('App\Bien', 'asignaciones', 'id_usuario_final', 'id_bien')
+        ->withPivot('activa')
+        ->withTimestamps();
     }
 
 }

@@ -24,7 +24,9 @@ class Bien extends Model
 
     public function usuarios_finales()
     {
-        return $this->belongsToMany('App\UsuarioFinal', 'asignaciones', 'id_bien', 'id_usuario_final');
+        return $this->belongsToMany('App\UsuarioFinal', 'asignaciones', 'id_bien', 'id_usuario_final')
+          ->withPivot('activa')
+          ->withTimestamps();
     }
 
 }
