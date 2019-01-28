@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}" defer ></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -18,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -78,5 +80,7 @@
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/modal.js') }}" ></script>
+
+
 </body>
 </html>
