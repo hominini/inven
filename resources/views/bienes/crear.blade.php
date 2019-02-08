@@ -40,23 +40,13 @@
               </div>
 
               <div class="form-group">
-                  <label for="id_usuario_final">Id Usuario Final</label>
-                  <input type="text" class="form-control" id="id_usuario_final" name="id_usuario_final">
-              </div>
-              <div class="form-group">
-                <div class="dropdown">
-                  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Usuario Final
-                  <span class="caret"></span></button>
-                  <ul class="dropdown-menu">
-                    <input class="form-control" id="usuario_final" type="text" placeholder="Buscar..">
-                    <li><a href="#">HTML</a></li>
-                    <li><a href="#">CSS</a></li>
-                    <li><a href="#">JavaScript</a></li>
-                    <li><a href="#">jQuery</a></li>
-                    <li><a href="#">Bootstrap</a></li>
-                    <li><a href="#">Angular</a></li>
-                  </ul>
-                </div>
+                  <label for="id_usuario_final">Usuario Final</label>
+                  <select class="form-control" id="id_usuario_final" name="id_usuario_final">
+                      <option value="" disabled selected>Seleccione el usuario final</option>
+                      @foreach ($usuarios_finales as $uf)
+                       <option value="{{$uf->id}}">{{$uf->nombre . " " . $uf->apellidos }}</option>
+                      @endforeach
+                  </select>
               </div>
 
               <div class="form-group">
@@ -150,5 +140,8 @@
     @include('ubicaciones.modal-crear')
     <!-- Scripts -->
      <script src="{{ asset('js/helpers.js') }}" defer></script>
+
+
+
 </div>
 @endsection
