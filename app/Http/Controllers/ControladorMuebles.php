@@ -41,7 +41,7 @@ class ControladorMuebles extends Controller
      * @return \Illuminate\Http\Response
      */
     public function almacenar(Request $request)
-    {
+    {dd($request);
         DB::transaction(function () use ($request) {
 
             $bien = new \App\Bien();
@@ -49,8 +49,6 @@ class ControladorMuebles extends Controller
             $bien->descripcion = $request->input('descripcion');
             $bien->clase = $request->input('clase');
             $bien->id_ubicacion = $request->input('id_ubicacion');
-            $bien->id_usuario_final = $request->input('id_usuario_final');
-            $bien->id_responsable = $request->input('id_responsable');
             $bien->fecha_de_adquisicion = $request->input('fecha_de_adquisicion');
             $bien->acta_de_recepcion = $request->input('acta_de_recepcion');
             $bien->imagen = $request->input('imagen');

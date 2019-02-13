@@ -20,8 +20,8 @@ class CrearTablaBienes extends Migration
             $table->enum('clase',['CONTROL ADMINISTRATIVO', 'PROPIEDAD, PLANTA Y EQUIPO']);
             $table->integer('id_ubicacion')->nullable();
             $table->date('fecha_de_adquisicion')->nullable();
-            $table->binary('acta_de_recepcion')->nullable();
-            $table->binary('imagen')->nullable();
+            $table->string('acta_de_recepcion')->nullable();
+            $table->string('imagen')->nullable();
             $table->text('observaciones')->nullable();
             $table->decimal('valor', 8, 2)->nullable();
             $table->timestamps();

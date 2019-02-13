@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form action="@yield('action', '/bienes')" method="post">
+            <form action="@yield('action', '/bienes')" enctype="multipart/form-data" method="post">
                 @csrf
 
                 <div class="form-group">
@@ -18,7 +18,7 @@
                 </div>
 
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ModalCrearUbicacion">
-                    +
+                  +
                 </button>
 
                 <div class="form-group">
@@ -57,11 +57,6 @@
               <div class="form-group">
                   <label for="acta_de_recepcion">Acta de Recepción</label>
                   <input type="file" class="form-control-file" id="acta_de_recepcion" name="acta_de_recepcion">
-              </div>
-
-              <div class="form-group">
-                  <label for="id_responsable">Id Responsable</label>
-                  <input type="text" class="form-control" id="id_responsable" name="id_responsable">
               </div>
 
               <div class="form-group">
