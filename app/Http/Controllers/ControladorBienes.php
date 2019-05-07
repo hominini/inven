@@ -40,10 +40,9 @@ class ControladorBienes extends Controller
         $bien->nombre = $request->input('nombre');
         $bien->clase = $request->input('clase');
         $bien->codigo = $request->input('codigo');
-        $bien->id_usuario_final = $request->input('id_usuario_final');
         $bien->fecha_de_adquisicion = $request->input('fecha_de_adquisicion');
+
         $bien->acta_de_recepcion = $request->input('acta_de_recepcion');
-        $bien->id_responsable = $request->input('id_responsable');
         $bien->periodo_de_garantia = $request->input('periodo_de_garantia');
         $bien->estado = $request->input('estado');
         $bien->imagen = $request->input('imagen');

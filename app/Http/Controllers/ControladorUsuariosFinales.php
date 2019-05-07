@@ -38,19 +38,19 @@ class ControladorUsuariosFinales extends Controller
      */
     public function almacenar(Request $request)
     {
-        $ubicacion = new \App\Ubicacion();
-        $ubicacion->nombre = $request->input('nombre');
-        $ubicacion->nombre_cuarto = $request->input('nombre_cuarto');
-        $ubicacion->comentarios = $request->input('comentarios');
+        $uf = new \App\UsuarioFinal();
+        $uf->documento_identificacion = $request->input('documento_identificacion');
+        $uf->nombre = $request->input('nombre');
+        $uf->apellidos = $request->input('apellidos');
 
         try {
-            $ubicacion->save();
-            $id = $ubicacion->id;
+            $uf->save();
+            $id = $uf->id;
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
 
-        return $ubicacion;
+        return $uf;
     }
 
     /**
@@ -61,9 +61,9 @@ class ControladorUsuariosFinales extends Controller
      */
     public function mostrar($id)
     {
-        $ubicacion = \App\UsuarioFinal::find($id);
+        $usuario_final = \App\UsuarioFinal::find($id);
 
-        return $ubicacion->toJSON(JSON_PRETTY_PRINT);
+        return $usuario_final->toJSON(JSON_PRETTY_PRINT);
     }
 
     /**
@@ -75,9 +75,9 @@ class ControladorUsuariosFinales extends Controller
     public function editar($id)
     {
         // Encontrar el recurso a editar por medio del id pasado en la peticion http
-        $ubicacion = \App\UsuarioFinal::find($id);
+        $usuario_final = \App\UsuarioFinal::find($id);
         // Por medio de compac() se pasa variables a la vista
-        return view('usuarios_finales.editar', compact('id', 'ubicacion'));
+        return view('usuarios_finales.editar', compact('id', 'usuario_final'));
     }
 
     /**
@@ -89,15 +89,15 @@ class ControladorUsuariosFinales extends Controller
      */
     public function actualizar(Request $request, $id)
     {
-        $ubicacion = \App\UsuarioFinal::find($id);
-        $ubicacion->nombre = $request->input('nombre');
-        $ubicacion->nombre_cuarto = $request->input('nombre_cuarto');
-        $ubicacion->comentarios = $request->input('comentarios');
+        $usuario_final = \App\UsuarioFinal::find($id);
+        $usuario_final->nombre = $request->input('nombre');
+        $usuario_final->nombre_cuarto = $request->input('nombre_cuarto');
+        $usuario_final->comentarios = $request->input('comentarios');
 
-        $ubicacion->save();
+        $usuario_final->save();
 
         return redirect()->action(
-            'Controladorusuarios_finales@mostrar', ['ubicacion' => $id]
+            'Controladorusuarios_finales@mostrar', ['usuario_final' => $id]
         );
     }
 
@@ -110,9 +110,9 @@ class ControladorUsuariosFinales extends Controller
     public function destruir($id)
     {
         // obtencion de referencias a las tablas a eliminar
-        $ubicacion = \App\UsuarioFinal::find($id);
+        $usuario_final = \App\UsuarioFinal::find($id);
 
-        $ubicacion->delete();
+        $usuario_final->delete();
 
 
         return response('Hello World', 200)

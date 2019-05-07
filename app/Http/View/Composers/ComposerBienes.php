@@ -21,7 +21,7 @@ class ComposerBienes
     }
 
     /**
-     * Bind data to the view.
+     * Vinculando data a la/s vista/s.
      *
      * @param  View  $view
      * @return void
@@ -29,6 +29,11 @@ class ComposerBienes
     public function compose(View $view)
     {
         $ubicaciones = \App\Ubicacion::all();
+        $usuarios_finales = \App\UsuarioFinal::all();
+
+        // ligando datos de las ubicaciones y usuarios_finales a la vista
         $view->with('ubicaciones', $ubicaciones);
+        $view->with('usuarios_finales', $usuarios_finales);
+
     }
 }

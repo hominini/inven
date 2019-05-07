@@ -1,12 +1,13 @@
 <!-- Modal HTML Markup -->
-<div id="ModalCrearUbicacion" class="modal fade">
+<div id="ModalCrearUsuarioFinal" class="modal fade">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title">Ingresar Ubicación</h1>
             </div>
             <div class="modal-body">
-              <form id="FormularioModalUbicacion">
+              <form id="FormularioModalUsuarioFinal">
+
                   <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <input type="text" class="form-control" id="nombre_ubicacion" name="nombre">
@@ -22,7 +23,7 @@
                       <textarea class="form-control" rows='3' id="comentarios" name="comentarios"></textarea>
                   </div>
 
-                  <button type="button" id="botonCrearUbicacion" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+                  <button type="button" id="botonCrearUsuarioFinal" class="btn btn-primary" data-dismiss="modal">Guardar</button>
 
               </form>
             </div>

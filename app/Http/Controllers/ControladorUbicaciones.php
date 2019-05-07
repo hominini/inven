@@ -31,7 +31,7 @@ class ControladorUbicaciones extends Controller
     }
 
     /**
-     * Almacena un recurso recien creado.
+     * Almacena un recurso.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response

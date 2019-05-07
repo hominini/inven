@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form action="@yield('action', '/bienes')" method="post">
+            <form action="@yield('action', '/bienes')" enctype="multipart/form-data" method="post">
                 @csrf
 
                 <div class="form-group">
@@ -18,7 +18,7 @@
                 </div>
 
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ModalCrearUbicacion">
-                    +
+                  +
                 </button>
 
                 <div class="form-group">
@@ -40,23 +40,13 @@
               </div>
 
               <div class="form-group">
-                  <label for="id_usuario_final">Id Usuario Final</label>
-                  <input type="text" class="form-control" id="id_usuario_final" name="id_usuario_final">
-              </div>
-              <div class="form-group">
-                <div class="dropdown">
-                  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Usuario Final
-                  <span class="caret"></span></button>
-                  <ul class="dropdown-menu">
-                    <input class="form-control" id="usuario_final" type="text" placeholder="Buscar..">
-                    <li><a href="#">HTML</a></li>
-                    <li><a href="#">CSS</a></li>
-                    <li><a href="#">JavaScript</a></li>
-                    <li><a href="#">jQuery</a></li>
-                    <li><a href="#">Bootstrap</a></li>
-                    <li><a href="#">Angular</a></li>
-                  </ul>
-                </div>
+                  <label for="id_usuario_final">Usuario Final</label>
+                  <select class="form-control" id="id_usuario_final" name="id_usuario_final">
+                      <option value="" disabled selected>Seleccione el usuario final</option>
+                      @foreach ($usuarios_finales as $uf)
+                       <option value="{{$uf->id}}">{{$uf->nombre . " " . $uf->apellidos }}</option>
+                      @endforeach
+                  </select>
               </div>
 
               <div class="form-group">
@@ -67,11 +57,6 @@
               <div class="form-group">
                   <label for="acta_de_recepcion">Acta de Recepción</label>
                   <input type="file" class="form-control-file" id="acta_de_recepcion" name="acta_de_recepcion">
-              </div>
-
-              <div class="form-group">
-                  <label for="id_responsable">Id Responsable</label>
-                  <input type="text" class="form-control" id="id_responsable" name="id_responsable">
               </div>
 
               <div class="form-group">
@@ -149,7 +134,14 @@
     <!-- Modales-->
     @include('ubicaciones.modal-crear')
     <!-- Scripts -->
+<<<<<<< HEAD
       <script src="{{ asset('js/modal.js') }}" ></script>
       <script src="{{ asset('js/helpers.js') }}" defer></script>
+=======
+     <script src="{{ asset('js/helpers.js') }}" defer></script>
+
+
+
+>>>>>>> 2c29f53061972e15723d3bbc9c42a5c03c762b44
 </div>
 @endsection

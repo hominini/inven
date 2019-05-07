@@ -9,18 +9,36 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+<<<<<<< HEAD
+=======
+    <!-- Scripts -->
+
+    <!--
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    -->
+
+>>>>>>> 2c29f53061972e15723d3bbc9c42a5c03c762b44
     <!-- Fonts -->
+    <!--
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    -->
 
     <!-- Styles -->
+    <!--
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+<<<<<<< HEAD
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/jquery-3.4.0.js') }}" defer ></script>
     <script src="{{ asset('js/bootstrap.min.js') }}" defer ></script>
+=======
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
+
+>>>>>>> 2c29f53061972e15723d3bbc9c42a5c03c762b44
 </head>
 <body>
     <div id="app">
@@ -79,6 +97,30 @@
             @yield('content')
         </main>
     </div>
+<<<<<<< HEAD
     <!-- Scripts globales -->
+=======
+    <!-- Scripts -->
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}" ></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
+    <script src="{{ asset('js/modal.js') }}" ></script>
+    <script src="{{ asset('js/select2.min.js') }}"></script>
+
+    <script>
+      $(document).ready(function() {
+          $('#id_usuario_final').select2();
+        });
+
+        // In your Javascript (external .js resource or <script> tag)
+   $(document).ready(function() {
+       $('.js-example-basic-single').select2({
+         theme: "classic"
+       });
+   });
+     </script>
+
+
+
+>>>>>>> 2c29f53061972e15723d3bbc9c42a5c03c762b44
 </body>
 </html>
