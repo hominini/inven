@@ -15,8 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Ésta línea genera todas las rutas necesarias para autenticación
 Auth::routes();
 
+// Ruta home
 Route::get('/home', 'HomeController@index')->name('home');
 
 

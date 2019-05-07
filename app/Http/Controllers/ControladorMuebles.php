@@ -49,8 +49,7 @@ class ControladorMuebles extends Controller
             $bien->descripcion = $request->input('descripcion');
             $bien->clase = $request->input('clase');
             $bien->id_ubicacion = $request->input('id_ubicacion');
-            $bien->id_usuario_final = $request->input('id_usuario_final');
-            $bien->id_responsable = $request->input('id_responsable');
+            //$bien->id_usuario_final = $request->input('id_usuario_final');
             $bien->fecha_de_adquisicion = $request->input('fecha_de_adquisicion');
             $bien->acta_de_recepcion = $request->input('acta_de_recepcion');
             $bien->imagen = $request->input('imagen');
@@ -113,9 +112,9 @@ class ControladorMuebles extends Controller
         $tipo_de_bien = 'muebles';
         // obtencion del mueble a editar
         $mueble = \App\Mueble::find($id);
-        // obtencion una referencia al bca asociado con este mueble
+        // se obtiene una referencia al bca asociado con este mueble
         $bca = $mueble->bien_control_administrativo;
-        //obtenciono de una referencia al bien asociado con este mueble
+        //se obtiene de una referencia al bien asociado con este mueble
         $bien = $bca->bien;
 
         // se une los datos del bien y del bca en un solo elemento bien
@@ -123,6 +122,7 @@ class ControladorMuebles extends Controller
         $bien = $bien->toArray();
         $bien = array_merge($bien, $bca);
 
+        
         // se pasan los siguientes datos a la vista: un string $tipo_de_bien,
         // un objeto $bien, un objeto $mueble, el $id del mueble
         return view('bienes.editar', compact('mueble','bien','tipo_de_bien', 'id'));
@@ -158,8 +158,7 @@ class ControladorMuebles extends Controller
         $bien->descripcion = $request->input('descripcion');
         $bien->clase = $request->input('clase');
         $bien->id_ubicacion = $request->input('id_ubicacion');
-        $bien->id_usuario_final = $request->input('id_usuario_final');
-        $bien->id_responsable = $request->input('id_responsable');
+        //$bien->id_usuario_final = $request->input('id_usuario_final');
         $bien->fecha_de_adquisicion = $request->input('fecha_de_adquisicion');
         $bien->acta_de_recepcion = $request->input('acta_de_recepcion');
         $bien->imagen = $request->input('imagen');

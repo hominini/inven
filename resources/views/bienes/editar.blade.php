@@ -17,7 +17,7 @@
                           @if ($ubicacion->id == $bien['id_ubicacion'])
                             <option value="{{$ubicacion->id}}" selected>{{$ubicacion->nombre}}</option>
                           @else
-                            <option value="{{$ubicacion->id}}">{{$ubicacion->nombre}}</option>
+                            <option value="{{$ubicacion->id}}">{{a->nombre}}</option>
                           @endif
                         @endforeach
                     </select>
@@ -46,10 +46,10 @@
                   <input type="text" class="form-control" id="codigo" name="codigo" value="{{ $bien['codigo'] }}">
               </div>
 
-              <div class="form-group">
+              <!-- <div class="form-group">
                   <label for="id_usuario_final">Id Usuario Final</label>
-                  <input type="text" class="form-control" id="id_usuario_final" name="id_usuario_final" value="{{ $bien['id_usuario_final'] }}">
-              </div>
+                  <input type="text" class="form-control" id="id_usuario_final" name="id_usuario_final" value="{{-- $bien['id_usuario_final'] --}}">
+              </div> -->
 
               <div class="form-group">
                   <label for="fecha_de_adquisicion">Fecha de Adquisición</label>
@@ -59,11 +59,6 @@
               <div class="form-group">
                   <label for="acta_de_recepcion">Acta de Recepción</label>
                   <input type="file" class="form-control-file" id="acta_de_recepcion" name="acta_de_recepcion" value="{{ $bien['acta_de_recepcion'] }}">
-              </div>
-
-              <div class="form-group">
-                  <label for="id_responsable">Id Responsable</label>
-                  <input type="text" class="form-control" id="id_responsable" name="id_responsable" value="{{ $bien['id_responsable'] }}">
               </div>
 
               <div class="form-group">
@@ -147,4 +142,5 @@
     <!-- Modales-->
     @include('ubicaciones.modal-crear')
 </div>
+<script src="{{ asset('js/modal.js') }}" ></script>
 @endsection

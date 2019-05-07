@@ -1,13 +1,16 @@
+// ésta función contiene a su vez funciones para poder desplegar ventanas modales
+// ciertos formularios
 (function() {
 
-    // El ambito del request debe ser local, para evitar conflictos
+    // El objeto xhr que almaceará las respuestas de las peticiones.
+    // El ambito del request debe ser local, para evitar conflictos de superposición
     var httpRequest;
 
     // Se registra el metodo que manejara el submit de datos en el formulario modal
     document.getElementById('modalUbicacion').addEventListener('click', almacenarUbicacion);
 
     // Guarda asincronicamente los datos de ubicación
-    function almacenarUbicacion() {
+    function almacenarUbicacion() { 
 
         // Se obtiene los datos que se van a almacenar en la bdd
         var nombre = document.getElementById('nombre_ubicacion').value;

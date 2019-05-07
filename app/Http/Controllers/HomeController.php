@@ -7,12 +7,11 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+     ** Constructor
+     **/
     public function __construct()
     {
+        // Protejiendo la ruta que llama a éste controlador
         $this->middleware('auth');
     }
 
