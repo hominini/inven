@@ -17,7 +17,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     -->
 
->>>>>>> 2c29f53061972e15723d3bbc9c42a5c03c762b44
+
     <!-- Fonts -->
     <!--
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -29,16 +29,15 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-<<<<<<< HEAD
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/jquery-3.4.0.js') }}" defer ></script>
     <script src="{{ asset('js/bootstrap.min.js') }}" defer ></script>
-=======
+
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
 
->>>>>>> 2c29f53061972e15723d3bbc9c42a5c03c762b44
 </head>
 <body>
     <div id="app">
@@ -97,7 +96,6 @@
             @yield('content')
         </main>
     </div>
-<<<<<<< HEAD
     <!-- Scripts globales -->
 =======
     <!-- Scripts -->
@@ -121,6 +119,5 @@
 
 
 
->>>>>>> 2c29f53061972e15723d3bbc9c42a5c03c762b44
 </body>
 </html>

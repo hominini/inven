@@ -134,14 +134,11 @@
     <!-- Modales-->
     @include('ubicaciones.modal-crear')
     <!-- Scripts -->
-<<<<<<< HEAD
       <script src="{{ asset('js/modal.js') }}" ></script>
       <script src="{{ asset('js/helpers.js') }}" defer></script>
-=======
      <script src="{{ asset('js/helpers.js') }}" defer></script>
 
 
 
->>>>>>> 2c29f53061972e15723d3bbc9c42a5c03c762b44
 </div>
 @endsection

@@ -49,10 +49,7 @@ class ControladorMuebles extends Controller
             $bien->descripcion = $request->input('descripcion');
             $bien->clase = $request->input('clase');
             $bien->id_ubicacion = $request->input('id_ubicacion');
-<<<<<<< HEAD
             //$bien->id_usuario_final = $request->input('id_usuario_final');
-=======
->>>>>>> 2c29f53061972e15723d3bbc9c42a5c03c762b44
             $bien->fecha_de_adquisicion = $request->input('fecha_de_adquisicion');
             $bien->acta_de_recepcion = $request->input('acta_de_recepcion');
             $bien->imagen = $request->input('imagen');
@@ -125,7 +122,7 @@ class ControladorMuebles extends Controller
         $bien = $bien->toArray();
         $bien = array_merge($bien, $bca);
 
-        
+
         // se pasan los siguientes datos a la vista: un string $tipo_de_bien,
         // un objeto $bien, un objeto $mueble, el $id del mueble
         return view('bienes.editar', compact('mueble','bien','tipo_de_bien', 'id'));
