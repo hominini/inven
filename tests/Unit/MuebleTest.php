@@ -54,7 +54,7 @@ class MuebleTest extends TestCase
         // ejecucion del componente en evaluacion
         // ingresando el formulario
         $response = $this->call('POST', 'muebles', $datos_post);
-
+        
         // Evaluacion de resultados
         // asegurando que exista un nuevo registro con datos esperados en la
         // tabla bienes
