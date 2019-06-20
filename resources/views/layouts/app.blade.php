@@ -9,8 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-<<<<<<< HEAD
-=======
     <!-- Scripts -->
 
     <!--
@@ -33,9 +31,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/jquery-3.4.0.js') }}" defer ></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}" defer ></script>
-
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
 
 </head>
@@ -97,12 +92,13 @@
         </main>
     </div>
     <!-- Scripts globales -->
-=======
+
     <!-- Scripts -->
-    <script src="{{ asset('js/jquery-3.3.1.min.js') }}" ></script>
+    <script src="{{ asset('js/jquery-3.4.0.js') }}" defer ></script>
+
     <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
-    <script src="{{ asset('js/modal.js') }}" ></script>
     <script src="{{ asset('js/select2.min.js') }}"></script>
+    <script src="{{ asset('js/modal.js') }}" ></script>
 
     <script>
       $(document).ready(function() {

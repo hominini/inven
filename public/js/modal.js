@@ -1,23 +1,18 @@
 // ésta función contiene a su vez funciones para poder desplegar ventanas modales
 // ciertos formularios
-(function() {
+{function() {
 
-<<<<<<< HEAD
     // El objeto xhr que almaceará las respuestas de las peticiones.
     // El ambito del request debe ser local, para evitar conflictos de superposición
-=======
     // El ambito de la variable xhr debe ser local, para evitar conflictos,
     // posiblemente con otras peticiones xhr inizializadas previamente
->>>>>>> 2c29f53061972e15723d3bbc9c42a5c03c762b44
     var httpRequest;
 
     // cross-site request forgery token
     var CSRF_TOKEN = document.head.querySelector('meta[name="csrf-token"]').content;
 
-<<<<<<< HEAD
     // Guarda asincronicamente los datos de ubicación
-    function almacenarUbicacion() { 
-=======
+    function almacenarUbicacion() {
     // Registro de manejadores de evento clic en boton guardar
     document.getElementById('botonCrearUbicacion').addEventListener('click', ingresarUbicacion);
     //document.getElementById('botonCrearUsuarioFinal').addEventListener('click', ingresarUsuarioFinal);
@@ -49,7 +44,6 @@
 
     // Guarda los datos de ubicación
     function ingresarUbicacion() {
->>>>>>> 2c29f53061972e15723d3bbc9c42a5c03c762b44
 
         // Se obtiene los datos que se van a almacenar en la bdd
         var nombre = document.getElementById('nombre_ubicacion').value;
