@@ -14,6 +14,10 @@ class Bien extends Model
         return $this->hasOne('App\BienControlAdministrativo', 'id_bien');
     }
 
+    protected $hidden = [
+        'created_at', 'updated_at'
+    ];
+
     public function ubicacion()
     {
         // el framework determina el id de la ubicacion relacionada mirando
