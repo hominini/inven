@@ -15,13 +15,31 @@ class ControladorMuebles extends Controller
      */
     public function indice()
     {
+        $mueblesReturn = [];
         $muebles = \App\Mueble::all();
         foreach ($muebles as $mueble) {
+
             $mueble->bien_control_administrativo;
             $mueble->bien_control_administrativo->bien;
-        }
+            $muebleReturn = $mueble->toArray();
+   
+            foreach ($muebleReturn['bien_control_administrativo'] as $key => $val)
+            {   
+                $muebleReturn[$key] = $val;
+            }
 
-        return $muebles->toJSON(JSON_PRETTY_PRINT);
+            foreach ($muebleReturn['bien_control_administrativo']['bien'] as $key => $val)
+            {   
+                $muebleReturn[$key] = $val;
+            }
+
+            unset($muebleReturn['bien_control_administrativo']);
+            unset($muebleReturn['bien']);
+            array_push($mueblesReturn, $muebleReturn);
+
+        }
+        //dd($mueblesReturn);
+        return view('bienes.muebles.ver', compact('mueblesReturn'));
     }
 
     /**
@@ -41,7 +59,7 @@ class ControladorMuebles extends Controller
      * @return \Illuminate\Http\Response
      */
     public function almacenar(Request $request)
-    {dd($request);
+    {
         DB::transaction(function () use ($request) {
 
             $bien = new \App\Bien();
