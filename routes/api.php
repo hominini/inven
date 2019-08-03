@@ -13,8 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->group( function () {
+	Route::resource('bienes', 'API\ControladorBienes');
 });
 
 Route::get('muebles', function() {
@@ -34,19 +34,19 @@ Route::get('muebles/{id}', function($id) {
     $mueble->bien_control_administrativo;
     $mueble->bien_control_administrativo->bien;
     $muebleReturn = $mueble->toArray();
-   
+
     foreach ($muebleReturn['bien_control_administrativo'] as $key => $val)
-    {   
+    {
         $muebleReturn[$key] = $val;
     }
 
     foreach ($muebleReturn['bien_control_administrativo']['bien'] as $key => $val)
-    {   
+    {
         $muebleReturn[$key] = $val;
     }
 
     unset($muebleReturn['bien_control_administrativo']);
     unset($muebleReturn['bien']);
-    
+
     return json_encode($muebleReturn);
 });

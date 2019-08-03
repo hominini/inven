@@ -84,3 +84,5 @@ Route::get('/usuarios_finales/{usuario_final}', 'ControladorUsuariosFinales@most
 Route::post('/usuarios_finales', 'ControladorUsuariosFinales@almacenar');
 Route::put('/usuarios_finales/{usuario_final}', 'ControladorUsuariosFinales@actualizar');
 Route::delete('/usuarios_finales/{usuario_final}', 'ControladorUsuariosFinales@destruir');
+
+Route::get('/settings', 'SettingsController@index')->name('settings');
