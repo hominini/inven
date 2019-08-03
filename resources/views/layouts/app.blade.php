@@ -10,10 +10,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-
-    <!--
     <script src="{{ asset('js/app.js') }}" defer></script>
-    -->
+
 
 
     <!-- Fonts -->
@@ -23,15 +21,9 @@
     -->
 
     <!-- Styles -->
-    <!--
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
 
 </head>
 <body>
@@ -48,7 +40,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li><a href="{{ route('settings') }}">Settings</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -94,23 +86,23 @@
     <!-- Scripts globales -->
 
     <!-- Scripts -->
-    <script src="{{ asset('js/jquery-3.4.0.js') }}" defer ></script>
+    <!-- <script src="{{ asset('js/jquery-3.4.0.js') }}" defer ></script>
 
     <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
     <script src="{{ asset('js/select2.min.js') }}"></script>
-    <script src="{{ asset('js/modal.js') }}" ></script>
+    <script src="{{ asset('js/modal.js') }}" ></script> -->
 
     <script>
-      $(document).ready(function() {
-          $('#id_usuario_final').select2();
-        });
+//       $(document).ready(function() {
+//           $('#id_usuario_final').select2();
+//         });
 
-        // In your Javascript (external .js resource or <script> tag)
-   $(document).ready(function() {
-       $('.js-example-basic-single').select2({
-         theme: "classic"
-       });
-   });
+//         // In your Javascript (external .js resource or <script> tag)
+//    $(document).ready(function() {
+//        $('.js-example-basic-single').select2({
+//          theme: "classic"
+//        });
+//    });
      </script>
 
 
