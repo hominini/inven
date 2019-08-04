@@ -17,13 +17,15 @@ class PruebasBienesAPI extends TestCase
         //Artisan::call('migrate');
         Artisan::call('db:seed');
     }
-    /**
-     * @test
-     */
+    // /**
+    //  * @test
+    //  */
     use RefreshDatabase;
 
     public function por_medio_de_la_api_se_obtienen_todos_los_bienes()
     {
+        $this->withoutExceptionHandling();
+
         // preparar data'
         $bienes = \App\Bien::all();
 
