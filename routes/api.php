@@ -17,6 +17,9 @@ Route::middleware('auth:api')->group( function () {
 	Route::resource('bienes', 'API\ControladorBienes');
 });
 
+// usando passport
+Route::post('register', 'API\ControladorRegistro@register');
+
 Route::get('muebles', function() {
 
     $muebles = \App\Mueble::all();
