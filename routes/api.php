@@ -14,7 +14,9 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->group( function () {
-	Route::resource('bienes', 'API\ControladorBienes');
+    Route::get('/bienes', 'ControladorBienes@indice');
+    Route::get('/ubicaciones', 'ControladorUbicaciones@indice');
+
 });
 
 // usando passport

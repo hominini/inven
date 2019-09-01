@@ -17,7 +17,7 @@ class ControladorUbicaciones extends Controller
     {
         $ubicaciones = \App\Ubicacion::all();
 
-        return $ubicaciones->toJSON(JSON_PRETTY_PRINT);
+        return $ubicaciones;
     }
 
     /**
