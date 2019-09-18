@@ -17,6 +17,12 @@ class SuperadminSeeder extends Seeder
             'name' => Str::random(10),
             'email' => 'admin@admin.org',
             'password' => bcrypt('password'),
+            'nombres' => 'webmaster',
+            'apellidos' => 'webmaster',
+            'cedula' => '1723749501',
+            'cargo' => 'admin',
+            'area' => 'Tecnologia',
+            'id_institucion' => 1,
         ]);
     }
 }
