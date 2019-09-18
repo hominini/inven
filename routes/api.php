@@ -16,8 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->group( function () {
     Route::get('/bienes', 'ControladorBienes@indice');
     Route::get('/ubicaciones', 'ControladorUbicaciones@indice');
-    Route::get('/logout', 'ControladorLogin@logout');
-    Route::get('/user', 'ControladorLogin@user');
+    Route::get('/logout', 'API\ControladorLogin@logout');
+    Route::get('/user', 'API\ControladorLogin@user');
 
 });
 
