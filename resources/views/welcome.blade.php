@@ -4,7 +4,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <title>Laravel</title>
+
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -14,7 +20,7 @@
             html, body {
                 background-color: #fff;
                 color: #636b6f;
-                font-family: 'Nunito', sans-serif;
+                font-family: 'Open Sans';
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
@@ -61,6 +67,11 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            img {
+                padding: 5px;
+                border: 1px solid #ccc;
+            }
         </style>
     </head>
     <body>
@@ -73,26 +84,51 @@
                         <a href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">Registro</a>
                         @endif
                     @endauth
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+            
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+            <div class="content">
+                {{-- <div id="dutylist" class="title m-b-md"></div> --}}
+                <section class="hero is-fullheight is-default is-bold">
+                    <div class="hero-body">
+                        <div class="container has-text-centered">
+                            <div class="columns is-vcentered">
+                                <div class="column is-5">
+                                    <figure class="image is-4by3">
+                                        <img src="https://picsum.photos/800/600/?random" alt="Description">
+                                    </figure>
+                                </div>
+                                <div class="column is-6 is-offset-1">
+                                    <h1 class="title is-2">
+                                        Control de Bienes Yavirac
+                                    </h1>
+                                    <h2 class="subtitle is-4">
+                                        Software para el control de los bienes públicos en custodia del Instituto Superior Tecnológico Yavirac.
+                                    </h2>
+                                    <br>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-foot">
+                        <div class="container">
+                            <div class="tabs is-centered">
+                                <ul>
+                                    <li><a>Instituto Superior Tecnológico de Patrimonio y Turismo Yavirac 2019</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
     </body>
+    <script type="text/javascript" src="js/app.js"></script>
 </html>

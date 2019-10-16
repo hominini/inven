@@ -83,29 +83,6 @@
             @yield('content')
         </main>
     </div>
-    <!-- Scripts globales -->
-
-    <!-- Scripts -->
-    <!-- <script src="{{ asset('js/jquery-3.4.0.js') }}" defer ></script>
-
-    <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
-    <script src="{{ asset('js/select2.min.js') }}"></script>
-    <script src="{{ asset('js/modal.js') }}" ></script> -->
-
-    <script>
-//       $(document).ready(function() {
-//           $('#id_usuario_final').select2();
-//         });
-
-//         // In your Javascript (external .js resource or <script> tag)
-//    $(document).ready(function() {
-//        $('.js-example-basic-single').select2({
-//          theme: "classic"
-//        });
-//    });
-     </script>
-
-
 
 </body>
 </html>

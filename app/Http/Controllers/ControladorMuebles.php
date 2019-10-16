@@ -17,6 +17,7 @@ class ControladorMuebles extends Controller
     {
         $mueblesReturn = [];
         $muebles = \App\Mueble::all();
+
         foreach ($muebles as $mueble) {
 
             $mueble->bien_control_administrativo;
@@ -33,13 +34,16 @@ class ControladorMuebles extends Controller
                 $muebleReturn[$key] = $val;
             }
 
+
             unset($muebleReturn['bien_control_administrativo']);
             unset($muebleReturn['bien']);
+
+            $muebleReturn['id'] = $mueble->id;
+            $muebleReturn['ubicacion'] = $mueble->bien_control_administrativo->bien->ubicacion;
             array_push($mueblesReturn, $muebleReturn);
 
         }
-        //dd($mueblesReturn);
-        return view('bienes.muebles.ver', compact('mueblesReturn'));
+        return view('bienes.muebles.index', compact('mueblesReturn'));
     }
 
     /**
@@ -100,6 +104,9 @@ class ControladorMuebles extends Controller
             }
 
         });
+
+        return redirect()->route('muebles.index')
+                        ->with('success','Registro creado con exito.');
     }
 
     /**
@@ -111,10 +118,10 @@ class ControladorMuebles extends Controller
     public function mostrar($id)
     {
         $mueble = \App\Mueble::find($id);
-        $mueble->bien_control_administrativo;
-        $mueble->bien_control_administrativo->bien;
 
-        return $mueble->toJSON(JSON_PRETTY_PRINT);
+        // dd($mueble->bien_control_administrativo);
+        return view('bienes.muebles.ver', compact('mueble'));
+
     }
 
     /**
@@ -189,9 +196,8 @@ class ControladorMuebles extends Controller
             $bien->save();
         });
 
-        return redirect()->action(
-            'ControladorMuebles@mostrar', ['mueble' => $id]
-        );
+        return redirect()->route('muebles.index')
+                        ->with('success','Registro actualizado con exito.');
     }
 
     /**
@@ -210,7 +216,7 @@ class ControladorMuebles extends Controller
         $bca->delete();
         $bien->delete();
 
-        return response('Hello World', 200)
-                 ->header('Content-Type', 'text/plain');
+        return redirect()->route('muebles.index')
+                        ->with('success','Registro eliminado con exito.');
     }
 }

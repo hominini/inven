@@ -41,13 +41,13 @@ Route::delete('/bienes/{bien}', 'ControladorBienes@destruir');
 // Route::delete('/inventarios/{inventario}', 'ControladorInventarios@destruir');
 
 // Rutas bienes_muebles
-Route::get('/muebles', 'ControladorMuebles@indice');
-Route::get('/muebles/crear', 'ControladorMuebles@crear');
-Route::get('/muebles/{mueble}/editar', 'ControladorMuebles@editar');
-Route::get('/muebles/{mueble}', 'ControladorMuebles@mostrar');
+Route::get('/muebles', 'ControladorMuebles@indice')->name('muebles.index');
+Route::get('/muebles/crear', 'ControladorMuebles@crear')->name('muebles.create');
+Route::get('/muebles/{mueble}/editar', 'ControladorMuebles@editar')->name('muebles.edit');
+Route::get('/muebles/{mueble}', 'ControladorMuebles@mostrar')->name('muebles.show');
 Route::post('/muebles', 'ControladorMuebles@almacenar');
 Route::put('/muebles/{mueble}', 'ControladorMuebles@actualizar');
-Route::delete('/muebles/{mueble}', 'ControladorMuebles@destruir');
+Route::delete('/muebles/{mueble}', 'ControladorMuebles@destruir')->name('muebles.destroy');
 
 // Rutas bienes_recursos_tecnologicos
 // Route::get('/bienes_recursos_tecnologicos', 'ControladorBienesRecursosTecnologicos@indice');
