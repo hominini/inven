@@ -22,7 +22,11 @@ Route::middleware('auth:api')->group( function () {
 
     Route::post('/bienes', 'API\ControladorBienes@store');
 
+    Route::get('/misTareas', 'API\ControladorTareas@getTareas');
+
 });
+
+Route::get('/misTareas', 'API\ControladorTareas@getTareas');
 
 // rutas no protegidas
 Route::post('register', 'API\ControladorRegistro@register');
