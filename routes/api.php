@@ -23,6 +23,7 @@ Route::middleware('auth:api')->group( function () {
     Route::post('/bienes', 'API\ControladorBienes@store');
 
     Route::get('/misTareas', 'API\ControladorTareas@getTareas');
+    Route::post('/bienes/{id}/solicitarBaja', 'API\ControladorTareas@solicitarBaja');
 
 });
 

@@ -16,4 +16,11 @@ class ControladorTareas extends Controller
         $tareas = \App\AsignacionTarea::all();
         return $tareas;
     }
+
+    public function solicitarBaja(Request $request, int $id)
+    {
+        return response()->json([
+            'message' => 'Su solicitud ha sido enviada correctamente.'
+        ]);
+    }
 }
