@@ -17,9 +17,9 @@ class AddFieldsToUsersTable extends Migration
             $table->string('nombres');
             $table->string('apellidos');
             $table->string('cedula')->unique();
-            $table->string('cargo');
-            $table->string('area');
-            $table->integer('id_institucion');
+            $table->string('cargo')->default('GUARDALMACEN');
+            $table->string('area')->default('ADMINISTRATIVO');
+            $table->integer('id_institucion')->nullable();
         });
     }
 

@@ -22,6 +22,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function() {
+
+    // rutas usuarios
+    Route::resource('users','UserController');
+
     // Rutas bienes
     Route::get('/bienes', 'ControladorBienes@indice');
     Route::get('/bienes/crear', 'ControladorBienes@crear');
