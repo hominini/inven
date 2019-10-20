@@ -11,12 +11,12 @@ class AuthAPITest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp()
-    {
-        parent::setUp();
-        Artisan::call('migrate');
-        Artisan::call('db:seed');
-    }
+    // public function setUp()
+    // {
+    //     parent::setUp();
+    //     Artisan::call('migrate');
+    //     Artisan::call('db:seed');
+    // }
 
     /** @test */
     public function usuario_se_puede_registrar_atraves_de_la_api()
