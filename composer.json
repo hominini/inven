@@ -20,6 +20,7 @@
         "yajra/laravel-datatables": "^1.5"
     },
     "require-dev": {
+        "ajthinking/tinx": "^2.6",
         "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
