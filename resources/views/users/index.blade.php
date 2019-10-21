@@ -6,44 +6,50 @@
 
 <div class="card-content">
 
+  {{-- Alert --}}
+  @if ($message = Session::get('success'))
+      <div class="notification is-info">
+        <button class="delete"></button>
+          {{ $message }}
+      </div>
+  @endif
+
   <!-- Main container -->
     <nav class="level">
       <!-- Left side -->
       <div class="level-left">
         <div class="level-item">
           <p class="subtitle is-5">
-            <strong>Listado de Asignaciones de Tareas</strong>
+            <strong>Listado de usuarios registrados en el sistema</strong>
           </p>
         </div>
       </div>
 
       <!-- Right side -->
       <div class="level-right">
-        <p class="level-item"><a href="{{ route('asignacionesTareas.create') }}" class="button is-success">Asignar tarea</a></p>
+        <p class="level-item"><a href="{{ route('users.create') }}" class="button is-success">Registrar usuario</a></p>
       </div>
     </nav>
 
     <table class="table is-fullwidth is-hoverable">
       <thead>
         <tr>
-          <th >Usuario Asignado</th>
-          <th >Ubicación de la Tarea</th>
-          <th >Tipo de Tarea</th>
-          <th >Estado</th>
+          <th >Nombre</th>
+          <th >Correo electrónico</th>
+          <th >Número de cédula</th>
           <th width="280px">Acción</th>
         </tr>
       </thead>
       <tbody>
-        @foreach ($asignaciones_tareas as $asignacion)
+        @foreach ($users as $user)
         <tr>
-          <th>{{ $asignacion->usuario->nombres }} {{ $asignacion->usuario->apellidos }}</th>
-          <td>{{ $asignacion->ubicacion->nombre }}</td>
-          <td>{{ $asignacion->tipo }}</td>
-          <td>{{ $asignacion->completada ? 'Completada' : 'Pendiente' }}</td>
+          <th>{{ $user->nombres }} {{ $user->apellidos }}</th>
+          <td>{{ $user->email }}</td>
+          <td>{{ $user->cedula }}</td>
           <td>
-            <form action="{{ route('asignacionesTareas.destroy', $asignacion->id) }}" method="POST">
-                <a class="button is-primary" href="{{ route('asignacionesTareas.show', $asignacion->id) }}">Mostrar</a>
-                <a class="button is-warning" href="{{ route('asignacionesTareas.edit', $asignacion->id) }}">Editar</a>
+            <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                <a class="button is-primary" href="{{ route('users.show', $user->id) }}">Mostrar</a>
+                <a class="button is-warning" href="{{ route('users.edit', $user->id) }}">Editar</a>
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="button is-danger">Borrar</button>

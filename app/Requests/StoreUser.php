@@ -29,11 +29,11 @@ class StoreUser extends FormRequest
             // 'roles' => 'required',
             'nombres' => 'required',
             'apellidos' => 'required',
-            // 'cedula' => [
-            //     'required',
-            //     // TODO: realizar una validación más robusta de la cédula, (cálculo del último digito)
-            //     'regex:/^(0[1-9]|1[0-9]|2[0-4]|30)[0-6][0-9]{7}([0-9][0-9][0-9])?$/',
-            // ],
+            'cedula' => [
+                'required',
+                // TODO: realizar una validación más robusta de la cédula, (cálculo del último digito)
+                'regex:/^(0[1-9]|1[0-9]|2[0-4]|30)[0-6][0-9]{7}([0-9][0-9][0-9])?$/',
+            ],
             // 'cargo' => 'required',
             // 'area' => 'required',
             // 'institucion_id' => 'required',

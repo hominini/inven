@@ -30,7 +30,7 @@ class UpdateUser extends FormRequest
                 'email',
                 Rule::unique('users')->ignore($this->route('user')),
             ],
-            'roles' => 'required',
+            // 'roles' => 'required',
             'nombres' => 'required',
             'apellidos' => 'required',
             'cedula' => [
@@ -39,9 +39,9 @@ class UpdateUser extends FormRequest
                 // TODO: realizar una validación más robusta de la cédula, (cálculo del último digito)
                 'regex:/^(0[1-9]|1[0-9]|2[0-4]|30)[0-6][0-9]{7}([0-9][0-9][0-9])?$/',
             ],
-            'cargo' => 'required',
-            'area' => 'required',
-            'institucion_id' => 'required',
+            // 'cargo' => 'required',
+            // 'area' => 'required',
+            // 'institucion_id' => 'required',
         ];
     }
 }

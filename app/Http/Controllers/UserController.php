@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\UserRepository;
 use App\Http\Requests\StoreUser;
+use App\Http\Requests\UpdateUser;
 
 class UserController extends Controller
 {
@@ -50,7 +51,7 @@ class UserController extends Controller
         // se le envia un email al usuario con un enlace para que establezca su clave
         // $user->sendPasswordResetNotification($token);
 
-        return redirect()->route('asignacionesTareas.index')
+        return redirect()->route('users.index')
             ->with('success','Registro creado con exito.');
     }
 
@@ -62,9 +63,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $asignacion_tarea = \App\AsignacionTarea::find($id);
+        $user = \App\User::find($id);
 
-        return view('asignaciones-tareas.show', compact('asignacion_tarea'));
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -75,20 +76,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $asignacion_tarea = \App\AsignacionTarea::find($id);
-        $usuarios = \App\User::all();
-        $ubicaciones = \App\Ubicacion::all();
-        $tipos = [
-            'REGISTRO',
-            'CONTEO',
-            'BAJAS',
-        ];
-        return view('asignaciones-tareas.edit', compact(
-            'asignacion_tarea',
-            'usuarios',
-            'ubicaciones',
-            'tipos')
-        );
+        $user = \App\User::find($id);
+        return view('users.edit',compact('user'));
     }
 
     /**
@@ -98,28 +87,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUser $request, UserRepository $userRepository, $id)
     {
-        DB::transaction(function () use ($request, $id) {
+        // se actualiza el usuario
+        $user = $userRepository->update($request, $id);
 
-            $asignacion_tarea = \App\AsignacionTarea::find($id);
-            $asignacion_tarea->id_usuario = $request->input('id_usuario');
-            $asignacion_tarea->id_ubicacion = $request->input('id_ubicacion');
-            $asignacion_tarea->descripcion = $request->input('descripcion');
-            $asignacion_tarea->observaciones = $request->input('observaciones');
-            $asignacion_tarea->completada = $request->input('completada') == null ? 0 : 1;
-            $asignacion_tarea->tipo = $request->input('tipo');
-            $asignacion_tarea->fecha_asignacion = $request->input('fecha_asignacion');
+        // se borra todos los roles previos
+        // DB::table('model_has_roles')->where('model_id',$id)->delete();
 
-            try {
-                $asignacion_tarea->save();
-            } catch (\Exception $e) {
-                echo $e->getMessage();
-            }
+        // se asigna los roles nuevos
+        // $user->assignRole($request->input('roles'));
 
-        });
-
-        return redirect()->route('asignacionesTareas.index')
+        return redirect()->route('users.index')
                         ->with('success','Registro actualizado con exito.');
     }
 
@@ -132,11 +111,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         // obtencion de referencias a las tablas a eliminar
-        $asignacion_tarea = \App\AsignacionTarea::find($id);
+        $user = \App\User::find($id);
       
-        $asignacion_tarea->delete();
+        $user->delete();
 
-        return redirect()->route('asignacionesTareas.index')
+        return redirect()->route('users.index')
                         ->with('success','Registro eliminado con exito.');
     }
 }

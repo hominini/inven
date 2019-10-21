@@ -8,7 +8,7 @@
         <p class="card-header-title">
         Ingresar Registro
         </p>
-        <a class="card-header-icon" aria-label="more options" href="{{ route('muebles.index') }}">
+        <a class="card-header-icon" aria-label="more options" href="{{ route('users.index') }}">
             Atrás
         </a>
     </header>
@@ -18,78 +18,89 @@
         {!! Form::open(array('route' => 'users.store', 'method'=>'POST')) !!}
 
             <div class="field">
-                <label class="label">Nombres</label class="label">
-                {!! Form::text('nombres', null, ['placeholder' => 'Nombres','class' => 'input', 'id' => 'nombres']) !!}
+                <label class="label">Nombres</label>
+                {!! Form::text(
+                    'nombres',
+                    null,
+                    [
+                        'placeholder' => 'Nombres',
+                        'class' => ($errors->has('nombres')) ? 'input is-danger' : 'input',
+                        'id' => 'nombres'
+                    ]
+                ) !!}
+                @error('nombres')
+                    <p id="nombresErrorMsg" class="help is-danger">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="field">
-                <label class="label">Apellidos</label class="label">
-                {!! Form::text('apellidos', null, ['placeholder' => 'Apellidos','class' => 'input', 'id' => 'apellidos']) !!}
+                <label class="label">Apellidos</label>
+                {!! Form::text(
+                    'apellidos',
+                    null,
+                    [
+                        'placeholder' => 'Apellidos',
+                        'class' => ($errors->has('apellidos')) ? 'input is-danger' : 'input',
+                        'id' => 'apellidos'
+                    ]
+                ) !!}
+                @error('apellidos')
+                    <p id="apellidosErrorMsg" class="help is-danger">{{ $message }}</p>
+                @enderror
             </div>
-{{-- 
+
             <div class="field">
-                <label class="label">Usuario a asignar</label class="label">
-                <div class="control">
-                    <div class="select is-fullwidth">
-                        <select id="id_usuario" name="id_usuario">
-                            <option value="" disabled selected>Seleccione un usuario</option>
-                            @foreach ($usuarios as $usuario)
-                                <option value="{{$usuario->id}}">{{$usuario->nombres}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-            </div> --}}
+                <label class="label">Correo electrónico</label>
+                {!! Form::email(
+                    'email',
+                    null,
+                    array(
+                        'placeholder' => 'Correo electrónico institucional',
+                        'class' => ($errors->has('email')) ? 'input is-danger' : 'input',
+                        'id' => 'email'
+                    )) !!}
+                @error('email')
+                    <p id="emailErrorMsg" class="help is-danger">{{ $message }}</p>
+                @enderror
+            </div>
 
-          {{-- <div class="field">
-              <label class="label">Ubicacion</label class="label">
-              <div class="control">
-                  <div class="select is-fullwidth">
-                      <select id="id_ubicacion" name="id_ubicacion">
-                          <option value="" disabled selected>Seleccione una ubicación</option>
-                          @foreach ($ubicaciones as $ubicacion)
-                              <option value="{{$ubicacion->id}}">{{$ubicacion->nombre}}</option>
-                          @endforeach
-                      </select>
-                  </div>
-              </div>
-          </div> --}}
+            <div class="field">
+                <label class="label">Número de Cédula</label>
+                {!! Form::text(
+                    'cedula', null,
+                    [
+                        'placeholder' => 'Cédula o Pasaporte',
+                        'class' => ($errors->has('cedula')) ? 'input is-danger' : 'input',
+                        'id' => 'cedula'
+                    ]
+                ) !!}
+                @error('cedula')
+                    <p id="cedulaErrorMsg" class="help is-danger">{{ $message }}</p>
+                @enderror
+            </div>
 
-          {{-- <div class="field">
-              <label class="label">Descripción</label class="label">
-              <textarea class="textarea"  rows='3' id="descripcion" name="descripcion"></textarea>
-          </div> --}}
+            <div class="field">
+                <label class="label">Contraseña</label>
+                {!! Form::password(
+                    'password',
+                    [
+                        'placeholder' => 'Contraseña',
+                        'class' => ($errors->has('password')) ? 'input is-danger' : 'input',
+                        'id' => 'password'
+                    ]
+                ) !!}
+                @error('password')
+                    <p id="passwordErrorMsg" class="help is-danger">{{ $message }}</p>
+                @enderror
+            </div>
 
-          {{-- <div class="field">
-            <label class="label">Observaciones</label class="label">
-            <textarea class="textarea"  rows='3' id="descripcion" name="observaciones"></textarea>
-          </div> --}}
-
-          {{-- <div class="field">
-              <label class="label">Tarea</label class="label">
-              <div class="control">
-                  <div class="select is-fullwidth">
-                      <select id="tipo" name="tipo">
-                          <option value="" disabled selected>Seleccione el tipo de tarea</option>
-                          @foreach ($tipos as $tipo)
-                              <option value="{{$tipo}}">{{$tipo}}</option>
-                          @endforeach
-                      </select>
-                  </div>
-              </div>
-          </div> --}}
-
-          {{-- <div class="form-check">
-              <label class="label" class="form-check-label">
-                  <input type="checkbox" class="form-check-input" id="completada" name="completada">Completada
-              </label class="label">
-          </div> --}}
-
-          {{-- <div class="field">
-              <label class="label">Fecha de Asignación</label class="label">
-              <input type="date" class="input" id="fecha_asignacion" name="fecha_asignacion">
-          </div> --}}
-
+            <div class="field">
+                <label class="label">Confirmación de contraseña</label>
+                {!! Form::password('password_confirmation', ['placeholder' => 'Confirmar contraseña','class' => 'input', 'id' => 'password_confirmation']) !!}
+                @error('password_confirmation')
+                    <p class="help is-danger">{{ $message }}</p>
+                @enderror
+            </div>
 
           <button type="submit" class="button is-primary">Guardar</button>
 
@@ -98,5 +109,24 @@
 
 </div>
         
+@section('custom_scripts')
+<script>
+    function removeErrorFeedbacks(e) {
+        e.target.className = 'input';
+        if (document.getElementById(e.target.id + 'ErrorMsg') !== null) {
+            document.getElementById(e.target.id + 'ErrorMsg').remove();
+        }
+    } 
+    const inputNombres = document.getElementById('nombres');
+    inputNombres.addEventListener('input', removeErrorFeedbacks);
+    const inputApellidos = document.getElementById('apellidos');
+    inputApellidos.addEventListener('input', removeErrorFeedbacks);
+    const inputCedula = document.getElementById('cedula');
+    inputCedula.addEventListener('input', removeErrorFeedbacks);
+    const inputPassword = document.getElementById('password');
+    inputPassword.addEventListener('input', removeErrorFeedbacks);
+   
+</script>
+@endsection
 
 @endsection

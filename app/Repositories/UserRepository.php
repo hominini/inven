@@ -33,7 +33,12 @@ class UserRepository
     {
         // se obtiene los datos del usuario
         $input = $userData->all();
-
+        
+        if ($input['password'] == null || $input['password_confirmation'] == null)
+        {
+            unset($input['password']);
+            unset($input['password_confirmation']);
+        }
         // se busca el usuario a actualizar por medio del id
         $user = User::find($id);
 
