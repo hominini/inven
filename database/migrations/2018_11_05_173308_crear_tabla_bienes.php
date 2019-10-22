@@ -18,12 +18,14 @@ class CrearTablaBienes extends Migration
             $table->string('nombre');
             $table->text('descripcion')->nullable();
             $table->enum('clase',['CONTROL ADMINISTRATIVO', 'PROPIEDAD, PLANTA Y EQUIPO']);
-            $table->integer('id_ubicacion')->nullable();
+            $table->integer('id_ubicacion');
             $table->date('fecha_de_adquisicion')->nullable();
             $table->string('acta_de_recepcion')->nullable();
             $table->string('imagen')->nullable();
             $table->text('observaciones')->nullable();
             $table->decimal('valor', 8, 2)->nullable();
+            $table->string('codigo_barras')->unique()->nullable();
+            $table->string('codigo_qr')->unique()->nullable();
             $table->timestamps();
         });
     }

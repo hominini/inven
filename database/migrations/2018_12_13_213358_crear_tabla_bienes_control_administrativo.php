@@ -16,7 +16,7 @@ class CrearTablaBienesControlAdministrativo extends Migration
         Schema::create('bienes_control_administrativo', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_bien');
-            $table->string('codigo')->nullable();
+            $table->string('codigo')->unique()->nullable();
             $table->integer('periodo_de_garantia')->nullable();
             $table->string('estado')->nullable();
             $table->string('caducidad')->nullable();

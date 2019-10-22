@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreBien;
 
 
 class ControladorMuebles extends Controller
@@ -62,47 +63,41 @@ class ControladorMuebles extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function almacenar(Request $request)
+    public function almacenar(StoreBien $request)
     {
-        DB::transaction(function () use ($request) {
-
-            $bien = new \App\Bien();
-            $bien->nombre = $request->input('nombre');
-            $bien->descripcion = $request->input('descripcion');
-            $bien->clase = $request->input('clase');
-            $bien->id_ubicacion = $request->input('id_ubicacion');
-            //$bien->id_usuario_final = $request->input('id_usuario_final');
-            $bien->fecha_de_adquisicion = $request->input('fecha_de_adquisicion');
-            $bien->acta_de_recepcion = $request->input('acta_de_recepcion');
-            $bien->imagen = $request->input('imagen');
-            $bien->observaciones = $request->input('observaciones');
-            $bien->valor = $request->input('valor');
-
-            $bca = new \App\BienControlAdministrativo();
-            $bca->codigo = $request->input('codigo');
-            $bca->periodo_de_garantia = $request->input('periodo_de_garantia');
-            $bca->estado = $request->input('estado');
-            $bca->caducidad = $request->input('caducidad');
-            $bca->peligrosidad = $request->input('peligrosidad');
-            $bca->manejo_especial = $request->input('manejo_especial');
-            $bca->vida_util = $request->input('vida_util');
-            $bca->id_actividad = $request->input('id_actividad');
-            $bca->en_uso = ($request->input('en_uso') == 'checked' ? 1 : 0);
-
-
-            $mueble = new \App\Mueble();
-            $mueble->id_tipo_de_bien = $request->input('id_tipo_de_bien');
-            $mueble->color = $request->input('color');
-            $mueble->dimensiones = $request->input('dimensiones');
-
-            try {
-                $bien->save();
-                \App\Bien::find($bien->id)->bien_control_administrativo()->save($bca);
-                \App\BienControlAdministrativo::find($bca->id)->mueble()->save($mueble);
-            } catch (\Exception $e) {
-                echo $e->getMessage();
-            }
-
+        
+        $bien = new \App\Bien();
+        $bien->nombre = $request->input('nombre');
+        $bien->descripcion = $request->input('descripcion');
+        $bien->clase = $request->input('clase');
+        $bien->id_ubicacion = $request->input('id_ubicacion');
+        //$bien->id_usuario_final = $request->input('id_usuario_final');
+        $bien->fecha_de_adquisicion = $request->input('fecha_de_adquisicion');
+        $bien->acta_de_recepcion = $request->input('acta_de_recepcion');
+        $bien->imagen = $request->input('imagen');
+        $bien->observaciones = $request->input('observaciones');
+        $bien->valor = $request->input('valor');
+        
+        $bca = new \App\BienControlAdministrativo();
+        $bca->codigo = $request->input('codigo');
+        $bca->periodo_de_garantia = $request->input('periodo_de_garantia');
+        $bca->estado = $request->input('estado');
+        $bca->caducidad = $request->input('caducidad');
+        $bca->peligrosidad = $request->input('peligrosidad');
+        $bca->manejo_especial = $request->input('manejo_especial');
+        $bca->vida_util = $request->input('vida_util');
+        $bca->id_actividad = $request->input('id_actividad');
+        $bca->en_uso = ($request->input('en_uso') == 'checked' ? 1 : 0);
+        
+        $mueble = new \App\Mueble();
+        $mueble->id_tipo_de_bien = $request->input('id_tipo_de_bien');
+        $mueble->color = $request->input('color');
+        $mueble->dimensiones = $request->input('dimensiones');
+        
+        DB::transaction(function () use ($mueble, $bca, $bien) {
+            $bien->save();
+            \App\Bien::find($bien->id)->bien_control_administrativo()->save($bca);
+            \App\BienControlAdministrativo::find($bca->id)->mueble()->save($mueble);
         });
 
         return redirect()->route('muebles.index')
@@ -189,6 +184,7 @@ class ControladorMuebles extends Controller
         $bien->imagen = $request->input('imagen');
         $bien->observaciones = $request->input('observaciones');
         $bien->valor = $request->input('valor');
+        $bien->codigo_barras = $request->input('codigo');
 
         DB::transaction(function () use ($mueble, $bca, $bien) {
             $mueble->save();

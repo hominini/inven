@@ -19,9 +19,9 @@
             @csrf
 
             <div class="field">
-                <label class="label" class="label class="label"">Ubicacion</label class="label">
+                <label class="label" class="label">Ubicacion</label>
                 <div class="control">
-                    <div class="select is-fullwidth">
+                    <div class="select is-fullwidth @error('id_ubicacion') is-danger @enderror">
                         <select id="id_ubicacion" name="id_ubicacion">
                             <option value="" disabled selected>Seleccione una ubicación</option>
                             @foreach ($ubicaciones as $ubicacion)
@@ -30,21 +30,29 @@
                         </select>
                     </div>
                 </div>
-            </div>
-
-            {{--
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ModalCrearUbicacion">
-                +
-            </button>
-            --}}
-            
-            <div class="field">
-                <label class="label" class="label class="label"">Nombre</label class="label">
-                <input type="text" class="input" id="nombre" name="nombre" placeholder="Nombre del bien">
+                @error('id_ubicacion')
+                    <p id="idUbicacionErrorMsg" class="help is-danger">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="field">
-                <label class="label">Clase</label class="label">
+                <label class="label" class="label class="label"">Nombre</label>
+                {!! Form::text(
+                    'nombre',
+                    null,
+                    [
+                        'placeholder' => 'Nombre del bien',
+                        'class' => ($errors->has('nombre')) ? 'input is-danger' : 'input',
+                        'id' => 'nombre'
+                    ]
+                ) !!}
+                @error('nombre')
+                    <p id="nombreErrorMsg" class="help is-danger">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="field">
+                <label class="label">Clase</label>
                 <div class="control">
                     <div class="select is-fullwidth">
                         <select class="input" id="clase" name="clase">
@@ -56,12 +64,23 @@
             </div>
 
             <div class="field">
-                <label class="label">Código</label class="label">
-                <input type="text" class="input" id="codigo" name="codigo">
+                <label class="label">Código</label>
+                {!! Form::text(
+                    'codigo',
+                    null,
+                    [
+                        'placeholder' => 'Código',
+                        'class' => ($errors->has('codigo')) ? 'input is-danger' : 'input',
+                        'id' => 'codigo'
+                    ]
+                ) !!}
+                @error('codigo')
+                    <p id="codigoErrorMsg" class="help is-danger">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="field">
-                <label class="label">Usuario Final</label class="label">
+                <label class="label">Usuario Final</label>
                 <select class="input" id="id_usuario_final" name="id_usuario_final">
                     <option value="" disabled selected>Seleccione el usuario final</option>
                     @foreach ($usuarios_finales as $uf)
@@ -71,7 +90,7 @@
             </div>
 
             <div class="field">
-                <label class="label">Fecha de Adquisición</label class="label">
+                <label class="label">Fecha de Adquisición</label>
                 <input type="date" class="input" id="fecha_de_adquisicion" name="fecha_de_adquisicion">
             </div>
 
@@ -154,12 +173,28 @@
 
 </div>
         
-    <!-- Modales-->
-    @include('ubicaciones.modal-crear')
-    <!-- Scripts -->
-    <script src="{{ asset('js/modal.js') }}" ></script>
-    <script src="{{ asset('js/helpers.js') }}" defer></script>
+    @section('custom_scripts')
+    <script>
+        // remover las ayudas visuales que señalan un error de validación en input
+        function removeInputErrorFeedbacks(e) {
+            // remover clase is-danger en input
+            e.target.className = 'input';
+            // remover mensaje de error
+            if (document.getElementById(e.target.id + 'ErrorMsg') !== null) {
+                document.getElementById(e.target.id + 'ErrorMsg').remove();
+            }
+        }
 
-
+        // registro de event handlers
+        const inputNombre = document.getElementById('nombre');
+        inputNombre.addEventListener('input', removeInputErrorFeedbacks);
+        const inputIdUbicacion = document.getElementById('id_ubicacion');
+        inputIdUbicacion.addEventListener('input', removeInputErrorFeedbacks);
+        const inputCodigo = document.getElementById('codigo');
+        inputCodigo.addEventListener('input', removeInputErrorFeedbacks);
+        
+    
+    </script>
+    @endsection
 
 @endsection
