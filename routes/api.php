@@ -27,7 +27,7 @@ Route::middleware('auth:api')->group( function () {
 
 });
 
-Route::get('/misTareas', 'API\ControladorTareas@getTareas');
+// Route::get('/misTareas', 'API\ControladorTareas@getTareas');
 
 // rutas no protegidas
 Route::post('register', 'API\ControladorRegistro@register');
