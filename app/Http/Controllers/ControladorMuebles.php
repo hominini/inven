@@ -77,6 +77,7 @@ class ControladorMuebles extends Controller
         $bien->imagen = $request->input('imagen');
         $bien->observaciones = $request->input('observaciones');
         $bien->valor = $request->input('valor');
+        $bien->codigo_barras = $request->input('codigo');
         
         $bca = new \App\BienControlAdministrativo();
         $bca->codigo = $request->input('codigo');

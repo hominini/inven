@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Http\Controllers\API\BaseController as BaseController;
-use App\Product;
-use Validator;
+use App\Http\Requests\StoreBien;
+use Illuminate\Support\Facades\DB;
+
 
 class ControladorBienes extends Controller
 {
@@ -22,28 +21,43 @@ class ControladorBienes extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBien $request)
     {
-        $validatedData = $request->validate([
-            'nombre' => 'required|max:255',
-            'clase' => 'required',
-        ]);
-
+  
         $bien = new \App\Bien();
         $bien->nombre = $request->input('nombre');
         $bien->descripcion = $request->input('descripcion');
         $bien->clase = $request->input('clase');
         $bien->id_ubicacion = $request->input('id_ubicacion');
-        $bien->fecha_de_adquisicion = $request->input('fecha_de_adquisicion');
-        $bien->acta_de_recepcion = $request->input('acta_de_recepcion');
-        $bien->imagen = $request->input('imagen');
         $bien->observaciones = $request->input('observaciones');
         $bien->valor = $request->input('valor_unitario');
+        $bien->codigo_barras = $request->input('codigo');
 
-        $bien->save();
+        $bca = new \App\BienControlAdministrativo();
+        $bca->codigo = $request->input('codigo');
+
+        $bien_subtipo = null;
+        
+        switch ($request->input('tipo_de_bien')) {
+            case 'Tecnologicos':
+                $bien_subtipo = new \App\BienTecnologico();
+                break;
+            case 'Muebles':
+                $bien_subtipo = new \App\Mueble();
+                break;
+            case 'Libros':
+                $bien_subtipo = new \App\ItemBibliografico();
+                break;
+        }
+        
+        DB::transaction(function () use ($bien_subtipo, $bca, $bien) {
+            $bien->save();
+            \App\Bien::find($bien->id)->bien_control_administrativo()->save($bca);
+            \App\BienControlAdministrativo::find($bca->id)->mueble()->save($bien_subtipo);
+        });
 
         return response()->json([
-            'message' => 'Successfully creado bienes'
+            'message' => 'El bien ha sido registrado.'
         ]);
     }
 }
