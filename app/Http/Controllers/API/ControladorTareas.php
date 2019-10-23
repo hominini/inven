@@ -10,11 +10,14 @@ class ControladorTareas extends Controller
 {
     public function getTareas(Request $request)
     {
-        // $user = Auth::user();
-        // $user = $request->user();
-        // dd($user);
-        $tareas = \App\AsignacionTarea::all();
-        return $tareas;
+        $todas_las_tareas = \App\AsignacionTarea::all();
+
+        $tareas_usuario = $todas_las_tareas->filter(function($tarea) {
+            return $tarea->id_usuario === Auth('api')->user()->id;
+        });
+
+        // return $todas_las_tareas;
+        return $tareas_usuario->values();
     }
 
     public function solicitarBaja(Request $request, int $id)
