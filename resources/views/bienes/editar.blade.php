@@ -8,7 +8,7 @@
         <p class="card-header-title">
             Actualizar Registro
         </p>
-        <a class="card-header-icon" aria-label="more options" href="{{ route('muebles.index') }}">
+        <a class="card-header-icon" aria-label="more options" href="{{ route('bienes_tecnologicos.index') }}">
             Atrás
         </a>
     </header>
@@ -16,7 +16,7 @@
     <div class="card-content">
 
         @if ($bien)
-        <form action="/{{ $tipo_de_bien }}/{{ $id }}" method="POST">
+        <form action="/{{ $tipo_de_bien == 'tecnologicos' ? 'bienes_tecnologicos' : $tipo_de_bien }}/{{ $id }}" method="POST">
             @csrf
             @method('PUT')
 

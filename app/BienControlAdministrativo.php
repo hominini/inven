@@ -21,4 +21,9 @@ class BienControlAdministrativo extends Model
         return $this->hasOne('App\Mueble', 'id_bien_control_administrativo');
     }
 
+    public function bien_tecnologico()
+    {
+        return $this->hasOne('App\BienTecnologico', 'id_bien_control_administrativo');
+    }
+
 }

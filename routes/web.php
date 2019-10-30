@@ -54,13 +54,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::delete('/muebles/{mueble}', 'ControladorMuebles@destruir')->name('muebles.destroy');
 
     // Rutas bienes_recursos_tecnologicos
-    // Route::get('/bienes_recursos_tecnologicos', 'ControladorBienesRecursosTecnologicos@indice');
-    // Route::get('/bienes_recursos_tecnologicos/crear', 'ControladorBienesRecursosTecnologicos@crear');
-    // Route::get('/bienes_recursos_tecnologicos/{recurso}/editar', 'ControladorBienesRecursosTecnologicos@editar');
-    // Route::get('/bienes_recursos_tecnologicos/{recurso}', 'ControladorBienesRecursosTecnologicos@mostrar');
-    // Route::post('/bienes_recursos_tecnologicos', 'ControladorBienesRecursosTecnologicoss@almacenar');
-    // Route::put('/bienes_recursos_tecnologicos/{recurso}', 'ControladorBienesRecursosTecnologicos@actualizar');
-    // Route::delete('/bienes_recursos_tecnologicos/{recurso}', 'ControladorBienesRecursosTecnologicos@destruir');
+    Route::get('/bienes_tecnologicos', 'ControladorBienesTecnologicos@indice')->name('bienes_tecnologicos.index');
+    Route::get('/bienes_tecnologicos/crear', 'ControladorBienesTecnologicos@crear')->name('bienes_tecnologicos.create');
+    Route::get('/bienes_tecnologicos/{bien}/editar', 'ControladorBienesTecnologicos@editar')->name('bienes_tecnologicos.edit');
+    Route::get('/bienes_tecnologicos/{bien}', 'ControladorBienesTecnologicos@mostrar')->name('bienes_tecnologicos.show');
+    Route::post('/bienes_tecnologicos', 'ControladorBienesTecnologicos@almacenar');
+    Route::put('/bienes_tecnologicos/{bien}', 'ControladorBienesTecnologicos@actualizar');
+    Route::delete('/bienes_tecnologicos/{bien}', 'ControladorBienesTecnologicos@destruir')->name('bienes_tecnologicos.destroy');
 
     // Rutas bienes_items_bibliograficos
     // Route::get('/bienes_items_bibliograficos', 'ControladorBienesItemsBibliograficos@indice');

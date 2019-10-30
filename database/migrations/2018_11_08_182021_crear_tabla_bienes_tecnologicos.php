@@ -11,7 +11,7 @@ class CrearTablaBienesTecnologicos extends Migration
         Schema::create('bienes_tecnologicos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_bien_control_administrativo');
-            $table->integer('id_tipo_de_bien');
+            $table->integer('id_tipo_de_bien')->nullable();
             $table->string('numero_de_serie')->nullable();
             $table->string('modelo')->nullable();
             $table->string('marca')->nullable();

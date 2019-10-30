@@ -38,7 +38,7 @@
                     <a class="navbar-item" href="{{ route('muebles.index') }}">
                         Muebles
                     </a>
-                    <a class="navbar-item" href="admin.html">
+                    <a class="navbar-item" href="{{ route('bienes_tecnologicos.index') }}">
                         Bienes tecnológicos
                     </a>
                     <a class="navbar-item" href="admin.html">

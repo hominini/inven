@@ -79,7 +79,7 @@
                 @enderror
             </div>
 
-            <div class="field">
+            {{-- <div class="field">
                 <label class="label">Usuario Final</label>
                 <select class="input" id="id_usuario_final" name="id_usuario_final">
                     <option value="" disabled selected>Seleccione el usuario final</option>
@@ -87,7 +87,7 @@
                     <option value="{{$uf->id}}">{{$uf->nombre . " " . $uf->apellidos }}</option>
                     @endforeach
                 </select>
-            </div>
+            </div> --}}
 
             <div class="field">
                 <label class="label">Fecha de Adquisición</label>
