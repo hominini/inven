@@ -12,7 +12,19 @@ class ControladorBienes extends Controller
     public function traerBienesPorUbicacion($id_ubicacion)
     {
         $bienes = \App\Ubicacion::find($id_ubicacion)->bienes;
-        return $bienes;
+        $bienes = $bienes->filter(function($bien, $key) {
+            return $bien->bien_control_administrativo !== NULL;
+        });
+        return $bienes->values();
+    }
+
+    public function traerBienes()
+    {
+        $bienes = \App\Bien::all();
+        $bienes = $bienes->filter(function($bien, $key) {
+            return $bien->bien_control_administrativo !== NULL;
+        });
+        return $bienes->values();
     }
 
      /**

@@ -26,4 +26,18 @@ class ControladorTareas extends Controller
             'message' => 'Su solicitud ha sido enviada correctamente.'
         ]);
     }
+
+    public function evaluarConteo(Request $request)
+    {
+        $dummy_response = (bool)random_int(0, 1);
+        return response()->json([
+            'countingResult' => $dummy_response,
+            'message' => 'Su solicitud ha sido enviada correctamente.'
+        ]);
+    }
+
+    public function ingresarDetalleTarea(int $id_asignacion) {
+        return;
+    }
+
 }

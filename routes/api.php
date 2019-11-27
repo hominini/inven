@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->group( function () {
-    Route::get('/bienes', 'ControladorBienes@indice');
+    Route::get('/bienes', 'API\ControladorBienes@traerBienes');
     Route::get('/ubicaciones/{idUbicacion}/bienes', 'API\ControladorBienes@traerBienesPorUbicacion');
     Route::get('/logout', 'API\ControladorLogin@logout');
     Route::get('/user', 'API\ControladorLogin@user');
@@ -22,7 +22,9 @@ Route::middleware('auth:api')->group( function () {
     Route::post('/bienes', 'API\ControladorBienes@store');
 
     Route::get('/misTareas', 'API\ControladorTareas@getTareas');
+    Route::post('/evaluarConteo', 'API\ControladorTareas@evaluarConteo');
     Route::post('/bienes/{id}/solicitarBaja', 'API\ControladorTareas@solicitarBaja');
+    Route::post('/asignacionTarea/{id}/detalleTarea', 'API\ControladorTareas@ingresarDetalleTarea');
 
     Route::resource('ubicaciones', 'API\UbicacionController');
 
