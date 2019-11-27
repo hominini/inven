@@ -17,4 +17,9 @@ class AsignacionTarea extends Model
     {
         return $this->belongsTo('App\User', 'id_usuario');
     }
+
+    public function detalleTareaCompletada()
+    {
+        return $this->hasOne('App\TareaCompletada', 'id_asignacion_tarea');
+    }
 }
