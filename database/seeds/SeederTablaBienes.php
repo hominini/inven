@@ -17,6 +17,7 @@ class SeederTablaBienes extends Seeder
             'clase' => 'CONTROL ADMINISTRATIVO',
             'id_ubicacion' => 1,
             'observaciones' => 'Sala de profesores ubicada en el 2do piso.',
+            'codigo_barras' => '123abc',
         ]);
 
         DB::table('bienes')->insert([
@@ -25,6 +26,7 @@ class SeederTablaBienes extends Seeder
             'clase' => 'CONTROL ADMINISTRATIVO',
             'id_ubicacion' => 1,
             'observaciones' => 'Sala de profesores ubicada en el 2do piso.',
+            'codigo_barras' => '001abc',
         ]);
 
         DB::table('bienes')->insert([
@@ -32,6 +34,7 @@ class SeederTablaBienes extends Seeder
             'descripcion' => 'mesa azul',
             'clase' => 'CONTROL ADMINISTRATIVO',
             'id_ubicacion' => 1,
+            'codigo_barras' => '002abc',
             'observaciones' => 'Sala de profesores ubicada en el 2do piso.',
         ]);
 
@@ -40,6 +43,7 @@ class SeederTablaBienes extends Seeder
             'descripcion' => 'mesa azul',
             'clase' => 'CONTROL ADMINISTRATIVO',
             'id_ubicacion' => 1,
+            'codigo_barras' => '003abc',
             'observaciones' => 'Sala de profesores ubicada en el 2do piso.',
         ]);
 
@@ -49,6 +53,7 @@ class SeederTablaBienes extends Seeder
             'clase' => 'CONTROL ADMINISTRATIVO',
             'id_ubicacion' => 1,
             'observaciones' => 'Sala de profesores ubicada en el 2do piso.',
+            'codigo_barras' => '004abc',
         ]);
 
         DB::table('bienes')->insert([
@@ -57,6 +62,7 @@ class SeederTablaBienes extends Seeder
             'clase' => 'CONTROL ADMINISTRATIVO',
             'id_ubicacion' => 2,
             'observaciones' => 'Sala de profesores ubicada en el 2do piso.',
+            'codigo_barras' => '005abc',
         ]);
 
         DB::table('bienes')->insert([
@@ -65,6 +71,7 @@ class SeederTablaBienes extends Seeder
             'clase' => 'CONTROL ADMINISTRATIVO',
             'id_ubicacion' => 2,
             'observaciones' => 'Sala de profesores ubicada en el 2do piso.',
+            'codigo_barras' => '006abc',
         ]);
 
         DB::table('bienes')->insert([
@@ -73,6 +80,7 @@ class SeederTablaBienes extends Seeder
             'clase' => 'CONTROL ADMINISTRATIVO',
             'id_ubicacion' => 2,
             'observaciones' => 'Sala de profesores ubicada en el 2do piso.',
+            'codigo_barras' => '007abc',
         ]);
 
         DB::table('bienes')->insert([
@@ -81,6 +89,7 @@ class SeederTablaBienes extends Seeder
             'clase' => 'CONTROL ADMINISTRATIVO',
             'id_ubicacion' => 2,
             'observaciones' => 'Sala de profesores ubicada en el 2do piso.',
+            'codigo_barras' => '008abc',
         ]);
 
         DB::table('bienes')->insert([
@@ -89,6 +98,7 @@ class SeederTablaBienes extends Seeder
             'clase' => 'CONTROL ADMINISTRATIVO',
             'id_ubicacion' => 3,
             'observaciones' => 'Sala de profesores ubicada en el 2do piso.',
+            'codigo_barras' => '009abc',
         ]);
 
         DB::table('bienes')->insert([
@@ -97,6 +107,7 @@ class SeederTablaBienes extends Seeder
             'clase' => 'CONTROL ADMINISTRATIVO',
             'id_ubicacion' => 3,
             'observaciones' => 'Sala de profesores ubicada en el 2do piso.',
+            'codigo_barras' => '010abc',
         ]);
 
         DB::table('bienes')->insert([
@@ -105,6 +116,7 @@ class SeederTablaBienes extends Seeder
             'clase' => 'CONTROL ADMINISTRATIVO',
             'id_ubicacion' => 4,
             'observaciones' => 'Sala de profesores ubicada en el 2do piso.',
+            'codigo_barras' => '011abc',
         ]);
 
         DB::table('bienes')->insert([
@@ -113,6 +125,7 @@ class SeederTablaBienes extends Seeder
             'clase' => 'CONTROL ADMINISTRATIVO',
             'id_ubicacion' => 4,
             'observaciones' => 'Sala de profesores ubicada en el 2do piso.',
+            'codigo_barras' => '012abc',
         ]);
 
     }
