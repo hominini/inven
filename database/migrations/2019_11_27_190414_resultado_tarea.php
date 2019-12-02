@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DetalleTareaCompletada extends Migration
+class ResultadoTarea extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class DetalleTareaCompletada extends Migration
      */
     public function up()
     {
-        Schema::create('detalle_tarea_completada', function (Blueprint $table) {
+        Schema::create('resultado_tarea', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_asignacion_tarea');
-            $table->dateTime('fechaHoraInicio');
-            $table->dateTime('fechaHoraFin');
+            $table->integer('id_asignacion_tarea')->unique();
+            $table->dateTime('fecha_hora_inicio');
+            $table->dateTime('fecha_hora_fin');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class DetalleTareaCompletada extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detalle_tarea_completada');
+        Schema::dropIfExists('resultado_tarea');
     }
 }

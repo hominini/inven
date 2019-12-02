@@ -24,10 +24,9 @@ Route::middleware('auth:api')->group( function () {
     Route::get('/misTareas', 'API\ControladorTareas@getTareas');
     Route::post('/evaluarConteo', 'API\ControladorTareas@evaluarConteo');
     Route::post('/bienes/{id}/solicitarBaja', 'API\ControladorTareas@solicitarBaja');
-    Route::post('/asignacionTarea/{id}/detalleTarea', 'API\ControladorTareas@ingresarDetalleTarea');
+    Route::post('/asignacionTarea/{id}/resultadoTarea', 'API\ControladorTareas@guardarResultadoTarea');
 
     Route::resource('ubicaciones', 'API\UbicacionController');
-
 });
 
 // Route::get('/misTareas', 'API\ControladorTareas@getTareas');

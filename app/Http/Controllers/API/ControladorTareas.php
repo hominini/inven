@@ -36,8 +36,15 @@ class ControladorTareas extends Controller
         ]);
     }
 
-    public function ingresarDetalleTarea(int $id_asignacion) {
-        return;
+    public function guardarResultadoTarea(Request $request, int $id_asignacion) {
+        $resultado_tarea = new \App\ResultadoTarea([
+            'fecha_hora_inicio' => $request->input('fecha_hora_inicio'),
+            'fecha_hora_fin' => $request->input('fecha_hora_fin')
+        ]);
+        $asignacion = \App\AsignacionTarea::find($id_asignacion);
+        $asignacion->resultadoTarea()->save($resultado_tarea);
+        
+        return $resultado_tarea;
     }
 
 }
