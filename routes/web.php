@@ -72,13 +72,13 @@ Route::group(['middleware' => ['auth']], function() {
     // Route::delete('/bienes_items_bibliograficos/{item_biblio}', 'ControladorBienesItemsBibliograficos@destruir');
 
     // Rutas ubicaciones
-    Route::get('/ubicaciones', 'ControladorUbicaciones@indice');
-    Route::get('/ubicaciones/crear', 'ControladorUbicaciones@crear');
-    Route::get('/ubicaciones/{ubicacion}/editar', 'ControladorUbicaciones@editar');
-    Route::get('/ubicaciones/{ubicacion}', 'ControladorUbicaciones@mostrar');
+    Route::get('/ubicaciones', 'ControladorUbicaciones@indice')->name('rutas.index'); //ver
+    Route::get('/ubicaciones/crear', 'ControladorUbicaciones@crear')->name('ubicaciones.create');
+    Route::get('/ubicaciones/{ubicacion}/editar', 'ControladorUbicaciones@editar')->name('ubicaciones.edit');
+    Route::get('/ubicaciones/{ubicacion}', 'ControladorUbicaciones@mostrar')->name('ubicaciones.show');
     Route::post('/ubicaciones', 'ControladorUbicaciones@almacenar');
     Route::put('/ubicaciones/{ubicacion}', 'ControladorUbicaciones@actualizar');
-    Route::delete('/ubicaciones/{ubicacion}', 'ControladorUbicaciones@destruir');
+    Route::delete('/ubicaciones/{ubicacion}', 'ControladorUbicaciones@destruir')->name('ubicaciones.destroy');
 
     // Rutas usuarios_finales
     Route::get('/usuarios_finales', 'ControladorUsuariosFinales@indice');

@@ -1,33 +1,55 @@
-@extends('layouts.app')
-
+@extends('layouts.admin')
 @section('content')
+
+
+<div class="card">
+
+<div class="card-content">
+<header class="card-header">
+        <p class="card-header-title">
+        Ingresar Registro
+        </p>
+        <a class="card-header-icon" aria-label="more options" href="{{ route('muebles.index') }}">
+            Atrás
+        </a>
+    </header>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form action="/ubicaciones/{{ $id }}" method="POST">
+        <form action="/ubicaciones/{{ $id }}" method="POST">
                 @csrf
-                @method('PUT')
 
-                <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $ubicacion['nombre'] }}">
-                </div>
+                <div class="field">
+                    <div class="control">
+                        <input value="{{$ubicacion->nombre}}" name="nombre" class="input is-primary" type="text" placeholder="Nombre">
+                    </div>
+                    </div>
 
-                <div class="form-group">
-                    <label for="nombre_cuarto">Nombre de la Construcción</label>
-                    <input type="text" class="form-control" id="nombre_cuarto" name="nombre_cuarto" value="{{ $ubicacion['nombre_cuarto'] }}">
-                </div>
+                    <div class="field">
+                    <div class="control">
+                        <input value="{{$ubicacion->nombre_edificio}}" name="nombre_edificio" class="input is-primary" type="text" placeholder="Nombre de la construccion">
+                    </div>
+                    </div>
 
-                <div class="form-group">
-                    <label for="comentarios">Comentarios</label>
-                    <textarea class="form-control"  rows='3' id="comentarios" name="comentarios">{{ $ubicacion['comentarios'] }}</textarea>
-                </div>
+                    <div class="field">
+                    <div class="control">
+                        <input value="{{$ubicacion->nombre_cuarto}}" name="nombre_cuarto" class="input is-primary" type="text" placeholder="Nombre del cuarto">
+                    </div>
+                    </div>
 
-                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    <div class="field">
+                    <div class="control">
+                        <input value="{{$ubicacion->comentarios}}" name="comentarios" class="input is-primary" type="text" placeholder="Comentarios">
+                    </div>
+                    </div>
+
+                <button type="submit" class="button is-primary">Guardar</button>
 
             </form>
-
         </div>
     </div>
+</div>
+</div>
 </div>
 @endsection

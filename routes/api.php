@@ -26,7 +26,7 @@ Route::middleware('auth:api')->group( function () {
     Route::post('/bienes/{id}/solicitarBaja', 'API\ControladorTareas@solicitarBaja');
     Route::post('/asignacionTarea/{id}/resultadoTarea', 'API\ControladorTareas@guardarResultadoTarea');
 
-    Route::resource('ubicaciones', 'API\UbicacionController');
+    // Route::resource('ubicaciones', 'API\UbicacionController');
 });
 
 // Route::get('/misTareas', 'API\ControladorTareas@getTareas');

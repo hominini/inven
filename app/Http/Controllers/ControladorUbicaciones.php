@@ -16,8 +16,9 @@ class ControladorUbicaciones extends Controller
     public function indice()
     {
         $ubicaciones = \App\Ubicacion::all();
+        // dd($ubicaciones);
+        return view('ubicaciones.index', compact('ubicaciones'));
 
-        return $ubicaciones;
     }
 
     /**
@@ -40,6 +41,7 @@ class ControladorUbicaciones extends Controller
     {
         $ubicacion = new \App\Ubicacion();
         $ubicacion->nombre = $request->input('nombre');
+        $ubicacion->nombre_edificio = $request->input('nombre_edificio');
         $ubicacion->nombre_cuarto = $request->input('nombre_cuarto');
         $ubicacion->comentarios = $request->input('comentarios');
 
@@ -50,7 +52,8 @@ class ControladorUbicaciones extends Controller
             echo $e->getMessage();
         }
 
-        return $ubicacion;
+        return redirect()->route('rutas.index')
+        ->with('success','Registro creado con exito.');
     }
 
     /**
@@ -63,7 +66,7 @@ class ControladorUbicaciones extends Controller
     {
         $ubicacion = \App\Ubicacion::find($id);
 
-        return $ubicacion->toJSON(JSON_PRETTY_PRINT);
+        return view('ubicaciones.mostrar', ['ubic'=> $ubicacion]);
     }
 
     /**
@@ -115,7 +118,7 @@ class ControladorUbicaciones extends Controller
         $ubicacion->delete();
 
 
-        return response('Hello World', 200)
-                 ->header('Content-Type', 'text/plain');
+        return redirect()->route('rutas.index')
+        ->with('success','Registro eliminado con exito.');
     }
 }

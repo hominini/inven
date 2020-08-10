@@ -93,8 +93,8 @@
                                 <li><a>Add a member</a></li>
                             </ul>
                         </li> -->
-                        <li><a>Ubicaciones</a></li>
-                        <li><a>Reportes</a></li>
+                        <li><a href="{{ route('rutas.index') }}">Ubicaciones</a></li>
+                        <li><a >Reportes</a></li>
                         <li><a>Autenticación</a></li>
                     </ul>
                     <p class="menu-label">
