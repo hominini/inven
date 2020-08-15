@@ -39,6 +39,12 @@ class ControladorUbicaciones extends Controller
      */
     public function almacenar(Request $request)
     {
+
+        $validatedData = $request->validate([
+            'nombre' => 'required',
+            'nombre_edificio' => 'required',
+            'nombre_cuarto' => 'required',
+        ]);
         $ubicacion = new \App\Ubicacion();
         $ubicacion->nombre = $request->input('nombre');
         $ubicacion->nombre_edificio = $request->input('nombre_edificio');
@@ -99,9 +105,9 @@ class ControladorUbicaciones extends Controller
 
         $ubicacion->save();
 
-        return redirect()->action(
-            'ControladorUbicaciones@mostrar', ['ubicacion' => $id]
-        );
+        return redirect()->route('rutas.index')
+        ->with('success','Registro eliminado con exito.');
+        ;
     }
 
     /**

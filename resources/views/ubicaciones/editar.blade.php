@@ -19,7 +19,7 @@
         <div class="col-md-8">
         <form action="/ubicaciones/{{ $id }}" method="POST">
                 @csrf
-
+                @method('PUT')
                 <div class="field">
                     <div class="control">
                         <input value="{{$ubicacion->nombre}}" name="nombre" class="input is-primary" type="text" placeholder="Nombre">
@@ -44,7 +44,7 @@
                     </div>
                     </div>
 
-                <button type="submit" class="button is-primary">Guardar</button>
+                <button type="submit" class="button is-primary">Actualizar</button>
 
             </form>
         </div>

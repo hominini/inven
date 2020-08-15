@@ -24,8 +24,8 @@
     <nav class="navbar is-white" role="navigation" aria-label="dropdown navigation">
         <div class="container">
             <div class="navbar-brand">
-                <a class="navbar-item brand-text" href="../index.html">
-                    Panel de Control
+                <a class="navbar-item brand-text" href="../home">
+                <img src="https://www.exposweet.com.ec/images/expositores/YAVIRAC.jpg" alt="Girl in a jacket" width="60" height="60">
                 </a>
                 <div class="navbar-burger burger" data-target="navMenu">
                     <span></span>
@@ -41,7 +41,7 @@
                     <a class="navbar-item" href="{{ route('bienes_tecnologicos.index') }}">
                         Bienes tecnológicos
                     </a>
-                    <a class="navbar-item" href="admin.html">
+                    <a class="navbar-item" href="{{ route('libros.index') }}">
                         Items Bibliográficos
                     </a>
                 </div>
@@ -78,7 +78,9 @@
                     </p>
                     <ul class="menu-list">
                         <li><a class="is-active">Dashboard</a></li>
+                        @if(Auth::user()->es_administrador == 1)
                         <li><a href="{{ route('users.index') }}">Usuarios</a></li>
+                        @endif
                     </ul>
                     <p class="menu-label">
                         Administración

@@ -17,6 +17,19 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+
+         @if ($errors->any())
+         <div class="notification is-danger is-light">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button class="delete"></button>
+        </div>
+
+
+        @endif
             <form action="@yield('action', '/ubicaciones')" method="POST">
                 @csrf
 

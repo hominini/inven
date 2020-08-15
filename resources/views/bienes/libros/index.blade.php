@@ -12,14 +12,14 @@
       <div class="level-left">
         <div class="level-item">
           <p class="subtitle is-5">
-            <strong>Listado de Muebles</strong>
+            <strong>Listado de Libros</strong>
           </p>
         </div>
       </div>
 
       <!-- Right side -->
       <div class="level-right">
-        <p class="level-item"><a href="{{ route('muebles.create') }}" class="button is-success">Nuevo Ítem</a></p>
+        <p class="level-item"><a href="{{ route('libros.create') }}" class="button is-success">Nuevo Ítem</a></p>
       </div>
     </nav>
 
@@ -34,16 +34,16 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($mueblesReturn as $mueble)
+        @foreach ($librosReturn as $libro)
         <tr>
-          <th>{{ $mueble['codigo'] }}</th>
-          <td>{{ $mueble['nombre'] }}</td>
-          <td>{{ $mueble['fecha_de_adquisicion'] }}</td>
-          <td>{{ $mueble['ubicacion']->nombre }}</td>
+          <th>{{ $libro['codigo'] }}</th>
+          <td>{{ $libro['nombre'] }}</td>
+          <td>{{ $libro['fecha_de_adquisicion'] }}</td>
+          <td>{{ $libro['ubicacion']->nombre }}</td>
           <td>
-            <form action="{{ route('muebles.destroy', $mueble['id']) }}" method="POST">
-                <a class="button is-primary" href="{{ route('muebles.show', $mueble['id']) }}">Mostrar</a>
-                <a class="button is-warning" href="{{ route('muebles.edit', $mueble['id']) }}">Editar</a>
+            <form action="{{ route('libros.destroy', $libro['id']) }}" method="POST">
+                <a class="button is-primary" href="{{ route('libros.show', $libro['id']) }}">Mostrar</a>
+                <a class="button is-warning" href="{{ route('libros.edit', $libro['id']) }}">Editar</a>
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="button is-danger">Borrar</button>

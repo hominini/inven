@@ -63,13 +63,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::delete('/bienes_tecnologicos/{bien}', 'ControladorBienesTecnologicos@destruir')->name('bienes_tecnologicos.destroy');
 
     // Rutas bienes_items_bibliograficos
-    // Route::get('/bienes_items_bibliograficos', 'ControladorBienesItemsBibliograficos@indice');
-    // Route::get('/bienes_items_bibliograficos/crear', 'ControladorBienesItemsBibliograficos@crear');
-    // Route::get('/bienes_items_bibliograficos/{item_biblio}/editar', 'ControladorBienesItemsBibliograficos@editar');
-    // Route::get('/bienes_items_bibliograficos/{item_biblio}', 'ControladorBienesItemsBibliograficos@mostrar');
-    // Route::post('/bienes_items_bibliograficos', 'ControladorBienesItemsBibliograficos@almacenar');
-    // Route::put('/bienes_items_bibliograficos/{item_biblio}', 'ControladorBienesItemsBibliograficos@actualizar');
-    // Route::delete('/bienes_items_bibliograficos/{item_biblio}', 'ControladorBienesItemsBibliograficos@destruir');
+    Route::get('/bienes_items_bibliograficos', 'LibrosController@indice')->name('libros.index');
+    Route::get('/bienes_items_bibliograficos/crear', 'LibrosController@crear')->name('libros.create');
+    Route::get('/bienes_items_bibliograficos/{item_biblio}/editar', 'LibrosController@editar')->name('libros.edit');
+    Route::get('/bienes_items_bibliograficos/{item_biblio}', 'LibrosController@mostrar')->name('libros.show');
+    Route::post('/bienes_items_bibliograficos', 'LibrosController@almacenar');
+    Route::put('/libros/{item_biblio}', 'LibrosController@actualizar');
+    Route::delete('/bienes_items_bibliograficos/{item_biblio}', 'LibrosController@destruir')->name('libros.destroy');
 
     // Rutas ubicaciones
     Route::get('/ubicaciones', 'ControladorUbicaciones@indice')->name('rutas.index'); //ver

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\AsignacionTarea;
 
 class AsignacionesTareasController extends Controller
 {
@@ -14,8 +15,19 @@ class AsignacionesTareasController extends Controller
      */
     public function index()
     {
-        $asignaciones_tareas = \App\AsignacionTarea::all();
+        // $asignaciones_tareas = DB::table('asignaciones_tareas')->where('id_usuario', '=', 1)->get();
+
+        $user = auth()->user();
+        if ($user->es_administrador){
+            $asignaciones_tareas = \App\AsignacionTarea::all();
+        } else {
+            $asignaciones_tareas = AsignacionTarea::where('id_usuario', $user->id)
+            ->get();
+        }
+
+
         return view('asignaciones-tareas.index', compact('asignaciones_tareas'));
+
     }
 
     /**
@@ -44,7 +56,7 @@ class AsignacionesTareasController extends Controller
     public function store(Request $request)
     {
         DB::transaction(function () use ($request) {
-            
+
             $asignacion_tarea = new \App\AsignacionTarea();
             $asignacion_tarea->id_usuario = $request->input('id_usuario');
             $asignacion_tarea->id_ubicacion = $request->input('id_ubicacion');
@@ -55,7 +67,7 @@ class AsignacionesTareasController extends Controller
             $asignacion_tarea->fecha_asignacion = $request->input('fecha_asignacion');
 
             try {
-                
+
                 $asignacion_tarea->save();
             } catch (\Exception $e) {
                 echo $e->getMessage();
@@ -146,7 +158,7 @@ class AsignacionesTareasController extends Controller
     {
         // obtencion de referencias a las tablas a eliminar
         $asignacion_tarea = \App\AsignacionTarea::find($id);
-      
+
         $asignacion_tarea->delete();
 
         return redirect()->route('asignacionesTareas.index')

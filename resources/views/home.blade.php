@@ -30,7 +30,7 @@
     <div class="tile is-ancestor has-text-centered">
         <div class="tile is-parent">
             <article class="tile is-child box">
-                <p class="title">439</p>
+                <p class="title">{{$contador}}</p>
                 <p class="subtitle">Activos</p>
             </article>
         </div>
@@ -42,13 +42,13 @@
         </div>
         <div class="tile is-parent">
             <article class="tile is-child box">
-                <p class="title">3</p>
+                <p class="title">{{$contador2}}</p>
                 <p class="subtitle">Pendientes de revisión</p>
             </article>
         </div>
         <div class="tile is-parent">
             <article class="tile is-child box">
-                <p class="title">19</p>
+                <p class="title">{{$contador1}}</p>
                 <p class="subtitle">Tareas asignadas</p>
             </article>
         </div>
@@ -71,51 +71,16 @@
                 <div class="content">
                     <table class="table is-fullwidth is-striped">
                         <tbody>
+                            @foreach ($tareas as $tarea)
                             <tr>
                                 <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                <td>Lorum ipsum dolem aire</td>
+                                <td>{{$tarea->usuario->nombres}}
+                                {{$tarea->usuario->apellidos}}</td>
+                                <td>{{$tarea->tipo}}</td>
+                                <td>{{$tarea->fecha_asignacion}}</td>
                                 <td><a class="button is-small is-primary" href="#">Action</a></td>
                             </tr>
-                            <tr>
-                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                <td>Lorum ipsum dolem aire</td>
-                                <td><a class="button is-small is-primary" href="#">Action</a></td>
-                            </tr>
-                            <tr>
-                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                <td>Lorum ipsum dolem aire</td>
-                                <td><a class="button is-small is-primary" href="#">Action</a></td>
-                            </tr>
-                            <tr>
-                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                <td>Lorum ipsum dolem aire</td>
-                                <td><a class="button is-small is-primary" href="#">Action</a></td>
-                            </tr>
-                            <tr>
-                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                <td>Lorum ipsum dolem aire</td>
-                                <td><a class="button is-small is-primary" href="#">Action</a></td>
-                            </tr>
-                            <tr>
-                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                <td>Lorum ipsum dolem aire</td>
-                                <td><a class="button is-small is-primary" href="#">Action</a></td>
-                            </tr>
-                            <tr>
-                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                <td>Lorum ipsum dolem aire</td>
-                                <td><a class="button is-small is-primary" href="#">Action</a></td>
-                            </tr>
-                            <tr>
-                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                <td>Lorum ipsum dolem aire</td>
-                                <td><a class="button is-small is-primary" href="#">Action</a></td>
-                            </tr>
-                            <tr>
-                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                <td>Lorum ipsum dolem aire</td>
-                                <td><a class="button is-small is-primary" href="#">Action</a></td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

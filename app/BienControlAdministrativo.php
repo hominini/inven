@@ -26,4 +26,9 @@ class BienControlAdministrativo extends Model
         return $this->hasOne('App\BienTecnologico', 'id_bien_control_administrativo');
     }
 
+    public function items_bibliografico()
+    {
+        return $this->hasOne('App\ItemBibliografico', 'id_bien_control_administrativo');
+    }
+
 }

@@ -18,9 +18,12 @@
       </div>
 
       <!-- Right side -->
+      @if(Auth::user()->es_administrador == 1)
       <div class="level-right">
         <p class="level-item"><a href="{{ route('asignacionesTareas.create') }}" class="button is-success">Asignar tarea</a></p>
       </div>
+      @endif
+
     </nav>
 
     <table class="table is-fullwidth is-hoverable">
@@ -43,10 +46,13 @@
           <td>
             <form action="{{ route('asignacionesTareas.destroy', $asignacion->id) }}" method="POST">
                 <a class="button is-primary" href="{{ route('asignacionesTareas.show', $asignacion->id) }}">Mostrar</a>
+                @if(Auth::user()->es_administrador == 1)
                 <a class="button is-warning" href="{{ route('asignacionesTareas.edit', $asignacion->id) }}">Editar</a>
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="button is-danger">Borrar</button>
+                @endif
+
             </form>
           </td>
         </tr>
