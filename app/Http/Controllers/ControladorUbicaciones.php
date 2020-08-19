@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+
 
 class ControladorUbicaciones extends Controller
 {
@@ -126,5 +130,10 @@ class ControladorUbicaciones extends Controller
 
         return redirect()->route('rutas.index')
         ->with('success','Registro eliminado con exito.');
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new UsersExport, 'users.csv');
     }
 }

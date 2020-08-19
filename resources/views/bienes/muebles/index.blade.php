@@ -20,6 +20,7 @@
       <!-- Right side -->
       <div class="level-right">
         <p class="level-item"><a href="{{ route('muebles.create') }}" class="button is-success">Nuevo Ítem</a></p>
+        <p class="level-item"><a href="{{ route('download') }}" class="button is-success">Descargar</a></p>
       </div>
     </nav>
 

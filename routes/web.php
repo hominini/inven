@@ -93,4 +93,6 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/settings', 'SettingsController@index')->name('settings');
 
+    Route::get('/download', 'ControladorUbicaciones@exportar')->name('download');
+
 });
