@@ -105,7 +105,7 @@
                     <ul class="menu-list">
                         <li><a href="{{ route('asignacionesTareas.index') }}">Asignación de Tareas</a></li>
                         <li><a>Registro</a></li>
-                        <li><a>Conteo</a></li>
+                        <li><a href="{{ route('conteo.index') }}">Conteo</a></li>
                         <li><a>Baja</a></li>
                     </ul>
                 </aside>

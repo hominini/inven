@@ -95,4 +95,10 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/download', 'ControladorUbicaciones@exportar')->name('download');
 
+    Route::get('/conteo', 'AsignacionesTareasController@indice_conteo')->name('conteo.index'); //ver
+    Route::get('/conteo/{id}', 'AsignacionesTareasController@mostrar_conteo')->name('conteo.show');
+
+    Route::get('/bajas', 'AsignacionesTareasController@indice_bajas')->name('bajas.index'); //ver
+    Route::get('/bajas/{id}', 'AsignacionesTareasController@mostrar_bajas')->name('bajas.show');
+
 });

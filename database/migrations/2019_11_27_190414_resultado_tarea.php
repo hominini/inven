@@ -16,8 +16,9 @@ class ResultadoTarea extends Migration
         Schema::create('resultado_tarea', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_asignacion_tarea')->unique();
-            $table->dateTime('fecha_hora_inicio');
-            $table->dateTime('fecha_hora_fin');
+            $table->dateTime('fecha_hora_inicio')->nullable();
+            $table->dateTime('fecha_hora_fin')->nullable();
+            $table->integer('numero_bienes_contados');
             $table->timestamps();
         });
     }

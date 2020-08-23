@@ -164,4 +164,48 @@ class AsignacionesTareasController extends Controller
         return redirect()->route('asignacionesTareas.index')
                         ->with('success','Registro eliminado con exito.');
     }
+
+    public function indice_conteo(){
+        $conteos = \App\ResultadoTarea::all();
+        return view('conteo.index', compact('conteos'));
+    }
+
+    public function mostrar_conteo($id){
+
+        $conteo = \App\ResultadoTarea::find($id);
+        $id_usuario = $conteo->asignacion_tarea->id_usuario;
+
+        $usuario = \App\User::find($id_usuario);
+
+        //  dd($usuario_tarea);
+
+        return view('conteo.ver',compact('conteo', 'usuario'));
+    }
+
+    public function indice_bajas(){
+        $bajas = \App\ResultadoTarea::all();
+
+        foreach($bajas as $b){
+            $tipo = $b->asignacion_tarea->tipo;
+            $id = $b->id;
+            if($tipo=='BAJAS'){
+                $bajas->forget($id);
+            }
+        }
+        dd($bajas);
+
+        return view('bajas.index', compact('bajas'));
+    }
+
+    public function mostrar_bajas($id){
+
+        $bajas = \App\ResultadoTarea::find($id);
+        $id_usuario = $bajas->asignacion_tarea->id_usuario;
+
+        $usuario = \App\User::find($id_usuario);
+
+        //  dd($usuario_tarea);
+
+        return view('bajas.ver',compact('bajas', 'usuario'));
+    }
 }

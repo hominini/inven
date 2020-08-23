@@ -21,6 +21,7 @@ class UsersSeeder extends Seeder
             'cargo' => 'ninguno',
             'area' => 'Tecnologia',
             'id_institucion' => 1,
+            'es_administrador'=> 1,
         ]);
 
         DB::table('users')->insert([
@@ -33,6 +34,7 @@ class UsersSeeder extends Seeder
             'cargo' => 'ninguno',
             'area' => 'Tecnologia',
             'id_institucion' => 1,
+            'es_administrador'=> 0,
         ]);
 
 

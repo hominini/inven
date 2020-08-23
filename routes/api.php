@@ -28,6 +28,8 @@ Route::middleware('auth:api')->group( function () {
 
     Route::post('/tarea/{id}/actualizarTarea', 'API\ControladorTareas@actualizarTarea');
 
+    Route::post('/bajas','API\ControladorTareas@darBajaBienes');
+
     // Route::resource('ubicaciones', 'API\UbicacionController');
 });
 

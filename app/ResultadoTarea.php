@@ -18,4 +18,9 @@ class ResultadoTarea extends Model
         'fecha_hora_inicio',
         'fecha_hora_fin',
     ];
+
+    public function asignacion_tarea()
+    {
+        return $this->belongsTo('App\AsignacionTarea', 'id_asignacion_tarea');
+    }
 }

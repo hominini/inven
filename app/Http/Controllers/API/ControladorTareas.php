@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\ResultadoTarea;
 
 
 class ControladorTareas extends Controller
@@ -31,6 +32,12 @@ class ControladorTareas extends Controller
 
     public function evaluarConteo(Request $request)
     {
+        $validatedData = $request->validate([
+
+        'id_asignacion_tarea' => 'exists:asignaciones_tareas,id|unique:asignaciones_tareas,id'  ,
+
+
+        ]);
         //obtener los datos de la peticion
         $id_usuario = $request->id_usuario;
         $num_bienes = $request->numero_de_bienes;
@@ -41,6 +48,13 @@ class ControladorTareas extends Controller
         //comparar
         $nb=count($bienes);
         if (abs($nb - $num_bienes) <= 3) {
+             //guardar en la base de datos el registro
+            $res_tarea = new ResultadoTarea;
+            $res_tarea->numero_bienes_contados = $num_bienes;
+            $res_tarea->id_asignacion_tarea	 = $request->id_asignacion_tarea;
+
+            $res_tarea->save();
+
             return response()->json([
                 'message' => 'Su solicitud ha sido enviada correctamente.'
             ]);
@@ -50,7 +64,6 @@ class ControladorTareas extends Controller
                 'message' => 'Error'
             ]);
         }
-        //guardar en la base de datos el registro
 
     }
 
@@ -82,6 +95,30 @@ class ControladorTareas extends Controller
         return response()->json([
             // 'countingResult' => $dummy_response,
             'message' => 'Su tarea ha sido actualizada correctamente.'
+        ]);
+    }
+
+    public function darBajaBienes(Request $request){
+
+        $ids = $request->input('idsBienes');
+        $limite = count($ids);
+        for($i=0; $i<$limite; $i++){
+            $bien = \App\Bien::find($ids[$i]);
+            $bien->is_baja=1;
+            $bien->save();
+        // dd($bien);
+
+        }
+
+            //guardar en la base de datos el registro
+        $res_tarea = new ResultadoTarea;
+        $res_tarea->numero_bienes_contados = -1;
+        $res_tarea->id_asignacion_tarea	 = $request->id_asignacion_tarea;
+
+        $res_tarea->save();
+
+        return response()->json([
+            'message' => 'Su solicitud ha sido enviada correctamente.'
         ]);
     }
 }
