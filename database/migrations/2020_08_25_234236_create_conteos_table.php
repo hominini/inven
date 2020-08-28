@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddIsBajaToBienesTable extends Migration
+class CreateConteosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class AddIsBajaToBienesTable extends Migration
      */
     public function up()
     {
-        Schema::table('bienes', function (Blueprint $table) {
-            //
-            $table->integer('is_baja')->default(0);
-
+        Schema::create('conteos', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('n_bienes');
+            $table->integer('id_asignacion_tarea');
+            $table->timestamps();
         });
     }
 
@@ -27,8 +28,6 @@ class AddIsBajaToBienesTable extends Migration
      */
     public function down()
     {
-        Schema::table('bienes', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('conteos');
     }
 }

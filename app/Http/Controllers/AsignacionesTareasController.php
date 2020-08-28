@@ -166,24 +166,25 @@ class AsignacionesTareasController extends Controller
     }
 
     public function indice_conteo(){
-        $conteos = \App\ResultadoTarea::all();
+        $conteos = \App\Conteo::all();
         return view('conteo.index', compact('conteos'));
     }
 
     public function mostrar_conteo($id){
 
-        $conteo = \App\ResultadoTarea::find($id);
+        $conteo = \App\Conteo::find($id);
+
+        // dd($conteo);
         $id_usuario = $conteo->asignacion_tarea->id_usuario;
 
         $usuario = \App\User::find($id_usuario);
 
-        //  dd($usuario_tarea);
 
         return view('conteo.ver',compact('conteo', 'usuario'));
     }
 
     public function indice_bajas(){
-        $bajas = \App\ResultadoTarea::all();
+        $bajas = \App\Baja::all();
 
         foreach($bajas as $b){
             $tipo = $b->asignacion_tarea->tipo;
@@ -199,7 +200,7 @@ class AsignacionesTareasController extends Controller
 
     public function mostrar_bajas($id){
 
-        $bajas = \App\ResultadoTarea::find($id);
+        $bajas = \App\Baja::find($id);
         $id_usuario = $bajas->asignacion_tarea->id_usuario;
 
         $usuario = \App\User::find($id_usuario);

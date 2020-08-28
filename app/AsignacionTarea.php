@@ -22,4 +22,9 @@ class AsignacionTarea extends Model
     {
         return $this->hasOne('App\ResultadoTarea', 'id_asignacion_tarea');
     }
+
+    public function conteo()
+    {
+        return $this->hasOne('App\Conteo', 'id_asignacion_tarea');
+    }
 }

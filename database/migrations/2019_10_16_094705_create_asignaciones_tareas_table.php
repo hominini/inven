@@ -17,8 +17,8 @@ class CreateAsignacionesTareasTable extends Migration
             $table->increments('id');
             $table->integer('id_usuario');
             $table->integer('id_ubicacion');
-            $table->text('descripcion');
-            $table->text('observaciones');
+            $table->text('descripcion')->nullable();
+            $table->text('observaciones')->nullable();
             $table->boolean('completada');
             $table->enum('tipo', [
                 'REGISTRO',

@@ -28,7 +28,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Numero de bienes contados:</strong>
-            {{ $conteo->numero_bienes_contados}}
+            {{ $conteo->n_bienes}}
         </div>
     </div>
 
