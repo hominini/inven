@@ -15,10 +15,11 @@ class DatabaseSeeder extends Seeder
             //UsersTableSeeder::class,
             //SeederTablaBienes::class,
             SeederUbicaciones::class,
-            // SeederMuebles::class,
             // SeederUsuariosFinales::sclass,
             UsersSeeder::class,
             SeederTablaBienes::class,
+            BCASeeder::class,
+            SeederMuebles::class,
         ]);
     }
 }
