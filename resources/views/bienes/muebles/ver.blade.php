@@ -55,6 +55,10 @@
         </div>
     </div>
 
+    <div class="col-xs-12 col-sm-12 col-md-12">
+            <a href="{{asset('storage/'.$mueble->bien_control_administrativo->bien->acta_de_recepcion)}}" download>Descargar Acta</a>
+    </div>
+
   </div>
 </div>
 @endsection

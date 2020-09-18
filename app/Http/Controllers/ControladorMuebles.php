@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreBien;
+use Illuminate\Support\Facades\Storage;
 
 
 class ControladorMuebles extends Controller
@@ -24,14 +25,14 @@ class ControladorMuebles extends Controller
             $mueble->bien_control_administrativo;
             $mueble->bien_control_administrativo->bien;
             $muebleReturn = $mueble->toArray();
-   
+
             foreach ($muebleReturn['bien_control_administrativo'] as $key => $val)
-            {   
+            {
                 $muebleReturn[$key] = $val;
             }
 
             foreach ($muebleReturn['bien_control_administrativo']['bien'] as $key => $val)
-            {   
+            {
                 $muebleReturn[$key] = $val;
             }
 
@@ -65,7 +66,7 @@ class ControladorMuebles extends Controller
      */
     public function almacenar(StoreBien $request)
     {
-        
+
         $bien = new \App\Bien();
         $bien->nombre = $request->input('nombre');
         $bien->descripcion = $request->input('descripcion');
@@ -73,12 +74,13 @@ class ControladorMuebles extends Controller
         $bien->id_ubicacion = $request->input('id_ubicacion');
         //$bien->id_usuario_final = $request->input('id_usuario_final');
         $bien->fecha_de_adquisicion = $request->input('fecha_de_adquisicion');
-        $bien->acta_de_recepcion = $request->input('acta_de_recepcion');
+        $bien->acta_de_recepcion = $request->file('acta_de_recepcion')->store('actas');
+        // dd($path);
         $bien->imagen = $request->input('imagen');
         $bien->observaciones = $request->input('observaciones');
         $bien->valor = $request->input('valor');
         $bien->codigo_barras = $request->input('codigo');
-        
+
         $bca = new \App\BienControlAdministrativo();
         $bca->codigo = $request->input('codigo');
         $bca->periodo_de_garantia = $request->input('periodo_de_garantia');
@@ -89,12 +91,12 @@ class ControladorMuebles extends Controller
         $bca->vida_util = $request->input('vida_util');
         $bca->id_actividad = $request->input('id_actividad');
         $bca->en_uso = ($request->input('en_uso') == 'checked' ? 1 : 0);
-        
+
         $mueble = new \App\Mueble();
         $mueble->id_tipo_de_bien = $request->input('id_tipo_de_bien');
         $mueble->color = $request->input('color');
         $mueble->dimensiones = $request->input('dimensiones');
-        
+
         DB::transaction(function () use ($mueble, $bca, $bien) {
             $bien->save();
             \App\Bien::find($bien->id)->bien_control_administrativo()->save($bca);
@@ -115,7 +117,8 @@ class ControladorMuebles extends Controller
     {
         $mueble = \App\Mueble::find($id);
 
-        // dd($mueble->bien_control_administrativo);
+        $url = Storage::url($mueble->bien_control_administrativo->bien->acta_de_recepcion);
+        // dd($url);
         return view('bienes.muebles.ver', compact('mueble'));
 
     }

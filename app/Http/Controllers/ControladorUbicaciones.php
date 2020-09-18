@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use Validator;
+
 
 
 class ControladorUbicaciones extends Controller
@@ -44,26 +46,35 @@ class ControladorUbicaciones extends Controller
     public function almacenar(Request $request)
     {
 
-        $validatedData = $request->validate([
+        $validator = Validator::make($request->all(), [
             'nombre' => 'required',
             'nombre_edificio' => 'required',
-            'nombre_cuarto' => 'required',
         ]);
-        $ubicacion = new \App\Ubicacion();
-        $ubicacion->nombre = $request->input('nombre');
-        $ubicacion->nombre_edificio = $request->input('nombre_edificio');
-        $ubicacion->nombre_cuarto = $request->input('nombre_cuarto');
-        $ubicacion->comentarios = $request->input('comentarios');
 
-        try {
-            $ubicacion->save();
-            $id = $ubicacion->id;
-        } catch (\Exception $e) {
-            echo $e->getMessage();
+
+
+        if ($validator->passes()) {
+            $ubicacion = new \App\Ubicacion();
+            $ubicacion->nombre = $request->input('nombre');
+            $ubicacion->nombre_edificio = $request->input('nombre_edificio');
+            $ubicacion->nombre_cuarto = $request->input('nombre_cuarto');
+            $ubicacion->comentarios = $request->input('comentarios');
+
+            try {
+                $ubicacion->save();
+                $id = $ubicacion->id;
+            } catch (\Exception $e) {
+                echo $e->getMessage();
+            }
+
+
+			return response()->json(['success'=>'Added new records.']);
         }
 
-        return redirect()->route('rutas.index')
-        ->with('success','Registro creado con exito.');
+
+    	return response()->json(['error'=>$validator->errors()->all()]);
+        // return redirect()->route('rutas.index')
+        // ->with('success','Registro creado con exito.');
     }
 
     /**

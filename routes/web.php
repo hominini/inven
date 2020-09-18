@@ -101,4 +101,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/bajas', 'AsignacionesTareasController@indice_bajas')->name('bajas.index'); //ver
     Route::get('/bajas/{id}', 'AsignacionesTareasController@mostrar_bajas')->name('bajas.show');
 
+    Route::get('/registro', 'AsignacionesTareasController@indice_registros')->name('registros.index'); //ver
+    Route::get('/registros/{id}', 'AsignacionesTareasController@mostrar_registros')->name('registros.show');
+
 });

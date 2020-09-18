@@ -21,7 +21,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Fecha:</strong>
-            {{ $baja->created_at}}
+            {{ $registro->created_at}}
         </div>
     </div>
 
@@ -31,7 +31,7 @@
             <div class="content">
                 <ol>
             @foreach ($bienes as $element)
-                    <li><strong>{{$element->codigo_barras}}</strong> {{$element->nombre}}</li>
+                    <li><strong>{{$element->codigo}}</strong> {{$element->nombre}}</li>
             @endforeach
                 </ol>
             </div>

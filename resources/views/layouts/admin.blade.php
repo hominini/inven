@@ -12,6 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -104,9 +105,9 @@
                     </p>
                     <ul class="menu-list">
                         <li><a href="{{ route('asignacionesTareas.index') }}">Asignación de Tareas</a></li>
-                        <li><a>Registro</a></li>
+                        <li><a href="{{ route('registros.index') }}">Registro</a></li>
                         <li><a href="{{ route('conteo.index') }}">Conteo</a></li>
-                        <li><a>Baja</a></li>
+                        <li><a href="{{ route('bajas.index') }}">Baja</a></li>
                     </ul>
                 </aside>
             </div>

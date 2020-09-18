@@ -187,26 +187,70 @@ class AsignacionesTareasController extends Controller
         $bajas = \App\Baja::all();
 
         foreach($bajas as $b){
+            // dd($b->asignacion_tarea);
             $tipo = $b->asignacion_tarea->tipo;
             $id = $b->id;
             if($tipo=='BAJAS'){
                 $bajas->forget($id);
             }
         }
-        dd($bajas);
 
         return view('bajas.index', compact('bajas'));
     }
 
     public function mostrar_bajas($id){
 
-        $bajas = \App\Baja::find($id);
-        $id_usuario = $bajas->asignacion_tarea->id_usuario;
+        $baja = \App\Baja::find($id);
+        $id_usuario = $baja->asignacion_tarea->id_usuario;
 
         $usuario = \App\User::find($id_usuario);
 
-        //  dd($usuario_tarea);
+        $ids = $baja->options;
+        $ids =  json_decode($ids);
+        $bienes = [];
 
-        return view('bajas.ver',compact('bajas', 'usuario'));
+        foreach ($ids as $id){
+            array_push($bienes, \App\Bien::find($id));
+
+        }
+        // dd($bienes);
+
+
+        return view('bajas.ver',compact('baja', 'usuario', 'bienes'));
+    }
+
+    public function indice_registros(){
+        $registros = \App\Registro::all();
+
+        foreach($registros as $r){
+            // dd($r->asignacion_tarea);
+            $tipo = $r->asignacion_tarea->tipo;
+            $id = $r->id;
+            // if($tipo=='REGISTRO'){
+            //     $registros->forget($id);
+            // }
+        }
+
+        return view('registro.index', compact('registros'));
+    }
+
+    public function mostrar_registros($id){
+
+        $registro = \App\Registro::find($id);
+        $id_usuario = $registro->asignacion_tarea->id_usuario;
+
+        $usuario = \App\User::find($id_usuario);
+
+        $bienes = $registro->options;
+        $bienes =  json_decode($bienes);
+        // dd($bienes);
+
+        // foreach ($bienes as $id){
+        //     array_push($bienes, \App\Registro::find($id));
+
+        // }
+
+
+        return view('registro.ver',compact('registro', 'usuario', 'bienes'));
     }
 }

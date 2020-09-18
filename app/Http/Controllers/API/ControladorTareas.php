@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Conteo;
 use App\Baja;
+use App\Bien;
+use App\BienControlAdministrativo;
+use App\Registro;
 
 
 class ControladorTareas extends Controller
@@ -106,16 +109,44 @@ class ControladorTareas extends Controller
             $bien = \App\Bien::find($ids[$i]);
             $bien->is_baja=1;
             $bien->save();
-        // dd($bien);
 
         }
 
+        // dd($ids);
             //guardar en la base de datos el registro
         $res_tarea = new Baja;
         $res_tarea->id_asignacion_tarea	 = $request->id_asignacion_tarea;
-        $res_tarea->options	 = '12';
+        $res_tarea->options	 =  json_encode($ids);
 
         $res_tarea->save();
+
+        return response()->json([
+            'message' => 'Su solicitud ha sido enviada correctamente.'
+        ]);
+    }
+
+    public function registrarBienes(Request $request){
+        // dd($request->bienes[0]['nombre']);
+        foreach ($request->bienes as $br){
+            // dd($br);
+            $bien = new Bien;
+            $bien->nombre = $br['nombre'];
+            $bien->observaciones = $br['observaciones'];
+            $bien->codigo_barras = $br['codigo'];
+            $bien->id_ubicacion = $br['idUbicacion'];
+            $bien->save();
+
+            $bca = new BienControlAdministrativo;
+            $bca->estado = $br['estado'];
+            $bien->bien_control_administrativo()->save($bca);
+
+        }
+
+        $registro = new Registro;
+        $registro->id_asignacion_tarea	 = $request->idAsignacionTarea;
+        $registro->options	 =  json_encode($request->bienes);
+
+        $registro->save();
 
         return response()->json([
             'message' => 'Su solicitud ha sido enviada correctamente.'

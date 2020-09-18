@@ -37,7 +37,7 @@
       <tbody>
         @foreach ($mueblesReturn as $mueble)
         <tr>
-          <th>{{ $mueble['codigo'] }}</th>
+          <th>{{ $mueble['codigo_barras'] }}</th>
           <td>{{ $mueble['nombre'] }}</td>
           <td>{{ $mueble['fecha_de_adquisicion'] }}</td>
           <td>{{ $mueble['ubicacion']->nombre }}</td>

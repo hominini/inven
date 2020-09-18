@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Baja extends Model
+class Registro extends Model
 {
     //
     public function asignacion_tarea()
