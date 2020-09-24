@@ -32,7 +32,7 @@ Route::middleware('auth:api')->group( function () {
 
     Route::post('/registrarbienes','API\ControladorTareas@registrarbienes');
 
-    // Route::resource('ubicaciones', 'API\UbicacionController');
+    Route::resource('ubicaciones', 'API\UbicacionController');
 });
 
 // Route::get('/misTareas', 'API\ControladorTareas@getTareas');
