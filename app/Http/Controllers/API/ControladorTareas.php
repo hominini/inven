@@ -126,9 +126,8 @@ class ControladorTareas extends Controller
     }
 
     public function registrarBienes(Request $request){
-        // dd($request->bienes[0]['nombre']);
         foreach ($request->bienes as $br){
-            // dd($br);
+            // tabla bienes
             $bien = new Bien;
             $bien->nombre = $br['nombre'];
             $bien->observaciones = $br['observaciones'];
@@ -136,14 +135,18 @@ class ControladorTareas extends Controller
             $bien->id_ubicacion = $br['idUbicacion'];
             $bien->save();
 
+            // tabla bienes control admisnitrativo
             $bca = new BienControlAdministrativo;
             $bca->estado = $br['estado'];
             $bien->bien_control_administrativo()->save($bca);
 
+            // tabla muebles
+            $this->crearDeAcuerdoATipoDeBien($br['tipo'], $bca->id);
+
         }
 
         $registro = new Registro;
-        $registro->id_asignacion_tarea	 = $request->idAsignacionTarea;
+        $registro->id_asignacion_tarea = $request->idAsignacionTarea;
         $registro->options	 =  json_encode($request->bienes);
 
         $registro->save();
@@ -151,5 +154,23 @@ class ControladorTareas extends Controller
         return response()->json([
             'message' => 'Su solicitud ha sido enviada correctamente.'
         ]);
+    }
+
+    public function crearDeAcuerdoATipoDeBien($tipo, $bca_id)
+    {
+        switch ($tipo) {
+            case 'Tecnologicos':
+                $instancia_bien = new \App\BienTecnologico();
+                \App\BienControlAdministrativo::find($bca_id)->bien_tecnologico()->save($instancia_bien);
+                break;
+            case 'Muebles':
+                $instancia_bien = new \App\Mueble();
+                \App\BienControlAdministrativo::find($bca_id)->mueble()->save($instancia_bien);
+                break;
+            case 'Libros':
+                $instancia_bien = new \App\ItemBibliografico();
+                \App\BienControlAdministrativo::find($bca_id)->items_bibliografico()->save($instancia_bien);
+                break;
+        }
     }
 }
