@@ -29,10 +29,13 @@ Route::middleware('auth:api')->group( function () {
     Route::post('/tarea/{id}/actualizarTarea', 'API\ControladorTareas@actualizarTarea');
 
     Route::post('/bajas','API\ControladorTareas@darBajaBienes');
+    Route::post('/dar_baja_bien','API\ControladorTareas@darBajaBien');
 
     Route::post('/registrarbienes','API\ControladorTareas@registrarbienes');
 
     Route::resource('ubicaciones', 'API\UbicacionController');
+
+    Route::post('/completarTarea/{id_tarea}');
 });
 
 // Route::get('/misTareas', 'API\ControladorTareas@getTareas');

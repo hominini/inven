@@ -125,6 +125,42 @@ class ControladorTareas extends Controller
         ]);
     }
 
+    public function darBajaBien(Request $request)
+    {
+        // validar request
+
+        // guardar registro en tabla motivo_baja (ruta a imagen y razon de baja)
+        $motivo_baja = new \App\MotivoBaja;
+        $motivo_baja->id_bien = $request->id_bien;
+        $motivo_baja->id_asignacion_tarea = $request->id_asignacion_tarea;
+        $motivo_baja->motivo = $request->motivo;
+        $motivo_baja->ruta_imagen = $request->file('imagen') ? $request->file('imagen')->store('tareas/bajas/imagenes')  : NULL;
+
+        $motivo_baja->save();
+
+        // actualizar bien, campo isBaja a true
+        $bien = \App\Bien::find($request->id_bien);
+        $bien->is_baja=1;
+        $bien->save();
+
+        // respuesta
+        return response()->json([
+            'message' => 'Su solicitud ha sido enviada correctamente.'
+        ]);
+    }
+
+    public function completarTarea($id_tarea)
+    {
+        $tarea = \App\AsignacionTarea::find();
+        $tarea->completada = true;
+        $tarea->save();
+
+         // respuesta
+         return response()->json([
+            'message' => 'Su solicitud ha sido enviada correctamente.'
+        ]);
+    }
+
     public function registrarBienes(Request $request){
         foreach ($request->bienes as $br){
             // tabla bienes
