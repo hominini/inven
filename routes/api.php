@@ -35,7 +35,7 @@ Route::middleware('auth:api')->group( function () {
 
     Route::resource('ubicaciones', 'API\UbicacionController');
 
-    Route::post('/completarTarea/{id_tarea}');
+    Route::post('/completarTarea/{id_tarea}', 'API\ControladorTareas@completarTarea');
 });
 
 // Route::get('/misTareas', 'API\ControladorTareas@getTareas');

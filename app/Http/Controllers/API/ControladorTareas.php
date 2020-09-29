@@ -151,7 +151,7 @@ class ControladorTareas extends Controller
 
     public function completarTarea($id_tarea)
     {
-        $tarea = \App\AsignacionTarea::find();
+        $tarea = \App\AsignacionTarea::find($id_tarea);
         $tarea->completada = true;
         $tarea->save();
 
