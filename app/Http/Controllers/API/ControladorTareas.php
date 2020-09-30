@@ -187,6 +187,8 @@ class ControladorTareas extends Controller
 
         $registro->save();
 
+        $this->completarTarea( $request->idAsignacionTarea );
+
         return response()->json([
             'message' => 'Su solicitud ha sido enviada correctamente.'
         ]);

@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             SeederTablaBienes::class,
             BCASeeder::class,
             SeederMuebles::class,
+            AsignacionTareaTableSeeder::class,
         ]);
     }
 }
