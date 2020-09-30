@@ -36,7 +36,7 @@
       <tbody>
         @foreach ($librosReturn as $libro)
         <tr>
-          <th>{{ $libro['codigo'] }}</th>
+          <th>{{ $libro['codigo_barras'] }}</th>
           <td>{{ $libro['nombre'] }}</td>
           <td>{{ $libro['fecha_de_adquisicion'] }}</td>
           <td>{{ $libro['ubicacion']->nombre }}</td>
