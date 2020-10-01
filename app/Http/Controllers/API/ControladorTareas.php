@@ -134,7 +134,9 @@ class ControladorTareas extends Controller
         $motivo_baja->id_bien = $request->id_bien;
         $motivo_baja->id_asignacion_tarea = $request->id_asignacion_tarea;
         $motivo_baja->motivo = $request->motivo;
-        $motivo_baja->ruta_imagen = $request->file('imagen') ? $request->file('imagen')->store('tareas/bajas/imagenes')  : NULL;
+        $motivo_baja->ruta_imagen = $request->file('imagen') 
+            ? $request->file('imagen')->store('tareas/bajas/imagenes', ['disk' => 'public'])  
+            : NULL;
 
         $motivo_baja->save();
 

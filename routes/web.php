@@ -98,8 +98,11 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/conteo', 'AsignacionesTareasController@indice_conteo')->name('conteo.index'); //ver
     Route::get('/conteo/{id}', 'AsignacionesTareasController@mostrar_conteo')->name('conteo.show');
 
-    Route::get('/bajas', 'AsignacionesTareasController@indice_bajas')->name('bajas.index'); //ver
-    Route::get('/bajas/{id}', 'AsignacionesTareasController@mostrar_bajas')->name('bajas.show');
+    // Route::get('/bajas', 'AsignacionesTareasController@indice_bajas')->name('bajas.index'); //ver
+    // Route::get('/bajas/{id}', 'AsignacionesTareasController@mostrar_bajas')->name('bajas.show');
+
+    Route::get('/bajas', 'MotivoBajaController@index')->name('bajas.index'); //ver
+    Route::get('/bajas/{id}', 'MotivoBajaController@show')->name('bajas.show');
 
     Route::get('/registro', 'AsignacionesTareasController@indice_registros')->name('registros.index'); //ver
     Route::get('/registros/{id}', 'AsignacionesTareasController@mostrar_registros')->name('registros.show');
