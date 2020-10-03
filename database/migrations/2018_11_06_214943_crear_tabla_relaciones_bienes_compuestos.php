@@ -17,6 +17,7 @@ class CrearTablaRelacionesBienesCompuestos extends Migration
             $table->increments('id');
             $table->integer('id_padre');
             $table->integer('id_hijo');
+            $table->timestamps();
         });
     }
 

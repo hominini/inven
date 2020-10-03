@@ -20,6 +20,7 @@ class CrearTablaUbicaciones extends Migration
             $table->text('comentarios')->nullable();
             $table->string('nombre_cuarto')->nullable();
             $table->string('nombre_edificio')->nullable();
+            $table->timestamps();
         });
     }
 

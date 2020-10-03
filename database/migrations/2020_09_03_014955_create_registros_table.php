@@ -15,9 +15,9 @@ class CreateRegistrosTable extends Migration
     {
         Schema::create('registros', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
             $table->json('options');
             $table->integer('id_asignacion_tarea');
+            $table->timestamps();
         });
     }
 

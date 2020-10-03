@@ -8,9 +8,7 @@ class Ubicacion extends Model
 {
     // nombre de la tabla a mapear
     protected $table = 'ubicaciones';
-    // no utilizar timestamps para este modelo
-    public $timestamps = false;
-
+  
     public function bienes()
     {
         // laravel determina el id foraneo a partir del nombre del modelo pasandole a
