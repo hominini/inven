@@ -37,34 +37,34 @@ class ControladorTareas extends Controller
     public function evaluarConteo(Request $request)
     {
         // $validatedData = $request->validate([
-
-        // 'id_asignacion_tarea' => 'exists:asignaciones_tareas,id|unique:asignaciones_tareas,id'  ,
-
-
+        //     'id_asignacion_tarea' => 'exists:asignaciones_tareas,id|unique:asignaciones_tareas,id'  ,
         // ]);
+
         //obtener los datos de la peticion
         $num_bienes = $request->numero_de_bienes;
         $id_ubicacion = $request->id_ubicacion;
 
         //obtener todos los bienes de la ubicacion
         $bienes = \App\Bien::where('id_ubicacion', $id_ubicacion)->get();
+
         //comparar
-        $nb=count($bienes);
+        $nb = count($bienes);
         if (abs($nb - $num_bienes) <= 3) {
-             //guardar en la base de datos el registro
             $conteo = new Conteo;
             $conteo->n_bienes = $num_bienes;
-            $conteo->id_asignacion_tarea	 = $request->id_asignacion_tarea;
+            $conteo->id_asignacion_tarea = $request->id_asignacion_tarea;
 
             $conteo->save();
 
+            $this->completarTarea($request->id_asignacion_tarea);
+
             return response()->json([
-                'message' => 'Su solicitud ha sido enviada correctamente.'
+                'resultado' => 0,
             ]);
         }
         else{
             return response()->json([
-                'message' => 'Error'
+                'resultado' => 1,
             ]);
         }
 
