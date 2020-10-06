@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bien;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,12 +21,14 @@ class MotivoBajaController extends Controller
     {
         $baja = MotivoBaja::find($id);
 
+        $bien = Bien::find($baja->id_bien);
+
         $id_usuario = $baja->asignacion_tarea->id_usuario;
 
         $url = Storage::url($baja->ruta_imagen);
 
         $usuario = \App\User::find($id_usuario);
-        // dd($url);
-        return view('bajas.motivos-bajas.show', compact('baja', 'usuario', 'url'));
+        // dd($bien);
+        return view('bajas.motivos-bajas.show', compact('baja', 'usuario', 'url', 'bien'));
     }
 }

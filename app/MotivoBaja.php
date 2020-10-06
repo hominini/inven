@@ -10,4 +10,9 @@ class MotivoBaja extends Model
     {
         return $this->belongsTo('App\AsignacionTarea', 'id_asignacion_tarea');
     }
+
+    public function bien()
+    {
+        return $this->belongsTo('App\Bien', 'id_bien');
+    }
 }

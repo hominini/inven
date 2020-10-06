@@ -25,8 +25,8 @@
       <thead>
 
         <tr>
-          <th >Fecha</th>
-
+          <th>Fecha</th>
+          <td>Bien</td>
           <th width="280px">Ver</th>
         </tr>
 
@@ -34,6 +34,7 @@
       @foreach ($bajas as $el)
         <tr>
           <td>{{ $el['created_at'] }}</td>
+          <td><em>({{ $el->bien->codigo_barras }})</em> {{ $el->bien->nombre }}</td>
           <td>
                 <a class="button is-primary" href="{{ route('bajas.show', $el['id']) }}">Mostrar</a>
           </td>
