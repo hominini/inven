@@ -36,7 +36,7 @@
       <tbody>
         @foreach ($bienes_tecnologicos as $bt)
         <tr>
-          <th>{{ $bt->bien_control_administrativo->codigo_barras }}</th>
+          <th>{{ $bt->bien_control_administrativo->bien->codigo_barras }}</th>
           <td>{{ $bt->bien_control_administrativo->bien->nombre }}</td>
           <td>{{ $bt->bien_control_administrativo->bien->fecha_de_adquisicion }}</td>
           <td>{{ $bt->bien_control_administrativo->bien->ubicacion->nombre }}</td>

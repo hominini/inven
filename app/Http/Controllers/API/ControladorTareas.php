@@ -131,6 +131,14 @@ class ControladorTareas extends Controller
 
         $bien = \App\Bien::where('codigo_barras', $request->codigo_bien)->first();
 
+        if (!$bien)
+        {
+            return response()->json([
+                'error' => '404',
+                'message' => 'Not found',
+            ]);
+        }
+
         // guardar registro en tabla motivo_baja (ruta a imagen y razon de baja)
         $motivo_baja = new \App\MotivoBaja;
         $motivo_baja->id_bien = $bien->id;
