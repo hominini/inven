@@ -41,17 +41,31 @@ class ControladorTareas extends Controller
         // ]);
 
         //obtener los datos de la peticion
-        $num_bienes = $request->numero_de_bienes;
-        $id_ubicacion = $request->id_ubicacion;
-
+        $conteos = $request->conteos;
+        $id_asignacion_tarea = $request->id_asignacion_tarea;
+        $id_ubicacion = \App\AsignacionTarea::find($id_asignacion_tarea)->id;
+        
         //obtener todos los bienes de la ubicacion
         $bienes = \App\Bien::where('id_ubicacion', $id_ubicacion)->get();
 
+        // obtener todos los bienes contados
+        $bienes_contados = [];
+        foreach ($conteos as $conteo)
+        {
+            $bien = \App\Bien::where('codigo_barras', $conteo['codigoBien'])->first();
+            if ($bien)
+            {
+                array_push($bienes_contados, $bien);
+            }
+        } 
+        
         //comparar
-        $nb = count($bienes);
-        if (abs($nb - $num_bienes) <= 3) {
+        $nb_real = count($bienes);
+        $nb_contado = count($bienes_contados);
+
+        if (abs($nb_real - $nb_contado) <= 3) {
             $conteo = new Conteo;
-            $conteo->n_bienes = $num_bienes;
+            $conteo->n_bienes = $nb_contado;
             $conteo->id_asignacion_tarea = $request->id_asignacion_tarea;
 
             $conteo->save();
