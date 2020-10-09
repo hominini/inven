@@ -17,6 +17,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -116,8 +117,8 @@
             </div>
         </div>
     </div>
-    <script async type="text/javascript" src="../js/bulma.js"></script>
     @yield('custom_scripts')
+    <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>

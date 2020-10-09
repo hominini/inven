@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\DataTables\BienesDataTable;
 
 class ControladorBienes extends Controller
 {
@@ -131,5 +132,10 @@ class ControladorBienes extends Controller
         $bien->delete();
         return response('Hello World', 200)
                  ->header('Content-Type', 'text/plain');
+    }
+
+    public function indexDTable(BienesDataTable $data_table)
+    {
+        return $data_table->render('bienes.index_dt');
     }
 }

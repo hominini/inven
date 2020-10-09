@@ -34,19 +34,31 @@ class HomeController extends Controller
         }
 
         $tareas = AsignacionTarea::all();
-        $contador1 = 0;
+
+        $n_tareas = 0;
         foreach ($tareas as $tarea){
-            $contador1 = $contador1 + 1 ;
+            $n_tareas = $n_tareas + 1 ;
         }
 
-        $contador2 = 0;
+        $n_completadas = 0;
         foreach ($tareas as $tarea){
-            if ($tarea->completada == 0){
-                $contador2 = $contador2 + 1;
+            if ($tarea->completada == 1){
+                $n_completadas = $n_completadas + 1;
             }
         }
 
-        return view('home', compact('bienes','contador','contador1','tareas', 'contador2'));
+        $n_bajas = $bienes->filter(function ($b) {
+            return $b->is_baja == 1;
+        })->count();
+
+        return view('home', compact(
+            'bienes',
+            'contador',
+            'n_tareas',
+            'tareas',
+            'n_completadas',
+            'n_bajas'
+        ));
     }
 
 
