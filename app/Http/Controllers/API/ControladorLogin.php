@@ -58,7 +58,7 @@ class ControladorLogin extends BaseController
     {
         $request->user()->token()->revoke();
         return response()->json([
-            'message' => 'Successfully logged out'
+            'message' => 'Successfully logged out',
         ]);
     }
 

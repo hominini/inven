@@ -27,13 +27,6 @@ class ControladorTareas extends Controller
         return $tareas_usuario->values();
     }
 
-    public function solicitarBaja(Request $request, int $id)
-    {
-        return response()->json([
-            'message' => 'Su solicitud ha sido enviada correctamente.'
-        ]);
-    }
-
     public function evaluarConteo(Request $request)
     {
         // $validatedData = $request->validate([
@@ -44,7 +37,7 @@ class ControladorTareas extends Controller
         $conteos = $request->conteos;
         $id_asignacion_tarea = $request->id_asignacion_tarea;
         $id_ubicacion = \App\AsignacionTarea::find($id_asignacion_tarea)->id;
-        
+            
         //obtener todos los bienes de la ubicacion
         $bienes = \App\Bien::where('id_ubicacion', $id_ubicacion)->get();
 
@@ -57,12 +50,13 @@ class ControladorTareas extends Controller
             {
                 array_push($bienes_contados, $bien);
             }
-        } 
-        
+        }
+
         //comparar
         $nb_real = count($bienes);
         $nb_contado = count($bienes_contados);
 
+        // calcular porcentaje de acierto
         if (abs($nb_real - $nb_contado) <= 3) {
             $conteo = new Conteo;
             $conteo->n_bienes = $nb_contado;
@@ -70,18 +64,19 @@ class ControladorTareas extends Controller
 
             $conteo->save();
 
-            $this->completarTarea($request->id_asignacion_tarea);
-
             return response()->json([
                 'resultado' => 0,
+                'mensaje' => 'Los resultados no coinciden, intente nuevamente.',
             ]);
         }
         else{
+            $this->completarTarea($request->id_asignacion_tarea);
+
             return response()->json([
                 'resultado' => 1,
+                'mensaje' => 'Conteo exitoso.',
             ]);
         }
-
     }
 
     public function guardarResultadoTarea(Request $request, int $id_asignacion) {
@@ -118,16 +113,17 @@ class ControladorTareas extends Controller
     public function darBajaBienes(Request $request){
 
         $ids = $request->input('idsBienes');
+
         $limite = count($ids);
+
         for($i=0; $i<$limite; $i++){
             $bien = \App\Bien::find($ids[$i]);
             $bien->is_baja=1;
             $bien->save();
 
         }
-
-        // dd($ids);
-            //guardar en la base de datos el registro
+    
+        //guardar en la base de datos el registro
         $res_tarea = new Baja;
         $res_tarea->id_asignacion_tarea	 = $request->id_asignacion_tarea;
         $res_tarea->options	 =  json_encode($ids);
@@ -142,6 +138,7 @@ class ControladorTareas extends Controller
     public function darBajaBien(Request $request)
     {
         // validar request
+        // dd($request->all());
 
         $bien = \App\Bien::where('codigo_barras', $request->codigo_bien)->first();
 
