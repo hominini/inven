@@ -5,7 +5,7 @@
 
   <header class="card-header">
     <p class="card-header-title">
-      Detalles del Ítem
+      Detalle
     </p>
 
   </header>

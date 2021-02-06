@@ -26,8 +26,8 @@
     <nav class="navbar is-white" role="navigation" aria-label="dropdown navigation">
         <div class="container">
             <div class="navbar-brand">
-                <a class="navbar-item brand-text" href="../home">
-                <img src="https://www.exposweet.com.ec/images/expositores/YAVIRAC.jpg" alt="Girl in a jacket" width="60" height="60">
+                <a class="navbar-item brand-text" style="padding-top: 0;padding-bottom: 0;" href="../home">
+                <img src="https://www.exposweet.com.ec/images/expositores/YAVIRAC.jpg"  alt="Girl in a jacket" width="110" height="100">
                 </a>
                 <div class="navbar-burger burger" data-target="navMenu">
                     <span></span>
@@ -37,14 +37,14 @@
             </div>
             <div id="navMenu" class="navbar-menu">
                 <div class="navbar-start">
-                    <a class="navbar-item" href="{{ route('muebles.index') }}">
+                    <a class="navbar-item" href="{{ route('muebles.index') }}" >
                         Muebles
                     </a>
-                    <a class="navbar-item" href="{{ route('bienes_tecnologicos.index') }}">
-                        Bienes tecnológicos
+                    <a class="navbar-item" href="{{ route('bienes_tecnologicos.index') }}" >
+                        Bienes Tecnológicos
                     </a>
-                    <a class="navbar-item" href="{{ route('libros.index') }}">
-                        Items Bibliográficos
+                    <a class="navbar-item" href="{{ route('libros.index') }}" >
+                        Ítems Bibliográficos
                     </a>
                 </div>
                 <div class="navbar-end">
@@ -79,16 +79,16 @@
                         General
                     </p>
                     <ul class="menu-list">
-                        <li><a class="is-active">Dashboard</a></li>
+                        <li><a href="{{ route('home') }}" class="{{ (request()->is('home*')) ? 'is-active' : '' }}">Dashboard</a></li>
                         @if(Auth::user()->es_administrador == 1)
-                        <li><a href="{{ route('users.index') }}">Usuarios</a></li>
+                        <li><a href="{{ route('users.index') }}" class="{{ (request()->is('users*')) ? 'is-active' : '' }}">Usuarios</a></li>
                         @endif
                     </ul>
                     <p class="menu-label">
                         Administración
                     </p>
                     <ul class="menu-list">
-                        <li><a>Activos Institución</a></li>
+                        <!-- <li><a>Activos Institución</a></li> -->
                         <!-- <li>
                             <a>Manage Your Team</a>
                             <ul>
@@ -97,18 +97,18 @@
                                 <li><a>Add a member</a></li>
                             </ul>
                         </li> -->
-                        <li><a href="{{ route('rutas.index') }}">Ubicaciones</a></li>
-                        <li><a >Reportes</a></li>
-                        <li><a>Autenticación</a></li>
+                        <li><a href="{{ route('rutas.index') }}" class="{{ (request()->is('ubicaciones*')) ? 'is-active' : '' }}">Ubicaciones</a></li>
+                        <!-- <li><a >Reportes</a></li> -->
+                        <!-- <li><a>Autenticación</a></li> -->
                     </ul>
                     <p class="menu-label">
                         Tareas
                     </p>
                     <ul class="menu-list">
-                        <li><a href="{{ route('asignacionesTareas.index') }}">Asignación de Tareas</a></li>
-                        <li><a href="{{ route('registros.index') }}">Registro</a></li>
-                        <li><a href="{{ route('conteo.index') }}">Conteo</a></li>
-                        <li><a href="{{ route('bajas.index') }}">Baja</a></li>
+                        <li><a href="{{ route('asignacionesTareas.index') }}" class="{{ (request()->is('asignacionesTareas*')) ? 'is-active' : '' }}">Asignación de Tareas</a></li>
+                        <li><a href="{{ route('registros.index') }}" class="{{ (request()->is('registro*')) ? 'is-active' : '' }}">Registro</a></li>
+                        <li><a href="{{ route('conteo.index') }}" class="{{ (request()->is('conteo*')) ? 'is-active' : '' }}">Conteo</a></li>
+                        <li><a href="{{ route('bajas.index') }}" class="{{ (request()->is('bajas*')) ? 'is-active' : '' }}">Baja</a></li>
                     </ul>
                 </aside>
             </div>

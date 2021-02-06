@@ -5,7 +5,7 @@
 
   <header class="card-header">
     <p class="card-header-title">
-      Detalles del Ítem
+      Detalle
     </p>
 
   </header>
@@ -27,7 +27,7 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Numero de bienes contados:</strong>
+            <strong>Número de bienes contados:</strong>
             {{ $conteo->n_bienes}}
         </div>
     </div>

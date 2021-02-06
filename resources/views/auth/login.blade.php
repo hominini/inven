@@ -31,7 +31,7 @@
                     <p class="subtitle has-text-black">Por favor, ingrese para continuar.</p>
                     <div class="box">
                         <figure class="avatar">
-                            <img src="https://placehold.it/128x128">
+                            <img style="max-width: 104px;" src="{{ asset('imgs/logo.jpg') }}">
                         </figure>
                         <form method="POST" action="{{ route('login') }}">
                             @csrf   
