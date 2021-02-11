@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Bien;
 use Illuminate\Http\Request;
 use App\DataTables\BienesDataTable;
+use App\Mueble;
+use Yajra\DataTables\Facades\DataTables;
 
 class ControladorBienes extends Controller
 {
@@ -134,8 +137,24 @@ class ControladorBienes extends Controller
                  ->header('Content-Type', 'text/plain');
     }
 
-    public function indexDTable(BienesDataTable $data_table)
+    public function indexDTable(Request $request)
     {
-        return $data_table->render('bienes.index_dt');
+        if ($request->ajax()) {
+            $data = Bien::latest()->get();
+            return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row) {
+                           $btn = '
+                            <a class="button is-primary" href="' . route('muebles.show', $row->id) . '">Mostrar</a>
+                            <a href="javascript:void(0)" class="edit button is-warning">Editar</a>
+                            ';
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+      
+        return view('bienes.dt.index');
+        // return $data_table->render('bienes.dt.index');
     }
 }

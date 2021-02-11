@@ -18,6 +18,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     <link href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
+    @stack('custom_csss')
 </head>
 
 <body>
@@ -45,6 +46,9 @@
                     </a>
                     <a class="navbar-item" href="{{ route('libros.index') }}" >
                         Ítems Bibliográficos
+                    </a>
+                    <a class="navbar-item" href="{{ route('bienes_dt.index') }}" >
+                        Datatable
                     </a>
                 </div>
                 <div class="navbar-end">
@@ -117,8 +121,10 @@
             </div>
         </div>
     </div>
-    @yield('custom_scripts')
-    <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    
+    @stack('custom_scripts')
+    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
 </body>
 
 </html>
