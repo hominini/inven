@@ -20,6 +20,13 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
+            <strong>No. de Cédula:</strong>
+            {{ $usuario->cedula}}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
             <strong>Fecha:</strong>
             {{ $conteo->created_at}}
         </div>
@@ -27,8 +34,15 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Número de bienes contados:</strong>
-            {{ $conteo->n_bienes}}
+            <strong>Lugar de la tarea:</strong>
+            {{ $conteo->asignacion_tarea->ubicacion->nombre }}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Bienes contados:</strong>
+            {{ $conteo->n_bienes }}
         </div>
     </div>
 

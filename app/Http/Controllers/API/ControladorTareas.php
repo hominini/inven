@@ -37,7 +37,7 @@ class ControladorTareas extends Controller
         $conteos = $request->conteos;
         $id_asignacion_tarea = $request->id_asignacion_tarea;
         $id_ubicacion = \App\AsignacionTarea::find($id_asignacion_tarea)->id;
-            
+        
         //obtener todos los bienes de la ubicacion
         $bienes = \App\Bien::where('id_ubicacion', $id_ubicacion)->get();
 
@@ -64,17 +64,16 @@ class ControladorTareas extends Controller
 
             $conteo->save();
 
-            return response()->json([
-                'resultado' => 0,
-                'mensaje' => 'Los resultados no coinciden, intente nuevamente.',
-            ]);
-        }
-        else{
             $this->completarTarea($request->id_asignacion_tarea);
-
             return response()->json([
                 'resultado' => 1,
                 'mensaje' => 'Conteo exitoso.',
+            ]);
+        }
+        else{
+            return response()->json([
+                'resultado' => 0,
+                'mensaje' => 'Los resultados no coinciden, intente nuevamente.',
             ]);
         }
     }
@@ -167,7 +166,7 @@ class ControladorTareas extends Controller
 
         // respuesta
         return response()->json([
-            'message' => 'Su solicitud ha sido enviada correctamente.'
+            'message' => 'Su solicitud ha sido enviada correctamente.',
         ]);
     }
 

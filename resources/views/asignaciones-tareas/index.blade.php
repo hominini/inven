@@ -42,7 +42,7 @@
           <th>{{ $asignacion->usuario->nombres }} {{ $asignacion->usuario->apellidos }}</th>
           <td>{{ $asignacion->ubicacion->nombre }}</td>
           <td>{{ $asignacion->tipo }}</td>
-          <td>{{ $asignacion->completada ? 'Completada' : 'Pendiente' }}</td>
+          <td class="{{ $asignacion->completada ? 'has-text-success' : 'has-text-danger' }}">{{ $asignacion->completada ? 'Completada' : 'Pendiente' }}</td>
           <td>
             <form action="{{ route('asignacionesTareas.destroy', $asignacion->id) }}" method="POST">
                 <a class="button is-primary" href="{{ route('asignacionesTareas.show', $asignacion->id) }}">Mostrar</a>

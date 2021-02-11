@@ -28,8 +28,9 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Name</th>
-                <th>Email</th>
+                <th>Nombre</th>
+                <th>Código</th>
+                <th>Ubicación</th>
                 <th width="100px">Action</th>
             </tr>
         </thead>
@@ -63,6 +64,7 @@
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'nombre', name: 'nombre'},
                     {data: 'codigo_barras', name: 'codigo_barras'},
+                    {data: 'id_ubicacion', name: 'id_ubicacion'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
             });
