@@ -61,6 +61,7 @@ class MuebleTest extends TestCase
         // tabla bienes
         $this->assertDatabaseHas('bienes', [
             'nombre' => $datos_post['nombre'],
+            'codigo_barras' => $datos_post['codigo'],
         ]);
 
         // asegurando que exista un nuevo registro con datos esperados en la
@@ -104,7 +105,7 @@ class MuebleTest extends TestCase
             'id_ubicacion' => 1,
             'nombre' => $faker->name,
             'clase' => 'CONTROL ADMINISTRATIVO',
-            'codigo' => $faker->ean13,
+            'codigo_barras' => $faker->ean13,
             'fecha_de_adquisicion' => $faker->date($format = 'Y-m-d', $max = 'now'),
             'acta_de_recepcion' => "dummy_binary",
             'id_responsable' => 1,
@@ -128,11 +129,16 @@ class MuebleTest extends TestCase
         // ejecucion del componente en evaluacion
         $response = $this->call('PUT', 'muebles/' . $id_mueble, $datos_post);
 
+        // $response->dumpHeaders();
+
+        // $response->dump();
+
         // Evaluacion de resultados
         // asegurando que que se hayan actualizado datos en la
         // tabla bienes, bca, y muebles
         $this->assertDatabaseHas('bienes', [
             'nombre' => $datos_post['nombre'],
+            'codigo_barras' => $datos_post['codigo_barras'],
         ]);
 
         // asegurando que exista un nuevo registro con datos esperados en la

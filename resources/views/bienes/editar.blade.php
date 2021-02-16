@@ -13,10 +13,21 @@
         </a>
     </header>
 
+    @if ($errors->any())
+    <div class="notification is-danger">
+        <button class="delete"></button>
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
     <div class="card-content">
 
         @if ($bien)
-        <form action="/{{ $tipo_de_bien == 'tecnologicos' ? 'bienes_tecnologicos' : $tipo_de_bien }}/{{ $id }}" method="POST">
+        <form action="/{{ $tipo_de_bien == 'tecnologicos' ? 'bienes_tecnologicos' : $tipo_de_bien }}/{{ $mueble->id }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -26,11 +37,11 @@
                     <div class="select is-fullwidth">
                         <select id="id_ubicacion" name="id_ubicacion">
                             @foreach ($ubicaciones as $ubicacion)
-                                @if ($ubicacion->id == $bien['id_ubicacion'])
-                                <option value="{{$ubicacion->id}}" selected>{{$ubicacion->nombre}}</option>
-                                @else
-                                <option value="{{$ubicacion->id}}">{{$ubicacion->nombre}}</option>
-                                @endif
+                            @if ($ubicacion->id == $bien['id_ubicacion'])
+                            <option value="{{$ubicacion->id}}" selected>{{$ubicacion->nombre}}</option>
+                            @else
+                            <option value="{{$ubicacion->id}}">{{$ubicacion->nombre}}</option>
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -38,7 +49,7 @@
             </div>
 
             <div class="field">
-                <label class="label" class="label class="label"">Nombre</label class="label">
+                <label class="label" class="label class=" label"">Nombre</label class="label">
                 <input value="{{$bien['nombre']}}" type="text" class="input" id="nombre" name="nombre" placeholder="Nombre del bien">
             </div>
 
@@ -56,18 +67,8 @@
 
             <div class="field">
                 <label class="label">Código</label class="label">
-                <input value="{{$bien['codigo']}}" type="text" class="input" id="codigo" name="codigo">
+                <input value="{{$bien['codigo_barras']}}" type="text" class="input" id="codigo" name="codigo_barras">
             </div>
-
-            {{-- <div class="field">
-                <label class="label">Usuario Final</label class="label">
-                <select class="input" id="id_usuario_final" name="id_usuario_final">
-                    <option value="" disabled selected>Seleccione el usuario final</option>
-                    @foreach ($usuarios_finales as $uf)
-                    <option value="{{$uf->id}}">{{$uf->nombre . " " . $uf->apellidos }}</option>
-                    @endforeach
-                </select>
-            </div> --}}
 
             <div class="field">
                 <label class="label">Fecha de Adquisición</label class="label">
@@ -81,7 +82,7 @@
 
             <div class="field">
                 <label class="label">Período de Garantía</label class="label">
-                <input value="{{$bien['periodo_de_garantia']}}" type="number" min="0" max="50"  step="1" class="input" id="periodo_de_garantia" name="periodo_de_garantia">
+                <input value="{{$bien['periodo_de_garantia']}}" type="number" min="0" max="50" step="1" class="input" id="periodo_de_garantia" name="periodo_de_garantia">
             </div>
 
             <div class="field">
@@ -125,7 +126,7 @@
 
             <div class="field">
                 <label class="label">Vida Útil</label class="label">
-                <input value="{{$bien['vida_util']}}" type="number" min="0" max="50"  step="1" class="input" id="vida_util" name="vida_util">
+                <input value="{{$bien['vida_util']}}" type="number" min="0" max="50" step="1" class="input" id="vida_util" name="vida_util">
             </div>
 
             {{-- <div class="field">
@@ -135,13 +136,13 @@
 
             <div class="form-check">
                 <label class="label" class="form-check-label">
-                    <input value="{{$bien['en_uso'] == 1 ? 'checked' : '' }}"type="checkbox" class="form-check-input" id="en_uso" name="en_uso">En Uso
+                    <input value="{{$bien['en_uso'] == 1 ? 'checked' : '' }}" type="checkbox" class="form-check-input" id="en_uso" name="en_uso">En Uso
                 </label class="label">
             </div>
 
             <div class="field">
                 <label class="label">Descripción</label class="label">
-                <textarea class="textarea"  rows='3' id="descripcion" name="descripcion">{{$bien['descripcion']}}</textarea>
+                <textarea class="textarea" rows='3' id="descripcion" name="descripcion">{{$bien['descripcion']}}</textarea>
             </div>
 
             @includeIf('bienes.' . $tipo_de_bien . '.editar')
@@ -150,10 +151,11 @@
 
         </form>
         @endif
-        
+
     </div>
 </div>
-    <!-- Modales-->
-    @include('ubicaciones.modal-crear')
-    <script src="{{ asset('js/modal.js') }}" ></script>
+
+<!-- Modales-->
+@include('ubicaciones.modal-crear')
+<script src="{{ asset('js/modal.js') }}"></script>
 @endsection

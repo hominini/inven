@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreBien;
 use Illuminate\Support\Facades\Storage;
-
+use App\Mueble;
+use App\Bien;
+use App\Http\Requests\UpdateBien;
 
 class MueblesController extends Controller
 {
@@ -18,7 +20,7 @@ class MueblesController extends Controller
     public function indice()
     {
         $mueblesReturn = [];
-        $muebles = \App\Mueble::all();
+        $muebles = Mueble::all();
 
         foreach ($muebles as $mueble) {
 
@@ -63,7 +65,7 @@ class MueblesController extends Controller
     public function almacenar(StoreBien $request)
     {
 
-        $bien = new \App\Bien();
+        $bien = new Bien();
         $bien->nombre = $request->input('nombre');
         $bien->descripcion = $request->input('descripcion');
         $bien->clase = $request->input('clase');
@@ -88,14 +90,14 @@ class MueblesController extends Controller
         $bca->id_actividad = $request->input('id_actividad');
         $bca->en_uso = ($request->input('en_uso') == 'checked' ? 1 : 0);
 
-        $mueble = new \App\Mueble();
+        $mueble = new Mueble();
         $mueble->id_tipo_de_bien = $request->input('id_tipo_de_bien');
         $mueble->color = $request->input('color');
         $mueble->dimensiones = $request->input('dimensiones');
 
         DB::transaction(function () use ($mueble, $bca, $bien) {
             $bien->save();
-            \App\Bien::find($bien->id)->bien_control_administrativo()->save($bca);
+            Bien::find($bien->id)->bien_control_administrativo()->save($bca);
             \App\BienControlAdministrativo::find($bca->id)->mueble()->save($mueble);
         });
 
@@ -109,10 +111,8 @@ class MueblesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function mostrar($id)
+    public function mostrar(Mueble $mueble)
     {
-        $mueble = \App\Mueble::find($id);
-
         $url = Storage::url($mueble->bien_control_administrativo->bien->acta_de_recepcion);
         // dd($url);
         return view('bienes.muebles.ver', compact('mueble'));
@@ -124,13 +124,12 @@ class MueblesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editar($id)
+    public function editar(Mueble $mueble)
     {
         // el tipo de bien se debe pasar a la vista para que se agregen los campos
         // especificos al tipo de bien
         $tipo_de_bien = 'muebles';
-        // obtencion del mueble a editar
-        $mueble = \App\Mueble::find($id);
+        
         // se obtiene una referencia al bca asociado con este mueble
         $bca = $mueble->bien_control_administrativo;
         //se obtiene de una referencia al bien asociado con este mueble
@@ -141,10 +140,7 @@ class MueblesController extends Controller
         $bien = $bien->toArray();
         $bien = array_merge($bien, $bca);
 
-
-        // se pasan los siguientes datos a la vista: un string $tipo_de_bien,
-        // un objeto $bien, un objeto $mueble, el $id del mueble
-        return view('bienes.editar', compact('mueble', 'bien', 'tipo_de_bien', 'id'));
+        return view('bienes.editar', compact('mueble', 'bien', 'tipo_de_bien'));
     }
 
     /**
@@ -154,15 +150,15 @@ class MueblesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(Request $request, $id)
+    public function actualizar(UpdateBien $request, $id)
     {
-        $mueble = \App\Mueble::find($id);
+        $mueble = Mueble::find($id);
         $mueble->id_tipo_de_bien = $request->input('id_tipo_de_bien');
         $mueble->color = $request->input('color');
         $mueble->dimensiones = $request->input('dimensiones');
 
         $bca = $mueble->bien_control_administrativo;
-        $bca->codigo = $request->input('codigo');
+        $bca->codigo = $request->input('codigo_barras');
         $bca->periodo_de_garantia = $request->input('periodo_de_garantia');
         $bca->estado = $request->input('estado');
         $bca->caducidad = $request->input('caducidad');
@@ -183,7 +179,7 @@ class MueblesController extends Controller
         $bien->imagen = $request->input('imagen');
         $bien->observaciones = $request->input('observaciones');
         $bien->valor = $request->input('valor');
-        $bien->codigo_barras = $request->input('codigo');
+        $bien->codigo_barras = $request->input('codigo_barras');
 
         DB::transaction(function () use ($mueble, $bca, $bien) {
             $mueble->save();
@@ -204,7 +200,7 @@ class MueblesController extends Controller
     public function destruir($id)
     {
         // obtencion de referencias a las tablas a eliminar
-        $mueble = \App\Mueble::find($id);
+        $mueble = Mueble::find($id);
         $bca = $mueble->bien_control_administrativo;
         $bien = $mueble->bien_control_administrativo->bien;
         $mueble->delete();
