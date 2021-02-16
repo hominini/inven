@@ -7,7 +7,7 @@ use App\Http\Requests\StoreBien;
 use Illuminate\Support\Facades\DB;
 
 
-class ControladorBienes extends Controller
+class BienesController extends Controller
 {
     public function traerBienesPorUbicacion($id_ubicacion)
     {

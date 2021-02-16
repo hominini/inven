@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-class ControladorUsuariosFinales extends Controller
+class FinalUsersController extends Controller
 {
     /**
      * Muestra un listado del recurso.

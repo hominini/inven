@@ -13,7 +13,7 @@ use App\BienControlAdministrativo;
 use App\Registro;
 
 
-class ControladorTareas extends Controller
+class TareasController extends Controller
 {
     public function getTareas(Request $request)
     {

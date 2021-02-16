@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreBien;
 use Illuminate\Support\Facades\DB;
 
-class ControladorBienesTecnologicos extends Controller
+class TechAssetsController extends Controller
 {
     /**
      * Muestra un listado del recurso.

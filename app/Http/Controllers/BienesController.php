@@ -8,7 +8,7 @@ use App\DataTables\BienesDataTable;
 use App\Mueble;
 use Yajra\DataTables\Facades\DataTables;
 
-class ControladorBienes extends Controller
+class BienesController extends Controller
 {
     /**
      * Muestra un listado del recurso.

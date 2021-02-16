@@ -5,14 +5,14 @@ namespace App\Http\Controllers\API;
 
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\API\ControladorBase as BaseController;
+use App\Http\Controllers\API\BaseController as BaseController;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Carbon\Carbon;
 
 
-class ControladorLogin extends BaseController
+class LoginController extends BaseController
 {
     /**
      * login api

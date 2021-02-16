@@ -12,7 +12,7 @@ use Validator;
 
 
 
-class ControladorUbicaciones extends Controller
+class UbicacionesController extends Controller
 {
     /**
      * Muestra un listado del recurso.

@@ -8,7 +8,7 @@ use App\Http\Requests\StoreBien;
 use Illuminate\Support\Facades\Storage;
 
 
-class ControladorMuebles extends Controller
+class MueblesController extends Controller
 {
     /**
      * Muestra un listado del recurso.

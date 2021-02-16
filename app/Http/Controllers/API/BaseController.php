@@ -6,7 +6,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller as Controller;
 
 
-class ControladorBase extends Controller
+class BaseController extends Controller
 {
     /**
      * success response method.

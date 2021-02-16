@@ -27,13 +27,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users','UserController');
 
     // Rutas bienes
-    Route::get('/bienes', 'ControladorBienes@indice');
-    Route::get('/bienes/crear', 'ControladorBienes@crear');
-    Route::get('/bienes/{bien}/editar', 'ControladorBienes@editar');
-    Route::get('/bienes/{bien}', 'ControladorBienes@mostrar');
-    Route::post('/bienes', 'ControladorBienes@almacenar');
-    Route::put('/bienes/{bien}', 'ControladorBienes@actualizar');
-    Route::delete('/bienes/{bien}', 'ControladorBienes@destruir');
+    Route::get('/bienes', 'BienesController@indice');
+    Route::get('/bienes/crear', 'BienesController@crear');
+    Route::get('/bienes/{bien}/editar', 'BienesController@editar');
+    Route::get('/bienes/{bien}', 'BienesController@mostrar');
+    Route::post('/bienes', 'BienesController@almacenar');
+    Route::put('/bienes/{bien}', 'BienesController@actualizar');
+    Route::delete('/bienes/{bien}', 'BienesController@destruir');
 
     // Rutas inventarios
     // Route::get('/inventarios', 'ControladorInventarios@indice');
@@ -45,22 +45,22 @@ Route::group(['middleware' => ['auth']], function() {
     // Route::delete('/inventarios/{inventario}', 'ControladorInventarios@destruir');
 
     // Rutas bienes_muebles
-    Route::get('/muebles', 'ControladorMuebles@indice')->name('muebles.index');
-    Route::get('/muebles/crear', 'ControladorMuebles@crear')->name('muebles.create');
-    Route::get('/muebles/{mueble}/editar', 'ControladorMuebles@editar')->name('muebles.edit');
-    Route::get('/muebles/{mueble}', 'ControladorMuebles@mostrar')->name('muebles.show');
-    Route::post('/muebles', 'ControladorMuebles@almacenar');
-    Route::put('/muebles/{mueble}', 'ControladorMuebles@actualizar');
-    Route::delete('/muebles/{mueble}', 'ControladorMuebles@destruir')->name('muebles.destroy');
+    Route::get('/muebles', 'MueblesController@indice')->name('muebles.index');
+    Route::get('/muebles/crear', 'MueblesController@crear')->name('muebles.create');
+    Route::get('/muebles/{mueble}/editar', 'MueblesController@editar')->name('muebles.edit');
+    Route::get('/muebles/{mueble}', 'MueblesController@mostrar')->name('muebles.show');
+    Route::post('/muebles', 'MueblesController@almacenar');
+    Route::put('/muebles/{mueble}', 'MueblesController@actualizar');
+    Route::delete('/muebles/{mueble}', 'MueblesController@destruir')->name('muebles.destroy');
 
     // Rutas bienes_recursos_tecnologicos
-    Route::get('/bienes_tecnologicos', 'ControladorBienesTecnologicos@indice')->name('bienes_tecnologicos.index');
-    Route::get('/bienes_tecnologicos/crear', 'ControladorBienesTecnologicos@crear')->name('bienes_tecnologicos.create');
-    Route::get('/bienes_tecnologicos/{bien}/editar', 'ControladorBienesTecnologicos@editar')->name('bienes_tecnologicos.edit');
-    Route::get('/bienes_tecnologicos/{bien}', 'ControladorBienesTecnologicos@mostrar')->name('bienes_tecnologicos.show');
-    Route::post('/bienes_tecnologicos', 'ControladorBienesTecnologicos@almacenar');
-    Route::put('/bienes_tecnologicos/{bien}', 'ControladorBienesTecnologicos@actualizar');
-    Route::delete('/bienes_tecnologicos/{bien}', 'ControladorBienesTecnologicos@destruir')->name('bienes_tecnologicos.destroy');
+    Route::get('/bienes_tecnologicos', 'TechAssetsController@indice')->name('bienes_tecnologicos.index');
+    Route::get('/bienes_tecnologicos/crear', 'TechAssetsController@crear')->name('bienes_tecnologicos.create');
+    Route::get('/bienes_tecnologicos/{bien}/editar', 'TechAssetsController@editar')->name('bienes_tecnologicos.edit');
+    Route::get('/bienes_tecnologicos/{bien}', 'TechAssetsController@mostrar')->name('bienes_tecnologicos.show');
+    Route::post('/bienes_tecnologicos', 'TechAssetsController@almacenar');
+    Route::put('/bienes_tecnologicos/{bien}', 'TechAssetsController@actualizar');
+    Route::delete('/bienes_tecnologicos/{bien}', 'TechAssetsController@destruir')->name('bienes_tecnologicos.destroy');
 
     // Rutas bienes_items_bibliograficos
     Route::get('/bienes_items_bibliograficos', 'LibrosController@indice')->name('libros.index');
@@ -72,28 +72,28 @@ Route::group(['middleware' => ['auth']], function() {
     Route::delete('/bienes_items_bibliograficos/{item_biblio}', 'LibrosController@destruir')->name('libros.destroy');
 
     // Rutas ubicaciones
-    Route::get('/ubicaciones', 'ControladorUbicaciones@indice')->name('rutas.index'); //ver
-    Route::get('/ubicaciones/crear', 'ControladorUbicaciones@crear')->name('ubicaciones.create');
-    Route::get('/ubicaciones/{ubicacion}/editar', 'ControladorUbicaciones@editar')->name('ubicaciones.edit');
-    Route::get('/ubicaciones/{ubicacion}', 'ControladorUbicaciones@mostrar')->name('ubicaciones.show');
-    Route::post('/ubicaciones', 'ControladorUbicaciones@almacenar');
-    Route::put('/ubicaciones/{ubicacion}', 'ControladorUbicaciones@actualizar');
-    Route::delete('/ubicaciones/{ubicacion}', 'ControladorUbicaciones@destruir')->name('ubicaciones.destroy');
+    Route::get('/ubicaciones', 'UbicacionesController@indice')->name('rutas.index'); //ver
+    Route::get('/ubicaciones/crear', 'UbicacionesController@crear')->name('ubicaciones.create');
+    Route::get('/ubicaciones/{ubicacion}/editar', 'UbicacionesController@editar')->name('ubicaciones.edit');
+    Route::get('/ubicaciones/{ubicacion}', 'UbicacionesController@mostrar')->name('ubicaciones.show');
+    Route::post('/ubicaciones', 'UbicacionesController@almacenar');
+    Route::put('/ubicaciones/{ubicacion}', 'UbicacionesController@actualizar');
+    Route::delete('/ubicaciones/{ubicacion}', 'UbicacionesController@destruir')->name('ubicaciones.destroy');
 
     // Rutas usuarios_finales
-    Route::get('/usuarios_finales', 'ControladorUsuariosFinales@indice');
-    Route::get('/usuarios_finales/crear', 'ControladorUsuariosFinales@crear');
-    Route::get('/usuarios_finales/{usuario_final}/editar', 'ControladorUsuariosFinales@editar');
-    Route::get('/usuarios_finales/{usuario_final}', 'ControladorUsuariosFinales@mostrar');
-    Route::post('/usuarios_finales', 'ControladorUsuariosFinales@almacenar');
-    Route::put('/usuarios_finales/{usuario_final}', 'ControladorUsuariosFinales@actualizar');
-    Route::delete('/usuarios_finales/{usuario_final}', 'ControladorUsuariosFinales@destruir');
+    Route::get('/usuarios_finales', 'FinalUsersController@indice');
+    Route::get('/usuarios_finales/crear', 'FinalUsersController@crear');
+    Route::get('/usuarios_finales/{usuario_final}/editar', 'FinalUsersController@editar');
+    Route::get('/usuarios_finales/{usuario_final}', 'FinalUsersController@mostrar');
+    Route::post('/usuarios_finales', 'FinalUsersController@almacenar');
+    Route::put('/usuarios_finales/{usuario_final}', 'FinalUsersController@actualizar');
+    Route::delete('/usuarios_finales/{usuario_final}', 'FinalUsersController@destruir');
 
     Route::resource('asignacionesTareas', 'AsignacionesTareasController');
 
     Route::get('/settings', 'SettingsController@index')->name('settings');
 
-    Route::get('/download', 'ControladorUbicaciones@exportar')->name('download');
+    Route::get('/download', 'UbicacionesController@exportar')->name('download');
 
     Route::get('/conteo', 'AsignacionesTareasController@indice_conteo')->name('conteo.index'); //ver
     Route::get('/conteo/{id}', 'AsignacionesTareasController@mostrar_conteo')->name('conteo.show');
@@ -107,6 +107,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/registro', 'AsignacionesTareasController@indice_registros')->name('registros.index'); //ver
     Route::get('/registros/{id}', 'AsignacionesTareasController@mostrar_registros')->name('registros.show');
 
-    Route::get('/bienes_dt', 'ControladorBienes@indexDTable')->name('bienes_dt.index');
+    Route::get('/bienes_dt', 'BienesController@indexDTable')->name('bienes_dt.index');
 
 });
