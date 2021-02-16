@@ -65,6 +65,7 @@ class ControladorTareas extends Controller
             $conteo->save();
 
             $this->completarTarea($request->id_asignacion_tarea);
+            
             return response()->json([
                 'resultado' => 1,
                 'mensaje' => 'Conteo exitoso.',

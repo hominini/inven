@@ -26,16 +26,13 @@ class ControladorMuebles extends Controller
             $mueble->bien_control_administrativo->bien;
             $muebleReturn = $mueble->toArray();
 
-            foreach ($muebleReturn['bien_control_administrativo'] as $key => $val)
-            {
+            foreach ($muebleReturn['bien_control_administrativo'] as $key => $val) {
                 $muebleReturn[$key] = $val;
             }
 
-            foreach ($muebleReturn['bien_control_administrativo']['bien'] as $key => $val)
-            {
+            foreach ($muebleReturn['bien_control_administrativo']['bien'] as $key => $val) {
                 $muebleReturn[$key] = $val;
             }
-
 
             unset($muebleReturn['bien_control_administrativo']);
             unset($muebleReturn['bien']);
@@ -43,7 +40,6 @@ class ControladorMuebles extends Controller
             $muebleReturn['id'] = $mueble->id;
             $muebleReturn['ubicacion'] = $mueble->bien_control_administrativo->bien->ubicacion;
             array_push($mueblesReturn, $muebleReturn);
-
         }
         return view('bienes.muebles.index', compact('mueblesReturn'));
     }
@@ -104,7 +100,7 @@ class ControladorMuebles extends Controller
         });
 
         return redirect()->route('muebles.index')
-                        ->with('success','Registro creado con exito.');
+            ->with('success', 'Registro creado con exito.');
     }
 
     /**
@@ -120,7 +116,6 @@ class ControladorMuebles extends Controller
         $url = Storage::url($mueble->bien_control_administrativo->bien->acta_de_recepcion);
         // dd($url);
         return view('bienes.muebles.ver', compact('mueble'));
-
     }
 
     /**
@@ -149,7 +144,7 @@ class ControladorMuebles extends Controller
 
         // se pasan los siguientes datos a la vista: un string $tipo_de_bien,
         // un objeto $bien, un objeto $mueble, el $id del mueble
-        return view('bienes.editar', compact('mueble','bien','tipo_de_bien', 'id'));
+        return view('bienes.editar', compact('mueble', 'bien', 'tipo_de_bien', 'id'));
     }
 
     /**
@@ -197,7 +192,7 @@ class ControladorMuebles extends Controller
         });
 
         return redirect()->route('muebles.index')
-                        ->with('success','Registro actualizado con exito.');
+            ->with('success', 'Registro actualizado con exito.');
     }
 
     /**
@@ -216,7 +211,8 @@ class ControladorMuebles extends Controller
         $bca->delete();
         $bien->delete();
 
-        return redirect()->route('muebles.index')
-                        ->with('success','Registro eliminado con exito.');
+        return redirect()
+            ->route('muebles.index')
+            ->with('success', 'Registro eliminado con éxito.');
     }
 }

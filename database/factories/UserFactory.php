@@ -24,5 +24,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'nombres' => $faker->firstName,
         'apellidos' => $faker->lastName,
         'cedula' => '1723749501',
+        'es_administrador' => 0,
     ];
 });

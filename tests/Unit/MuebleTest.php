@@ -10,8 +10,6 @@ use Faker\Factory as Faker;
 
 class MuebleTest extends TestCase
 {
-    use RefreshDatabase;
-
     /**
      * A basic test example.
      *
@@ -19,6 +17,11 @@ class MuebleTest extends TestCase
      */
     public function test__almacenar()
     {
+        $user = factory(\App\User::class)->create();
+        $this->actingAs($user);
+
+        $this->withoutExceptionHandling();
+
         // definicion de inputs y outputs esperados
         // objeto que permite crear datos falsos
         $faker = Faker::create();

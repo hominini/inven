@@ -10,8 +10,6 @@ use Faker\Factory as Faker;
 
 class UbicacionesTest extends TestCase
 {
-    use RefreshDatabase;
-
     /**
      * A basic test example.
      *

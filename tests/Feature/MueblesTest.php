@@ -11,15 +11,6 @@ use Illuminate\Support\Facades\Artisan;;
 
 class MueblesTest extends TestCase
 {
-    use RefreshDatabase;
-
-    // public function setUp()
-    // {
-    //     parent::setUp();
-    //     //Artisan::call('migrate');
-    //     Artisan::call('db:seed');
-    // }
-
  
     /**
      * @test
