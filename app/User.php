@@ -26,6 +26,7 @@ class User extends Authenticatable
         'cargo',
         'area',
         'institucion_id',
+        'es_administrador',
     ];
 
     /**

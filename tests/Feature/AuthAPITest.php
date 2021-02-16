@@ -10,30 +10,22 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class AuthAPITest extends TestCase
 {
     /** @test */
-    public function usuario_se_puede_registrar_atraves_de_la_api()
-    {
-        $this->withoutExceptionHandling();
-        // preparar data
-        $data2 = [
-            'form-params' => [
-                'name' => 'admin@admin.com',
-                'email' => 'admin@admin.com',
-                'password' => 'password',
-                'c_password' => 'password',
-            ],
-        ];
-        $data = [
-            'name' => 'admin@admin.com',
-            'email' => 'admin@admin.com',
-            'password' => 'password',
-            'c_password' => 'password',
-        ];
+    // public function usuario_se_puede_loguear_atraves_de_la_api()
+    // {
+    //     $this->withoutExceptionHandling();
 
-        // intentar la petición
-        $respuesta = $this->json('POST', '/api/register', $data);
+    //     // preparar data
+    //     $data = [
+    //         'email' => 'admin@admin.com',
+    //         'password' => 'password',
+    //     ];
 
-        $respuesta->dump();
-        // valorar el resultado
-        $respuesta->assertStatus(201);
-    }
+    //     // intentar la petición
+    //     $respuesta = $this->json('POST', '/api/login', $data);
+
+    //     $respuesta->dump();
+        
+    //     // valorar el resultado
+    //     $respuesta->assertStatus(201);
+    // }
 }

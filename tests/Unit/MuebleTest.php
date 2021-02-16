@@ -4,23 +4,21 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+
 
 use Faker\Factory as Faker;
 
 class MuebleTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
+
     public function test__almacenar()
     {
         $user = factory(\App\User::class)->create();
         $this->actingAs($user);
 
-        $this->withoutExceptionHandling();
+        // $this->withoutExceptionHandling();
 
         // definicion de inputs y outputs esperados
         // objeto que permite crear datos falsos
@@ -35,7 +33,7 @@ class MuebleTest extends TestCase
             'clase' => 'CONTROL ADMINISTRATIVO',
             'codigo' => $faker->ean13,
             'fecha_de_adquisicion' => $faker->date($format = 'Y-m-d', $max = 'now'),
-            'acta_de_recepcion' => "dummy_binary",
+            'acta_de_recepcion' => UploadedFile::fake()->create('acta_test.pdf'),
             'id_responsable' => 1,
             'periodo_de_garantia' => 3.5,
             'estado' => $faker->word,
@@ -81,6 +79,11 @@ class MuebleTest extends TestCase
     public function test__actualizar()
     {
         // setup
+        $user = factory(\App\User::class)->create();
+        $this->actingAs($user);
+
+        $this->withoutExceptionHandling();
+
         $bien = factory('App\Bien')->create();
 
         // creacion de un bien de control administrativo
@@ -148,6 +151,11 @@ class MuebleTest extends TestCase
     public function test__destruir()
     {
         // setup
+        $user = factory(\App\User::class)->create();
+        $this->actingAs($user);
+
+        $this->withoutExceptionHandling();
+
         $bien = factory('App\Bien')->create();
 
         // creacion de un bien de control administrativo

@@ -17,13 +17,13 @@ use Illuminate\Support\Str;
 $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'email' => 'admin@admin.foo',
+        'email' => $faker->email,
         'email_verified_at' => now(),
         'password' => 'password', // password
         'remember_token' => Str::random(10),
         'nombres' => $faker->firstName,
         'apellidos' => $faker->lastName,
-        'cedula' => '1723749501',
+        'cedula' => '1723749' . $faker->numberBetween(100, 999),
         'es_administrador' => 0,
     ];
 });

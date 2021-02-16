@@ -30,7 +30,8 @@ class UsersTest extends TestCase
             'password_confirmation' => 'password',
             'nombres' => 'Daniela',
             'apellidos' => 'Ortega',
-            'cedula' => '1723749502',
+            'cedula' => '0923749' . $this->faker->numberBetween(100, 999),
+            'es_administrador' => 1,
         ];
 
         // intenta crear usuario
@@ -46,6 +47,6 @@ class UsersTest extends TestCase
     protected function tearDown(): void
     {
         // eliminar todos los registros creados
-        \App\User::truncate();
+        // \App\User::truncate();
     }
 }

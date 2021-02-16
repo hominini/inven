@@ -17,6 +17,11 @@ class UbicacionesTest extends TestCase
      */
     public function test__almacenar()
     {
+        $user = factory(\App\User::class)->create();
+        $this->actingAs($user);
+
+        $this->withoutExceptionHandling();
+
         // definicion de inputs y outputs esperados
         // objeto que permite crear datos falsos
         $faker = Faker::create();
@@ -26,13 +31,17 @@ class UbicacionesTest extends TestCase
         $datos_post = array(
             '_token' => csrf_token(),
             'nombre' => $faker->word,
-            'nombre_cuarto' => $faker->sentence,
+            'nombre_edificio' => $faker->sentence,
             'comentarios' => $faker->paragraph,
         );
 
         // ejecucion del componente en evaluacion
         // ingresando el formulario
         $response = $this->call('POST', 'ubicaciones', $datos_post);
+
+        // $response->dumpHeaders();
+
+        // $response->dump();
 
         // Evaluacion de resultados
         // asegurando que exista un nuevo registro con datos esperados en la
@@ -44,6 +53,12 @@ class UbicacionesTest extends TestCase
 
     public function test__actualizar()
     {
+
+        $user = factory(\App\User::class)->create();
+        $this->actingAs($user);
+
+        $this->withoutExceptionHandling();
+
         // Crea un registro de prueba
         $ubicacion = factory('App\Ubicacion')->create();
         // Obtiene el id del registro a modificar
@@ -56,7 +71,7 @@ class UbicacionesTest extends TestCase
         $datos_req = array(
             '_token' => csrf_token(),
             'nombre' => $faker->word,
-            'nombre_cuarto' => $faker->sentence,
+            'nombre_edificio' => $faker->sentence,
             'comentarios' => $faker->paragraph,
         );
 
@@ -73,7 +88,13 @@ class UbicacionesTest extends TestCase
 
     public function test__destruir()
     {
-      // Crea un registro de prueba
+
+        $user = factory(\App\User::class)->create();
+        $this->actingAs($user);
+
+        $this->withoutExceptionHandling();
+        
+        // Crea un registro de prueba
         $ubicacion = factory('App\Ubicacion')->create();
 
         // ids de registros a eliminar
@@ -82,12 +103,12 @@ class UbicacionesTest extends TestCase
         // datos de la peticion falsa
         $datos_req = array(
             '_token' => csrf_token(),
-          );
+        );
 
         // ejecucion del componente en evaluacion
         //$resp = $this->call('DELETE', 'ubicaciones/'.$id, $datos_req);
         $resp = $this->delete('ubicaciones/' . $id);
-          
+
         // evaluacion de resultados, luego de la eliminacion no deben existir
         // ningun registro con los ids recien creados, en las tablas correspondientes
         $this->assertDatabaseMissing('ubicaciones', [
