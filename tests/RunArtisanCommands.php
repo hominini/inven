@@ -2,7 +2,7 @@
 namespace Tests;
 use Illuminate\Support\Facades\Artisan;
 
-trait PrepareDatabaseOnce
+trait RunArtisanCommands
 {
     /**
     * If true, setup has run at least once.
