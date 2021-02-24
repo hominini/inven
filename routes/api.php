@@ -27,10 +27,11 @@ Route::middleware('auth:api')->group( function () {
 
     Route::post('/tarea/{id}/actualizarTarea', 'API\TareasController@actualizarTarea');
 
-    Route::post('/bajas','API\TareasController@darBajaBienes');
-    Route::post('/dar_baja_bien','API\TareasController@darBajaBien');
+    Route::post('/bajas', 'API\TareasController@darBajaBienes');
+    
+    Route::post('/dar_baja_bien', 'API\TareasController@darBajaBien');
 
-    Route::post('/registrarbienes','API\TareasController@registrarbienes');
+    Route::post('/registrarbienes', 'API\TareasController@registrarbienes');
 
     Route::resource('ubicaciones', 'API\UbicacionController');
 

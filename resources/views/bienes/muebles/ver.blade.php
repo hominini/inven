@@ -30,7 +30,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Código:</strong>
-            {{ $mueble->bien_control_administrativo->codigo }}
+            {{ $mueble->bien_control_administrativo->bien->codigo_barras }}
         </div>
     </div>
 
@@ -43,8 +43,8 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Fecha de Caducidad:</strong>
-            {{ $mueble->bien_control_administrativo->caducidad }}
+            <strong>Activo:</strong>
+            {{ $mueble->is_baja ? '0': '1' }}
         </div>
     </div>
 

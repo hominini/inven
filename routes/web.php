@@ -108,5 +108,4 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/registros/{id}', 'AsignacionesTareasController@mostrar_registros')->name('registros.show');
 
     Route::get('/bienes_dt', 'BienesController@indexDTable')->name('bienes_dt.index');
-
 });

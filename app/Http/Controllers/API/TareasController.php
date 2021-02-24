@@ -116,17 +116,19 @@ class TareasController extends Controller
 
         $limite = count($ids);
 
-        for($i=0; $i<$limite; $i++){
+        for ($i = 0; $i < $limite; $i++) {
             $bien = \App\Bien::find($ids[$i]);
-            $bien->is_baja=1;
-            $bien->save();
 
+            if ($bien) {
+                $bien->is_baja = 1;
+                $bien->save();
+            }
         }
     
-        //guardar en la base de datos el registro
+        // guardar en la base de datos el registro
         $res_tarea = new Baja;
         $res_tarea->id_asignacion_tarea	 = $request->id_asignacion_tarea;
-        $res_tarea->options	 =  json_encode($ids);
+        $res_tarea->options	= json_encode($ids);
 
         $res_tarea->save();
 
