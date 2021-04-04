@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\AsignacionTarea;
+use App\Bien;
 
 class AsignacionesTareasController extends Controller
 {
@@ -167,6 +168,7 @@ class AsignacionesTareasController extends Controller
 
     public function indice_conteo(){
         $conteos = \App\Conteo::all();
+        
         return view('conteo.index', compact('conteos'));
     }
 
@@ -174,13 +176,17 @@ class AsignacionesTareasController extends Controller
 
         $conteo = \App\Conteo::find($id);
 
-        // dd($conteo);
+        $n_bienes_ubic = Bien::where('id_ubicacion', $conteo->asignacion_tarea->id_ubicacion)->count();
+
         $id_usuario = $conteo->asignacion_tarea->id_usuario;
 
         $usuario = \App\User::find($id_usuario);
 
-
-        return view('conteo.ver',compact('conteo', 'usuario'));
+        return view('conteo.ver',compact(
+            'conteo',
+            'usuario',
+            'n_bienes_ubic'
+        ));
     }
 
     public function indice_bajas(){

@@ -12,7 +12,7 @@
 
   <div class="card-content">
     <strong>Nombre del Usuario:</strong>
-    {{ $usuario->nombres}} {{ $usuario->apellidos}} {{ $usuario->cedula}}</br>
+    {{ $usuario->nombres}} {{ $usuario->apellidos}} </br>
 
     <strong>Fecha:</strong>
     {{ $baja->created_at}}<br>

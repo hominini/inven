@@ -30,7 +30,7 @@
         <form action="/{{ $tipo_de_bien == 'tecnologicos' ? 'bienes_tecnologicos' : $tipo_de_bien }}/{{ $mueble->id }}" method="POST">
             @csrf
             @method('PUT')
-
+            <input type="hidden" name="bien_id" value="{{$bien['id']}}">
             <div class="field">
                 <label class="label">Ubicación</label>
                 <div class="control">

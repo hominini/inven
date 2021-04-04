@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class UpdateBien extends FormRequest
 {
@@ -21,13 +23,17 @@ class UpdateBien extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
+        // dd($request->all());
         return [
             'nombre' => 'required',
             'clase' => 'required',
             'id_ubicacion' => 'required',
-            'codigo_barras' => 'required|unique:bienes',
+            'codigo_barras' => [
+                'required',
+                Rule::unique('bienes')->ignore($request->bien_id),
+            ],
         ];
     }
 }

@@ -3,53 +3,49 @@
 @section('content')
 <div class="card">
 
-  <header class="card-header">
-    <p class="card-header-title">
-      Detalle
-    </p>
+    <header class="card-header">
+        <p class="card-header-title">
+            Detalle
+        </p>
 
-  </header>
+    </header>
 
-  <div class="card-content">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Nombre del Usuario:</strong>
-            {{ $usuario->nombres}} {{ $usuario->apellidos}} {{ $usuario->cedula}}
+    <div class="card-content">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Nombre del Usuario:</strong>
+                {{ $usuario->nombres}} {{ $usuario->apellidos}}
+            </div>
         </div>
-    </div>
 
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>No. de Cédula:</strong>
-            {{ $usuario->cedula}}
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>No. de Cédula:</strong>
+                {{ $usuario->cedula}}
+            </div>
         </div>
-    </div>
 
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Fecha:</strong>
-            {{ $conteo->created_at}}
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Fecha:</strong>
+                {{ $conteo->created_at}}
+            </div>
         </div>
-    </div>
 
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Lugar de la tarea:</strong>
-            {{ $conteo->asignacion_tarea->ubicacion->nombre }}
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Lugar de la tarea:</strong>
+                {{ $conteo->asignacion_tarea->ubicacion->nombre }}
+            </div>
         </div>
-    </div>
 
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Bienes contados:</strong>
-            {{ $conteo->n_bienes }}
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Bienes contados:</strong>
+                {{ $conteo->n_bienes }} / <strong>{{$n_bienes_ubic}}</strong>
+            </div>
         </div>
+
     </div>
-
-
-
-
-
-  </div>
 </div>
 @endsection

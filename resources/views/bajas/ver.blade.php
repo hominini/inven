@@ -14,7 +14,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Nombre del Usuario:</strong>
-            {{ $usuario->nombres}} {{ $usuario->apellidos}} {{ $usuario->cedula}}
+            {{ $usuario->nombres}} {{ $usuario->apellidos}}
         </div>
     </div>
 
