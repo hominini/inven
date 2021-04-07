@@ -2,25 +2,56 @@
 
 namespace Tests\Unit;
 
+use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Passport\Passport;
+
 
 class TasksTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function notestConteoValidaCorrectamente()
+   
+    public function testConteoRespuestaExitosa()
     {
-        $response = $this->json('POST', 'api/evaluarConteo', ['name' => 'Sally']);
+        $this->withoutExceptionHandling();
+
+        Passport::actingAs(
+            factory(User::class)->make(),
+            [],
+        );
+
+        $response = $this->json(
+            'POST',
+            'api/evaluarConteo',
+            [
+                'conteos' => [
+                    [
+                        'codigoBien' => 'fghhd',
+                        'cantidad' => 1,
+                    ],
+                    [
+                        'codigoBien' => 'fgjhf',
+                        'cantidad' => 1,
+                    ],
+                    [
+                        'codigoBien' => 'qetgc',
+                        'cantidad' => 1,
+                    ],
+                ],
+                'id_asignacion_tarea' => 2,
+            ]
+        );
+
+        // $response->dumpHeaders();
+
+        // $response->dumpSession();
+
+        $response->dump();
 
         $response
-            ->assertStatus(201)
+            ->assertStatus(200)
             ->assertJson([
-                'created' => true,
+                'resultado' => 1,
             ]);
     }
 }

@@ -19,7 +19,7 @@ class TareasController extends Controller
     {
         $todas_las_tareas = \App\AsignacionTarea::all();
 
-        $tareas_usuario = $todas_las_tareas->filter(function($tarea) {
+        $tareas_usuario = $todas_las_tareas->filter(function ($tarea) {
             return $tarea->id_usuario === Auth('api')->user()->id;
         });
 
@@ -36,42 +36,41 @@ class TareasController extends Controller
         //obtener los datos de la peticion
         $conteos = $request->conteos;
         $id_asignacion_tarea = $request->id_asignacion_tarea;
-        $id_ubicacion = \App\AsignacionTarea::find($id_asignacion_tarea)->id;
-        
+        $id_ubicacion = \App\AsignacionTarea::find($id_asignacion_tarea)
+            ->ubicacion->id;
+
         //obtener todos los bienes de la ubicacion
         $bienes = \App\Bien::where('id_ubicacion', $id_ubicacion)->get();
+        // dd($bienes->count());
 
         // obtener todos los bienes contados
         $bienes_contados = [];
-        foreach ($conteos as $conteo)
-        {
+        foreach ($conteos as $conteo) {
             $bien = \App\Bien::where('codigo_barras', $conteo['codigoBien'])->first();
-            if ($bien)
-            {
-                array_push($bienes_contados, $bien);
-            }
+            if ($bien) array_push($bienes_contados, $bien);
         }
 
         //comparar
         $nb_real = count($bienes);
-        $nb_contado = count($bienes_contados);
-
+        $nb_coincid = count($bienes_contados);
+        $nb_no_coincid = count($conteos);
+        
         // calcular porcentaje de acierto
-        if (abs($nb_real - $nb_contado) <= 3) {
+        // por el momento, si no coinciden 3 de los bienes, se rechaza el conteo
+        if (abs($nb_real - $nb_coincid) <= 3) {
             $conteo = new Conteo;
-            $conteo->n_bienes = $nb_contado;
+            $conteo->n_bienes = $nb_coincid;
             $conteo->id_asignacion_tarea = $request->id_asignacion_tarea;
 
             $conteo->save();
 
             $this->completarTarea($request->id_asignacion_tarea);
-            
+
             return response()->json([
                 'resultado' => 1,
                 'mensaje' => 'Conteo exitoso.',
             ]);
-        }
-        else{
+        } else {
             return response()->json([
                 'resultado' => 0,
                 'mensaje' => 'Los resultados no coinciden, intente nuevamente.',
@@ -79,7 +78,8 @@ class TareasController extends Controller
         }
     }
 
-    public function guardarResultadoTarea(Request $request, int $id_asignacion) {
+    public function guardarResultadoTarea(Request $request, int $id_asignacion)
+    {
         $resultado_tarea = new \App\ResultadoTarea([
             'fecha_hora_inicio' => $request->input('fecha_hora_inicio'),
             'fecha_hora_fin' => $request->input('fecha_hora_fin')
@@ -90,7 +90,8 @@ class TareasController extends Controller
         return $resultado_tarea;
     }
 
-    public function actualizarTarea($id){
+    public function actualizarTarea($id)
+    {
 
         DB::transaction(function () use ($id) {
 
@@ -102,7 +103,6 @@ class TareasController extends Controller
             } catch (\Exception $e) {
                 echo $e->getMessage();
             }
-
         });
         return response()->json([
             // 'countingResult' => $dummy_response,
@@ -110,7 +110,8 @@ class TareasController extends Controller
         ]);
     }
 
-    public function darBajaBienes(Request $request){
+    public function darBajaBienes(Request $request)
+    {
 
         $ids = $request->input('idsBienes');
 
@@ -124,11 +125,11 @@ class TareasController extends Controller
                 $bien->save();
             }
         }
-    
+
         // guardar en la base de datos el registro
         $res_tarea = new Baja;
-        $res_tarea->id_asignacion_tarea	 = $request->id_asignacion_tarea;
-        $res_tarea->options	= json_encode($ids);
+        $res_tarea->id_asignacion_tarea     = $request->id_asignacion_tarea;
+        $res_tarea->options    = json_encode($ids);
 
         $res_tarea->save();
 
@@ -144,8 +145,7 @@ class TareasController extends Controller
 
         $bien = \App\Bien::where('codigo_barras', $request->codigo_bien)->first();
 
-        if (!$bien)
-        {
+        if (!$bien) {
             return response()->json([
                 'error' => '404',
                 'message' => 'Not found',
@@ -157,14 +157,14 @@ class TareasController extends Controller
         $motivo_baja->id_bien = $bien->id;
         $motivo_baja->id_asignacion_tarea = $request->id_asignacion_tarea;
         $motivo_baja->motivo = $request->motivo;
-        $motivo_baja->ruta_imagen = $request->file('imagen') 
-            ? $request->file('imagen')->store('tareas/bajas/imagenes', ['disk' => 'public'])  
+        $motivo_baja->ruta_imagen = $request->file('imagen')
+            ? $request->file('imagen')->store('tareas/bajas/imagenes', ['disk' => 'public'])
             : NULL;
 
         $motivo_baja->save();
 
         // actualizar bien, campo isBaja a true
-        $bien->is_baja=1;
+        $bien->is_baja = 1;
         $bien->save();
 
         // respuesta
@@ -179,14 +179,15 @@ class TareasController extends Controller
         $tarea->completada = true;
         $tarea->save();
 
-         // respuesta
-         return response()->json([
+        // respuesta
+        return response()->json([
             'message' => 'Su solicitud ha sido enviada correctamente.'
         ]);
     }
 
-    public function registrarBienes(Request $request){
-        foreach ($request->bienes as $br){
+    public function registrarBienes(Request $request)
+    {
+        foreach ($request->bienes as $br) {
             // tabla bienes
             $bien = new Bien;
             $bien->nombre = $br['nombre'];
@@ -202,16 +203,15 @@ class TareasController extends Controller
 
             // tabla muebles
             $this->crearDeAcuerdoATipoDeBien($br['tipo'], $bca->id);
-
         }
 
         $registro = new Registro;
         $registro->id_asignacion_tarea = $request->idAsignacionTarea;
-        $registro->options	 =  json_encode($request->bienes);
+        $registro->options     =  json_encode($request->bienes);
 
         $registro->save();
 
-        $this->completarTarea( $request->idAsignacionTarea );
+        $this->completarTarea($request->idAsignacionTarea);
 
         return response()->json([
             'message' => 'Su solicitud ha sido enviada correctamente.'
