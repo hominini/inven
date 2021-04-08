@@ -54,7 +54,7 @@ class TareasController extends Controller
         $nb_real = count($bienes);
         $nb_coincid = count($bienes_contados);
         $nb_no_coincid = count($conteos);
-        
+
         // calcular porcentaje de acierto
         // por el momento, si no coinciden 3 de los bienes, se rechaza el conteo
         if (abs($nb_real - $nb_coincid) <= 3) {
@@ -169,7 +169,8 @@ class TareasController extends Controller
 
         // respuesta
         return response()->json([
-            'message' => 'Su solicitud ha sido enviada correctamente.',
+            'success' =>true,
+            'message' => 'Bien dado de baja.',
         ]);
     }
 
